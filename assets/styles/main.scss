@@ -3,24 +3,7 @@
 @import 'assets/styles/_grid.scss';
 @import 'assets/styles/_embed.scss';
 @import 'assets/styles/default';
+@import 'static/fa/css/all.min.css';
 @import 'assets/styles/offline-theme-chrome.css';
 @import 'assets/styles/offline-language-english.css';
 @import 'swiper/dist/css/swiper.css';
-
-/* Begin your default styles here */
-._ratio {
-  background: #333;
-  width: 50%;
-
-  &::before {
-    content: '';
-    padding-top: 100%;
-    float: left;
-  }
-
-  &::after {
-    content: '';
-    display: block;
-    clear: both;
-  }
-}

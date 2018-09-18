@@ -1,3 +1,4 @@
+import "@babel/polyfill"
 import Vue from 'vue'
 import VueFloatLabel from 'vue-float-label'
 import WebFont from 'webfontloader'
