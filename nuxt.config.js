@@ -61,10 +61,6 @@ module.exports = {
     {
       src: '~/plugins/no-ssr.js',
       ssr: false
-    },
-    {
-      src: '~/plugins/polyfills.js',
-      ssr: false
     }
   ],
   render: {
