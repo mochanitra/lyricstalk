@@ -17,6 +17,7 @@ import nuxt_plugin_toast_8d55422c from 'nuxt_plugin_toast_8d55422c' // Source: .
 import nuxt_plugin_ssr_3a86d4ca from 'nuxt_plugin_ssr_3a86d4ca' // Source: ../plugins/ssr.js
 import nuxt_plugin_axios_5659d192 from 'nuxt_plugin_axios_5659d192' // Source: ../plugins/axios.js
 import nuxt_plugin_nossr_471a657b from 'nuxt_plugin_nossr_471a657b' // Source: ../plugins/no-ssr.js (ssr: false)
+import nuxt_plugin_polyfills_473a22e9 from 'nuxt_plugin_polyfills_473a22e9' // Source: ../plugins/polyfills.js (ssr: false)
 
 
 // Component: <no-ssr>
@@ -145,6 +146,7 @@ async function createApp (ssrContext) {
   if (process.browser) { 
     if (typeof nuxt_plugin_toast_8d55422c === 'function') await nuxt_plugin_toast_8d55422c(app.context, inject)
     if (typeof nuxt_plugin_nossr_471a657b === 'function') await nuxt_plugin_nossr_471a657b(app.context, inject)
+    if (typeof nuxt_plugin_polyfills_473a22e9 === 'function') await nuxt_plugin_polyfills_473a22e9(app.context, inject)
   }
 
   // If server-side, wait for async component to be resolved first

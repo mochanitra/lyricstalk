@@ -6,7 +6,6 @@ const path = require('path')
 
 module.exports = {
   mode: 'universal',
-
   /*
    ** Headers of the page
    */
@@ -62,6 +61,10 @@ module.exports = {
     {
       src: '~/plugins/no-ssr.js',
       ssr: false
+    },
+    {
+      src: '~/plugins/polyfills.js',
+      ssr: false
     }
   ],
   render: {
@@ -71,6 +74,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    'nuxt-babel',
     '@nuxtjs/toast',
     // Doc: https://github.com/nuxt-community/axios-module#usage
     '@nuxtjs/axios'
@@ -108,24 +112,6 @@ module.exports = {
         localesToKeep: ['en', 'th']
       })
     ],
-    babel: {
-      presets: [
-        [
-          'env',
-          {
-            targets: {
-              chrome: 52,
-              browsers: ['safari 7', 'ie 11']
-            }
-          }
-        ],
-        'stage-0',
-        'stage-1',
-        'stage-2',
-        'stage-3'
-      ],
-      plugins: ['transform-runtime']
-    },
     /*
      ** You can extend webpack config here
      */

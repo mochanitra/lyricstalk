@@ -1,15 +1,6 @@
-# dependencies
-node_modules
-
-# logs
-npm-debug.log
-
-# Nuxt build
-.nuxt
-
-# Nuxt generate
-dist
-
-yarn.lock
-
-.DS_Store
+**/**/node_modules
+**/**/.nuxt
+*.log
+*.lock
+sw.*
+.DS_STORE
