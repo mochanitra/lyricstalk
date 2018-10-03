@@ -13,6 +13,7 @@ button {
   font-family: Kanit;
   font-weight: 400;
   outline: none !important;
+  user-select: none !important;
 }
 
 ._cs-pt {
@@ -27,10 +28,6 @@ button {
 .page-enter,
 .page-leave-to {
   opacity: 0;
-}
-
-.bio-button {
-  outline: none !important;
 }
 
 .min-height-100vh {
