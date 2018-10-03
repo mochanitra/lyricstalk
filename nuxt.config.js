@@ -6,9 +6,6 @@ const path = require('path')
 
 module.exports = {
   mode: 'universal',
-  /*
-   ** Headers of the page
-   */
   head: {
     title: pkg.name,
     meta: [{
