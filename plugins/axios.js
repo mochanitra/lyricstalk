@@ -1,6 +1,10 @@
-export default function ({ $axios, redirect }) {
+export default function ({
+  app,
+  $axios,
+  redirect
+}) {
   $axios.onRequest(config => {
-    console.log('Making request to ' + config.url)
+    app.context.isDev && console.info(`Requesting: ${config.url}`)
   })
 
   $axios.onError(error => {

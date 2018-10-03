@@ -30,6 +30,9 @@ module.exports = {
       }
     ],
     script: [{
+      src: '/js/polyfills.min.js',
+      body: true
+    }, {
       src: '/js/offline.min.js',
       body: true
     }],
