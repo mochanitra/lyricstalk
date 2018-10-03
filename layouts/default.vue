@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="_ovfx-hd">
     <Header/>
     <!-- Content -->
     <main class="min-height-100vh _dp-f _alit-ct _ovfx-hd">

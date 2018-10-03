@@ -2,18 +2,9 @@
   <div class="_w-100pct">
     <!-- Hero -->
     <div class="container">
-      <div class="row _alit-ct">
-        <div class="col-6">
-          <h1 class="_ttf-upc _lh-100pct">
-            Become a Pro<br >
-            Plant Photographer
-          </h1>
-          <i class="far fa-heart"/>
-        </div>
-        <div class="col-6">
-          <img 
-            class="_h-512px" 
-            src="~/assets/images/human-photographing-plants.svg" >
+      <div class="row">
+        <div class="col-12">
+          x
         </div>
       </div>
     </div>
