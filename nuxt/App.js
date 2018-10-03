@@ -11,7 +11,7 @@ const layouts = { "_default": _6f6c098b }
 
 
 export default {
-  head: {"title":"Nuxt_starter","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"},{"hid":"og:type","property":"og:type","content":"website"},{"hid":"description","name":"description","content":"Nuxt starter project"}],"script":[{"src":"\u002Fjs\u002Foffline.min.js","body":true}],"link":[],"style":[]},
+  head: {"title":"nuxt-starter","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"},{"hid":"og:type","property":"og:type","content":"website"},{"hid":"description","name":"description","content":"Nuxt starter project"}],"script":[{"src":"\u002Fjs\u002Foffline.min.js","body":true}],"link":[],"style":[]},
   render(h, props) {
     const loadingEl = h('nuxt-loading', { ref: 'loading' })
     const layoutEl = h(this.layout || 'nuxt')

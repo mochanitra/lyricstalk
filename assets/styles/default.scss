@@ -1,5 +1,6 @@
 body {
-  overflow-x: hidden;
+  overflow: hidden;
+  overflow-y: auto;
 }
 
 h1,
@@ -11,6 +12,7 @@ h6,
 button {
   font-family: Kanit;
   font-weight: 400;
+  outline: none !important;
 }
 
 ._cs-pt {
@@ -35,9 +37,10 @@ button {
   min-height: calc(100vh - 60px); // background: rgba(0, 0, 0, 0.02);
 }
 
-._fdrt-rrv {
-  flex-direction: row-reverse !important;
-}
+// Deprecated due to incompat with older browsers
+// ._fdrt-rrv {
+//   flex-direction: row-reverse !important;
+// }
 
 [lazy] {
   transition: 0.25s;
@@ -51,8 +54,4 @@ button {
 [lazy=loaded] {
   opacity: 1;
   background-size: cover;
-}
-
-.min-height-100vh {
-  min-height: calc(100vh - 100px); // background: rgba(0, 0, 0, 0.02);
 }

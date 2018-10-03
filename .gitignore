@@ -4,3 +4,4 @@
 *.lock
 sw.*
 .DS_STORE
+**/**/.DS_STORE
