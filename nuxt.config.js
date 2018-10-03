@@ -1,4 +1,5 @@
 const pkg = require('./package')
+const messages = require('./services/lang')
 const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
 const PurgecssPlugin = require('purgecss-webpack-plugin')
 const glob = require('glob-all')
@@ -70,6 +71,30 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    [
+      'nuxt-i18n',
+      {
+        seo: false,
+        strategy: 'prefix_except_default',
+        locales: [{
+            code: 'th',
+            iso: 'th-TH',
+            name: 'TH'
+          },
+          {
+            code: 'en',
+            iso: 'en-US',
+            name: 'EN'
+          }
+        ],
+        detectBrowserLanguage: false,
+        defaultLocale: 'th',
+        vueI18n: {
+          fallbackLocale: 'th',
+          messages
+        }
+      }
+    ],
     'nuxt-babel',
     '@nuxtjs/toast',
     // Doc: https://github.com/nuxt-community/axios-module#usage

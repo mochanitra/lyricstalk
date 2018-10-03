@@ -66,12 +66,22 @@ export function createRouter () {
 		{
 			path: "/about",
 			component: _2afa63e6,
-			name: "about"
+			name: "about___th"
+		},
+		{
+			path: "/en/about",
+			component: _2afa63e6,
+			name: "about___en"
 		},
 		{
 			path: "/",
 			component: _0a3aa8d2,
-			name: "index"
+			name: "index___th"
+		},
+		{
+			path: "/en/",
+			component: _0a3aa8d2,
+			name: "index___en"
 		}
     ],
     

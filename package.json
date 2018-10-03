@@ -37,6 +37,7 @@
     "express": "^4.15.3",
     "js-cookie": "^2.2.0",
     "nuxt-babel": "^0.1.2",
+    "nuxt-i18n": "^4.1.0",
     "nuxt-edge": "2.0.0-25476008.ba5c979",
     "vee-validate": "^2.0.6",
     "vue-awesome-swiper": "^3.1.3",

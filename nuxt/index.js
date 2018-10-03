@@ -14,6 +14,8 @@ import { createStore } from './store.js'
 /* Plugins */
 import nuxt_plugin_axios_42fb7700 from 'nuxt_plugin_axios_42fb7700' // Source: ./axios.js
 import nuxt_plugin_toast_0f2bc3af from 'nuxt_plugin_toast_0f2bc3af' // Source: ./toast.js (ssr: false)
+import nuxt_plugin_pluginrouting_0ca0fc74 from 'nuxt_plugin_pluginrouting_0ca0fc74' // Source: ./nuxt-i18n/plugin.routing.js
+import nuxt_plugin_pluginmain_9c3fa12e from 'nuxt_plugin_pluginmain_9c3fa12e' // Source: ./nuxt-i18n/plugin.main.js
 import nuxt_plugin_ssr_3a86d4ca from 'nuxt_plugin_ssr_3a86d4ca' // Source: ../plugins/ssr.js
 import nuxt_plugin_axios_5659d192 from 'nuxt_plugin_axios_5659d192' // Source: ../plugins/axios.js
 import nuxt_plugin_nossr_471a657b from 'nuxt_plugin_nossr_471a657b' // Source: ../plugins/no-ssr.js (ssr: false)
@@ -156,6 +158,8 @@ async function createApp (ssrContext) {
   // Plugin execution
   
   if (typeof nuxt_plugin_axios_42fb7700 === 'function') await nuxt_plugin_axios_42fb7700(app.context, inject)
+  if (typeof nuxt_plugin_pluginrouting_0ca0fc74 === 'function') await nuxt_plugin_pluginrouting_0ca0fc74(app.context, inject)
+  if (typeof nuxt_plugin_pluginmain_9c3fa12e === 'function') await nuxt_plugin_pluginmain_9c3fa12e(app.context, inject)
   if (typeof nuxt_plugin_ssr_3a86d4ca === 'function') await nuxt_plugin_ssr_3a86d4ca(app.context, inject)
   if (typeof nuxt_plugin_axios_5659d192 === 'function') await nuxt_plugin_axios_5659d192(app.context, inject)
   

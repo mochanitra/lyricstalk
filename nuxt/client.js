@@ -172,7 +172,7 @@ function resolveComponents(router) {
 }
 
 function callMiddleware (Components, context, layout) {
-  let midd = ["router"]
+  let midd = ["router","i18n"]
   let unknownMiddleware = false
 
   // If layout is undefined, only call global middleware
