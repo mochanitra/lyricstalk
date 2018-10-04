@@ -2,9 +2,11 @@
   <header class="container">
     <div class="menu-container">
       <!-- Brand -->
-      <div id="branding">
+      <nuxt-link 
+        id="branding" 
+        :to="localePath('index')">
         brand
-      </div>
+      </nuxt-link>
       <!-- Menu -->
       <nav :class="{'-show-mobile': $store.state.isMobileMenuActive}">
         <!-- Search + Lang -->
@@ -48,17 +50,20 @@
               v-if="!item.submenu" 
               :to="localePath(item.path)"
               class="_ttf-upc">{{ item.title }}</nuxt-link>
-            <ul 
+            <div 
               v-if="item.submenu" 
-              class="dropdown _pst-asl-md _l-0px">
-              <li 
-                v-for="(list, j) in item.submenu" 
-                :key="j">
-                <nuxt-link 
-                  :to="localePath(list.path)" 
-                  v-html="list.title"/>
-              </li>
-            </ul>
+              class="dropdown _pst-asl-md">
+              <ul>
+                <li 
+                  v-for="(list, j) in item.submenu" 
+                  :key="j"
+                  class="_ttf-cptl">
+                  <nuxt-link 
+                    :to="localePath(list.path)" 
+                    v-html="list.title"/>
+                </li>
+              </ul>
+            </div>
           </li>
         </ul>
       </nav>
@@ -141,9 +146,9 @@ ul.nav {
   li.list-title {
     @media (min-width: $sm) {
       display: inline-block;
-      margin: 0px 16px;
+      padding: 0px 16px;
       &:last-child {
-        margin-right: 0px;
+        padding-right: 0px;
       }
     }
   }
@@ -151,10 +156,26 @@ ul.nav {
 
 .dropdown {
   display: none;
-  padding: 12px 16px;
   min-width: 200px;
   @media (min-width: $md) {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    padding-top: 24px;
+    left: calc(50% - 100px);
+    ul {
+      padding: 12px 16px;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      position: relative;
+      &::before {
+        width: 0;
+        height: 0;
+        border-style: solid;
+        border-width: 0 10px 10px 10px;
+        border-color: transparent transparent #007bff transparent;
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: calc(50% - 5px);
+      }
+    }
   }
   li {
     margin: 12px 0px;

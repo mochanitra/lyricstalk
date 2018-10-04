@@ -18,8 +18,13 @@ h6,
 button {
   font-family: Kanit;
   font-weight: 400;
+  line-height: 100%;
   outline: none !important;
   user-select: none !important;
+}
+
+h1 {
+  font-size: 3.5rem;
 }
 
 ._cs-pt {
@@ -57,4 +62,17 @@ button {
 [lazy=loaded] {
   opacity: 1;
   background-size: cover;
+}
+
+// Min height
+._mnh-128px {
+  min-height: 128px !important;
+}
+
+._mnh-256px {
+  min-height: 256px !important;
+}
+
+._mnh-512px {
+  min-height: 512px !important;
 }

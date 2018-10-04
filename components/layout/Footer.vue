@@ -21,9 +21,10 @@
             <ul v-if="item.submenu">
               <li 
                 v-for="(list, j) in item.submenu" 
-                :key="j">
+                :key="j" 
+                class="_pdbt-4px">
                 <nuxt-link 
-                  :to="localePath(list.path)" 
+                  :to="localePath(list.path)"
                   v-html="list.title"/>
               </li>
             </ul>
@@ -61,5 +62,9 @@ nav {
       margin-bottom: 16px;
     }
   }
+}
+.contact-container {
+  line-height: 150%;
+  font-size: 0.9rem;
 }
 </style>

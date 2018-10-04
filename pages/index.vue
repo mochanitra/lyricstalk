@@ -1,10 +1,38 @@
 <template>
   <div class="_w-100pct">
     <!-- Hero -->
-    <div class="container">
-      <div class="row">
-        <div class="col-12">
-          x
+    <div class="container-fluid">
+      <div class="row _mnh-512px">
+        <div 
+          v-lazy:background="`https://placeimg.com/640/480/any`" 
+          class="col-12 col-md-7 _bgs-cv"/>
+        <div class="col-md-5 col-12 _dp-f _alit-ct _jtfct-ct _pdh-48px-md _pdh-24px">
+          <div>
+            <h6 class="_ttf-upc">hilights of cmdw18</h6>
+            <h1 class="_mgt-16px _ttf-upc">flower in the vase</h1>
+            <h4 class="_mgt-16px _ttf-upc">above the surface of the earth</h4>
+            <p class="_mgt-16px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus odit reiciendis, ad facere rerum.</p>
+            <!-- All programmes -->
+            <nuxt-link 
+              :to="localePath('programmes')" 
+              class="_mgt-16px bio-button _dp-ilb _ttf-upc">all programmes</nuxt-link>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Hilights -->
+    <div id="hilights">
+      <div class="container">
+        <div class="row">
+          <div class="col">
+            x
+          </div>
+          <div class="col">
+            x
+          </div>
+          <div class="col">
+            x
+          </div>
         </div>
       </div>
     </div>
@@ -13,18 +41,6 @@
 
 <script>
 export default {
-  data: () => ({
-    banners: [
-      'https://images.unsplash.com/photo-1529835299686-53bd13fb3ee1?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=acef595b97346a9bf062c9e8661e8bf1&auto=format&fit=crop&w=1050&q=80',
-      'https://images.unsplash.com/photo-1529772942463-35a62ea332b8?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=70760fa9ad67d66ba9ca71825026a794&auto=format&fit=crop&w=1050&q=80',
-      'https://images.unsplash.com/photo-1529786192234-3b32063c9e4b?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=015c09878b5a3e1d4f2b7cab57b33b28&auto=format&fit=crop&w=675&q=80'
-    ],
-    swiperOption: {
-      pagination: {
-        el: '.swiper-pagination'
-      }
-    },
-  })
 }
 </script>
 
