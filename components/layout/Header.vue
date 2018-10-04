@@ -39,8 +39,7 @@
           <li 
             v-for="(item, i) in $store.state.primaryMenu" 
             :key="i" 
-            class="_pst-rlt list-title"
-            tabindex="0"
+            class="_pst-rlt list-title _cs-pt"
           >
             <span
               v-if="item.submenu" 

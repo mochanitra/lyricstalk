@@ -3,7 +3,7 @@
     <div class="container">
       <div class="row">
         <!-- Branding, when in mobile stay at bottom -->
-        <div class="col-12 col-md-4 _dp-f order-md-first order-last">
+        <div class="col-12 col-md-3 _dp-f order-md-first order-last _mgt-32px _mgt-0px-md">
           <div>
             <small>
               All Rights Reserved {{ new Date().getFullYear() }}<br>TCDC Chiang Mai
@@ -11,10 +11,10 @@
           </div>
         </div>
         <!-- FooterMenu -->
-        <nav class="col-12 col-md-8 _dp-f-md _jtfct-spbtw-md">
+        <nav class="col-12 col-md-9 _dp-f-md _jtfct-spbtw-md">
           <!-- col 1 -->
           <div 
-            v-for="(item, i) in $store.state.footerMenu" 
+            v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')" 
             :key="i">
             <h5 
               v-html="item.title"/>
@@ -22,15 +22,18 @@
               <li 
                 v-for="(list, j) in item.submenu" 
                 :key="j">
-                <span class="_ttf-cptl">
-                  {{ list.title }}
-                </span>
+                <nuxt-link 
+                  :to="localePath(list.path)" 
+                  v-html="list.title"/>
               </li>
             </ul>
           </div>
           <!-- Contact -->
           <div>
             <h5>Contact Us</h5>
+            <div 
+              class="contact-container _mxw-256px" 
+              v-html="$store.state.pages.contact.acf.contact"/>
           </div>
         </nav>
       </div>
@@ -44,6 +47,9 @@ footer {
   background: black;
   padding: 64px 0px;
   color: #fff;
+  @media (max-width: $md - 1px) {
+    padding: 32px 0px;
+  }
 }
 nav {
   h5 {

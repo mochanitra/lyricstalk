@@ -2,7 +2,8 @@ const prefix = `/wp-json`
 const api = {
   cat: `${prefix}/wp/v2/categories?per_page=100`,
   news: `${prefix}/wp/v2/news?per_page=100`,
-  program: `${prefix}/wp/v2/`
+  program: `${prefix}/wp/v2/`,
+  page: `${prefix}/wp/v2/pages?per_page=20`
 }
 
 export const actions = {
@@ -11,8 +12,6 @@ export const actions = {
     commit
   }) {
     const cats = await this.$axios.$get(api.cat)
-    // console.log(cats)
-    // return catsz
     return commit('SET_CATEGORIES', cats, {
       root: true
     })
@@ -28,8 +27,13 @@ export const actions = {
   async listVenues({}) {
 
   },
-  async listPages({}) {
-
+  async listPages({
+    commit
+  }) {
+    const pages = await this.$axios.$get(api.page)
+    return commit('SET_PAGES', pages, {
+      root: true
+    })
   },
   // Get by slug, id
   async getNews({}) {

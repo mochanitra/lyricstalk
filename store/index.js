@@ -5,7 +5,8 @@ export const state = () => ({
   footerMenu: [],
   isMobileMenuActive: false,
   newsCategories: [],
-  programCategories: []
+  programCategories: [],
+  pages: null
 })
 
 export const actions = {
@@ -21,7 +22,12 @@ export const actions = {
     let lc = app.i18n.locale === 'th' ? '' : app.i18n.locale
     app.$axios.defaults.baseURL = `${app.$axios.defaults.baseURL}${lc}`
     // List categories
-    await dispatch('api/listCategories')
+    const all = [
+      dispatch('api/listCategories'),
+      dispatch('api/listPages')
+    ]
+
+    await Promise.all(all)
 
     const primaryMenu = [{
       title: 'home',
@@ -107,5 +113,12 @@ export const mutations = {
     // news id = 1
     state.newsCategories = cats.filter(c => c.parent === 1)
     state.programCategories = cats.filter(c => c.parent === 2)
+  },
+  SET_PAGES(state, pages) {
+    state.pages = pages.reduce((result, item) => {
+      const key = item.slug
+      result[key] = item
+      return result
+    }, {})
   }
 }
