@@ -26,8 +26,12 @@
           <!-- Lang switcher -->
           <div id="lang-switcher">
             <i class="fas fa-fw fa-globe-asia fa-lg"/>
-            <nuxt-link :to="switchLocalePath('th')">TH</nuxt-link>
-            <nuxt-link :to="switchLocalePath('en')">EN</nuxt-link>
+            <span 
+              class="_cs-pt" 
+              @click="changeLang('th')">TH</span>
+            <span 
+              class="_cs-pt" 
+              @click="changeLang('en')">EN</span>
           </div>
         </div>
         <!-- Menu items -->
@@ -35,8 +39,27 @@
           <li 
             v-for="(item, i) in $store.state.primaryMenu" 
             :key="i" 
+            class="_pst-rlt list-title"
+            tabindex="0"
           >
-            <span class="_ttf-upc">{{ item.title }}</span>
+            <span
+              v-if="item.submenu" 
+              class="_ttf-upc">{{ item.title }}</span>
+            <nuxt-link
+              v-if="!item.submenu" 
+              :to="localePath(item.path)"
+              class="_ttf-upc">{{ item.title }}</nuxt-link>
+            <ul 
+              v-if="item.submenu" 
+              class="dropdown _pst-asl-md _l-0px">
+              <li 
+                v-for="(list, j) in item.submenu" 
+                :key="j">
+                <nuxt-link 
+                  :to="localePath(list.path)" 
+                  v-html="list.title"/>
+              </li>
+            </ul>
           </li>
         </ul>
       </nav>
@@ -52,6 +75,11 @@ export default {
   components: {
     Hamburger
   },
+  methods: {
+    changeLang (locale) {
+      return window.location.href = this.switchLocalePath(locale)
+    }
+  }
 }
 </script>
 
@@ -60,6 +88,9 @@ export default {
 @import '~assets/styles/variables';
 
 header {
+  @media (max-width: $sm) {
+    padding: 16px 0px;
+  }
   padding: 32px 0px;
 }
 
@@ -94,7 +125,7 @@ header {
       position: absolute;
       width: 100%;
       min-height: 50vh;
-      top: 97px;
+      top: 64px;
       left: 0;
       right: 0;
       padding: 12px;
@@ -108,13 +139,33 @@ header {
 }
 
 ul.nav {
-  li {
+  li.list-title {
     @media (min-width: $sm) {
       display: inline-block;
       margin: 0px 16px;
       &:last-child {
         margin-right: 0px;
       }
+    }
+  }
+}
+
+.dropdown {
+  display: none;
+  padding: 12px 16px;
+  min-width: 200px;
+  @media (min-width: $md) {
+    border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+  li {
+    margin: 12px 0px;
+  }
+}
+
+.list-title {
+  &:hover {
+    .dropdown {
+      display: block;
     }
   }
 }

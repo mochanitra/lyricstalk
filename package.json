@@ -4,7 +4,7 @@
   "description": "Nuxt starter project",
   "author": "Apon Palanuwech",
   "fbAppId": "XXXXXXXXXXXX",
-  "apiUrl": "cms.xxxx.co",
+  "apiUrl": "128.199.245.162",
   "gaId": "UA-XXXXXXXX-X",
   "private": true,
   "browserslist": [

@@ -3,6 +3,12 @@ body {
   overflow-y: auto;
 }
 
+*,
+*:focus,
+*:hover {
+  outline: none !important;
+}
+
 h1,
 h2,
 h3,

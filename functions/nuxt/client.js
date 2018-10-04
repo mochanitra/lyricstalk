@@ -23,7 +23,7 @@ const noopFetch = () => {}
 let _lastPaths = []
 let app
 let router
-
+let store
 
 // Try to rehydrate SSR data from window
 const NUXT = window.__NUXT__ || {}
@@ -139,7 +139,7 @@ function resolveComponents(router) {
 }
 
 function callMiddleware (Components, context, layout) {
-  let midd = ["router"]
+  let midd = ["router","i18n"]
   let unknownMiddleware = false
 
   // If layout is undefined, only call global middleware
@@ -407,7 +407,7 @@ async function mountApp(__app) {
   // Set global variables
   app = __app.app
   router = __app.router
-  
+  store = __app.store 
 
   // Resolve route components
   const Components = await Promise.all(resolveComponents(router))

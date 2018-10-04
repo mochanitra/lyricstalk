@@ -115,10 +115,10 @@ module.exports = {
    */
   axios: {
     // See https://github.com/nuxt-community/axios-module#options
-    credentials: true,
+    // credentials: true,
     debug: false,
-    https: true,
-    port: 443,
+    https: false,
+    port: 80,
     host: pkg.apiUrl
     // prefix: '/wp-json/api/v1', moved to apiUrl.js
   },

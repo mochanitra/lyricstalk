@@ -1,5 +1,5 @@
 <template>
   <div>
-    About
+    slug
   </div>
 </template>
