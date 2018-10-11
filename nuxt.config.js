@@ -147,6 +147,14 @@ module.exports = {
         })
       }
       if (!ctx.isDev) {
+        // vue2-google-maps
+        config.externals.splice(0, 0, function (context, request, callback) {
+          if (/^vue2-google-maps($|\/)/.test(request)) {
+            callback(null, false)
+          } else {
+            callback()
+          }
+        })
         // Remove unused CSS using purgecss. See https://github.com/FullHuman/purgecss
         // for more information about purgecss.
         config.plugins.push(

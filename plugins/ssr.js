@@ -5,6 +5,7 @@ import VueScrollTo from 'vue-scrollto'
 import VModal from 'vue-js-modal/dist/ssr.index'
 import Transitions from 'vue2-transitions'
 import moment from 'moment'
+
 require('moment/locale/th')
 
 Vue.use(VueScrollTo)

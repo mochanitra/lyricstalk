@@ -4,15 +4,20 @@
       <!-- Brand -->
       <nuxt-link 
         id="branding" 
-        :to="localePath('index')">
-        brand
+        :to="localePath('index')"
+        class="_w-256px">
+        <div 
+          v-lazy:background-image="require('assets/images/brand/logo_header.png')" 
+          class="_w-256px _bgs-ct _bgrp-nrp _h-64px"/>
       </nuxt-link>
       <!-- Menu -->
-      <nav :class="{'-show-mobile': $store.state.isMobileMenuActive}">
+      <nav 
+        :class="{'-show-mobile': $store.state.isMobileMenuActive}" 
+        class="_ff-dcv _dp-f _fdrt-cl _jtfct-spbtw _h-64px">
         <!-- Search + Lang -->
         <div 
           id="extra-bar" 
-          class="">
+        >
           <!-- Search -->
           <div id="search">
             <i class="fas fa-fw fa-lg fa-search"/>
@@ -20,7 +25,7 @@
           <!-- favorites -->
           <div 
             id="favorites">
-            <span class="fa-stack">
+            <span class="fa-stack fa-xs">
               <i class="fas fa-fw fa-circle fa-stack-2x"/>
               <i class="fal fa-fw fa-heart fa-stack-1x fa-inverse"/>
             </span>
@@ -43,13 +48,19 @@
             :key="i" 
             class="_pst-rlt list-title _cs-pt"
           >
-            <span
+            <div
               v-if="item.submenu" 
-              class="_ttf-upc">{{ item.title }}</span>
-            <nuxt-link
+              class="_ttf-upc">
+              <!-- Icon -->
+              <i class="fal fa-home fa-fw fa-sm"/>
+              <span 
+                class="_pst-rlt _t-2px _ttf-upc" 
+                v-html="item.title"/>
+            </div>
+            <!-- <nuxt-link
               v-if="!item.submenu" 
               :to="localePath(item.path)"
-              class="_ttf-upc">{{ item.title }}</nuxt-link>
+              class="_ttf-upc">{{ item.title }}</nuxt-link> -->
             <div 
               v-if="item.submenu" 
               class="dropdown _pst-asl-md">
@@ -57,9 +68,10 @@
                 <li 
                   v-for="(list, j) in item.submenu" 
                   :key="j"
-                  class="_ttf-cptl">
+                  class="_ttf-upc">
                   <nuxt-link 
                     :to="localePath(list.path)" 
+                    class="_cl-white hover-spacing"
                     v-html="list.title"/>
                 </li>
               </ul>
@@ -162,14 +174,17 @@ ul.nav {
     left: calc(50% - 100px);
     ul {
       padding: 12px 16px;
-      border: 1px solid rgba(0, 0, 0, 0.1);
+      border: 1px solid rgba(0, 0, 0, 0.05);
+      border-radius: 4px;
       position: relative;
+      z-index: 9;
+      background: $pink-400;
       &::before {
         width: 0;
         height: 0;
         border-style: solid;
         border-width: 0 10px 10px 10px;
-        border-color: transparent transparent #007bff transparent;
+        border-color: transparent transparent $pink-400 transparent;
         content: '';
         position: absolute;
         top: -10px;
