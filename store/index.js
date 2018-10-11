@@ -6,6 +6,7 @@ export const state = () => ({
   isMobileMenuActive: false,
   newsCategories: [],
   programCategories: [],
+  venues: [],
   pages: null
 })
 
@@ -24,7 +25,8 @@ export const actions = {
     // List categories
     const all = [
       dispatch('api/listCategories'),
-      dispatch('api/listPages')
+      dispatch('api/listPages'),
+      dispatch('api/listVenues')
     ]
 
     await Promise.all(all)
@@ -120,5 +122,8 @@ export const mutations = {
       result[key] = item
       return result
     }, {})
+  },
+  SET_VENUES(state, venues) {
+    state.venues = venues
   }
 }
