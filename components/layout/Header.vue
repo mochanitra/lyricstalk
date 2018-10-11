@@ -193,7 +193,7 @@ ul.nav {
     }
   }
   li {
-    margin: 12px 0px;
+    margin: 12px 0px 8px 0px;
   }
 }
 

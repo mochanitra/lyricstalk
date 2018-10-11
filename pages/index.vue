@@ -22,16 +22,60 @@
     </div>
     <!-- Hilights -->
     <div id="hilights">
-      <div class="container">
+      <div class="container _pdv-48px">
         <div class="row">
-          <div class="col">
+          <div 
+            v-for="(item, i) in $store.state.hilightArticles || [0, 0, 0]" 
+            :key="i" 
+            class="col">
+            <EventCard />
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Happening & What's on -->
+    <div id="happening">
+      <div class="container _pdv-48px">
+        <div class="row">
+          <!-- Happening -->
+          <div class="col-8">
+            <!-- Title -->
+            <div class="_mgbt-24px">
+              <h2 class="_ff-dcv _ttf-upc">Happening!</h2>
+              <h4 class="_ttf-upc">{{ $moment().format('d MMMM YYYY') }}</h4>
+            </div>
+            <!-- 2 Col EventCard -->
+            <div class="row">
+              <div 
+                v-for="(item, i) in [0, 0]" 
+                :key="i" 
+                class="col">
+                <EventCard />
+              </div>
+            </div>
+          </div>
+          <!-- What's on -->
+          <div class="col-4">
+            <!-- Title -->
+            <h2 class="_ff-dcv _ttf-upc">What's on?</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Latest news -->
+    <div id="latest-news">
+      <div class="container _pdv-48px">
+        <div class="row">
+          <div class="col-12">
             x
           </div>
-          <div class="col">
-            x
-          </div>
-          <div class="col">
-            x
+        </div>
+        <div class="row">
+          <div 
+            v-for="(item, i) in [0,0,0, 0]" 
+            :key="i" 
+            class="col">
+            <NewsCard />
           </div>
         </div>
       </div>
@@ -40,7 +84,13 @@
 </template>
 
 <script>
+import EventCard from '~/components/EventCard'
+import NewsCard from '~/components/NewsCard'
 export default {
+  components: {
+    EventCard,
+    NewsCard
+  },
   mounted () {
   }
 }
