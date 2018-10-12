@@ -5,44 +5,49 @@
       <nuxt-link 
         id="branding" 
         :to="localePath('index')"
-        class="_w-256px">
+        class="_w-200px">
         <div 
           v-lazy:background-image="require('assets/images/brand/logo_header.png')" 
-          class="_w-256px _bgs-ct _bgrp-nrp _h-64px"/>
+          class="_w-200px _bgs-ct _bgrp-nrp _h-64px"/>
       </nuxt-link>
       <!-- Menu -->
       <nav 
         :class="{'-show-mobile': $store.state.isMobileMenuActive}" 
-        class="_ff-dcv _dp-f _fdrt-cl _jtfct-spbtw _h-64px">
+        class="_ff-dcv _dp-f _fdrt-cl _h-64-md _jtfct-spbtw">
         <!-- Search + Lang -->
         <div 
-          id="extra-bar" 
+          id="extra-bar"
+          class="order-last order-md-first _tal-ct _tal-r-md _pdt-8px _pdbt-12px _pdv-0px-md _dp-f _dp-b-md _jtfct-spbtw _alit-ct"
         >
           <!-- Search -->
-          <div id="search">
-            <i class="fas fa-fw fa-lg fa-search"/>
+          <div 
+            id="search" 
+            class="_f-1 _dp-f _dp-ilb-md">
+            <i class="fas fa-fw fa-lg fa-search _fs-3 _fs-4-md"/>
           </div>
           <!-- favorites -->
           <div 
-            id="favorites">
-            <span class="fa-stack fa-xs">
-              <i class="fas fa-fw fa-circle fa-stack-2x"/>
+            id="favorites" 
+            class="_f-1 order-last order-md-first _dp-f _dp-ilb-md _jtfct-fe">
+            <span class="fa-stack _fs-5 _fs-5-md">
+              <i class="fas fa-fw fa-circle fa-stack-2x _cl-pink"/>
               <i class="fal fa-fw fa-heart fa-stack-1x fa-inverse"/>
             </span>
           </div>
           <!-- Lang switcher -->
-          <div id="lang-switcher">
-            <i class="fas fa-fw fa-globe-asia fa-lg"/>
+          <div 
+            id="lang-switcher" 
+          >
             <span 
               class="_cs-pt" 
-              @click="changeLang('th')">TH</span>
+              @click="changeLang('th')">ไทย</span>
             <span 
               class="_cs-pt" 
               @click="changeLang('en')">EN</span>
           </div>
         </div>
         <!-- Menu items -->
-        <ul class="nav">
+        <ul class="nav _tal-ct _tal-l-md">
           <li 
             v-for="(item, i) in $store.state.primaryMenu" 
             :key="i" 
@@ -50,9 +55,9 @@
           >
             <div
               v-if="item.submenu" 
-              class="_ttf-upc">
+              class="_ttf-upc _pdt-16px _pdbt-8px _pdv-0px-md title">
               <!-- Icon -->
-              <i class="fal fa-home fa-fw fa-sm"/>
+              <i class="fal fa-home fa-fw fa-md"/>
               <span 
                 class="_pst-rlt _t-2px _ttf-upc" 
                 v-html="item.title"/>
@@ -64,6 +69,10 @@
             <div 
               v-if="item.submenu" 
               class="dropdown _pst-asl-md">
+              <!-- [Mobile only] Down arrow -->
+              <div class="_dp-b _dp-n-md">
+                <i class="fal fa-long-arrow-down fa-2x _cl-pink"/>
+              </div>
               <ul>
                 <li 
                   v-for="(list, j) in item.submenu" 
@@ -71,7 +80,7 @@
                   class="_ttf-upc">
                   <nuxt-link 
                     :to="localePath(list.path)" 
-                    class="_cl-white hover-spacing"
+                    class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md"
                     v-html="list.title"/>
                 </li>
               </ul>
@@ -103,6 +112,18 @@ export default {
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
 
+#lang-switcher {
+  > span {
+    font-size: 150%;
+    padding-right: 8px;
+    padding-left: 8px;
+    &:last-child {
+      border-left: 2px solid $pink-400;
+      padding-left: 10px;
+    }
+  }
+}
+
 header {
   @media (max-width: $sm) {
     padding: 16px 0px;
@@ -130,25 +151,32 @@ header {
     display: none;
   }
   /* Menu Mobile */
-  @media (max-width: $sm) {
+  @media (max-width: $md - 1px) {
     /* Show hamburger */
     #hamburger {
       display: block;
     }
     /* Make nav a modal */
     nav {
+      transition: opacity 0.5s ease-out;
+      opacity: 0;
+      height: 0;
+      overflow: hidden;
       visibility: hidden;
       position: absolute;
       width: 100%;
-      min-height: 50vh;
-      top: 64px;
+      min-height: calc(100vh - 90px);
+      top: 90px;
       left: 0;
       right: 0;
       padding: 12px;
-      background: green;
+      background: #fff;
       z-index: 1;
+      box-shadow: 0px 10px 40px -5px rgba(0, 0, 0, 0.1);
       &.-show-mobile {
         visibility: visible;
+        opacity: 1;
+        height: auto;
       }
     }
   }
@@ -156,19 +184,42 @@ header {
 
 ul.nav {
   li.list-title {
-    @media (min-width: $sm) {
+    @media (min-width: $md) {
       display: inline-block;
       padding: 0px 16px;
+      .title {
+        font-size: 120%;
+      }
       &:last-child {
         padding-right: 0px;
+      }
+    }
+    @media (max-width: $md - 1px) {
+      .title {
+        font-size: 175%;
       }
     }
   }
 }
 
 .dropdown {
-  display: none;
+  visibility: hidden;
+  opacity: 0;
+  transition: height 0.5s, visibility 0s,
+    opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
+  height: 0;
+  overflow: hidden;
   min-width: 200px;
+  z-index: 9;
+  position: relative;
+  @media (max-width: $md - 1px) {
+    ul {
+      /* padding-top: 24px; */
+    }
+    &::before {
+      content: '';
+    }
+  }
   @media (min-width: $md) {
     padding-top: 24px;
     left: calc(50% - 100px);
@@ -200,7 +251,9 @@ ul.nav {
 .list-title {
   &:hover {
     .dropdown {
-      display: block;
+      visibility: visible;
+      opacity: 1;
+      height: auto;
     }
   }
 }

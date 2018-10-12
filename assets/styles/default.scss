@@ -96,8 +96,36 @@ a {
 }
 
 .hover-spacing {
+  display: inline-block;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0) translateY(3px);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background: $pink-400;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+  }
+
+  &.white {
+    &::after {
+      background: #fff;
+    }
+  }
+
   &:hover {
-    letter-spacing: 1px;
+    letter-spacing: 2px;
+    font-weight: 700;
+
+    &::after {
+      transform: scaleX(1) translateY(3px);
+      transform-origin: bottom left;
+    }
   }
 }
 
@@ -105,7 +133,19 @@ a {
   color: $blue-400 !important;
 }
 
+._cl-pink {
+  color: $pink-400;
+}
+
+._bgcl-pink {
+  background: $pink-400;
+}
+
 // Aspect ratios
 ._aprt-4-3 {
   padding-top: 75%;
+}
+
+._w-200px {
+  width: 200px !important;
 }
