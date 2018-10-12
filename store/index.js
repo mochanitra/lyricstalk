@@ -33,11 +33,13 @@ export const actions = {
 
     const primaryMenu = [{
       title: 'home',
+      icon: 'fal fa-home',
       path: {
         name: 'index'
       }
     }, {
       title: 'info',
+      icon: 'fal fa-info-circle',
       submenu: [{
         title: 'news',
         path: {
@@ -56,6 +58,7 @@ export const actions = {
       }]
     }, {
       title: 'programme',
+      icon: 'fal fa-list-alt',
       submenu: state.programCategories.map(pc => {
         return {
           title: pc.name,
@@ -69,6 +72,7 @@ export const actions = {
       })
     }, {
       title: 'venues',
+      icon: 'fal fa-map-pin',
       submenu: [{
         title: 'CMDW Venues',
         path: {
@@ -76,16 +80,17 @@ export const actions = {
         }
       }]
     }, {
-      title: 'supporters',
+      title: 'support',
+      icon: 'fal fa-users',
       submenu: [{
-        title: 'our supporters',
+        title: 'our support',
         path: {
-          name: 'supporters'
+          name: 'support'
         }
       }, {
         title: 'benefits',
         path: {
-          name: 'supporters-slug',
+          name: 'support-slug',
           params: {
             slug: 'benefits'
           }

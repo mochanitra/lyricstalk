@@ -5,15 +5,15 @@
       <nuxt-link 
         id="branding" 
         :to="localePath('index')"
-        class="_w-200px">
+        class="_w-256px">
         <div 
           v-lazy:background-image="require('assets/images/brand/logo_header.png')" 
-          class="_w-200px _bgs-ct _bgrp-nrp _h-64px"/>
+          class="_w-256px _bgs-ct _bgrp-nrp _h-64px"/>
       </nuxt-link>
       <!-- Menu -->
       <nav 
         :class="{'-show-mobile': $store.state.isMobileMenuActive}" 
-        class="_ff-dcv _dp-f _fdrt-cl _h-64-md _jtfct-spbtw">
+        class="_dp-f _fdrt-cl _h-72px _jtfct-spbtw">
         <!-- Search + Lang -->
         <div 
           id="extra-bar"
@@ -28,36 +28,39 @@
           <!-- favorites -->
           <div 
             id="favorites" 
-            class="_f-1 order-last order-md-first _dp-f _dp-ilb-md _jtfct-fe">
-            <span class="fa-stack _fs-5 _fs-5-md">
+            class="_f-1 order-last order-md-first _dp-f _dp-ilb-md _jtfct-fe _alit-ct">
+            <span class="fa-stack _fs-5 _fs-6-md">
               <i class="fas fa-fw fa-circle fa-stack-2x _cl-pink"/>
               <i class="fal fa-fw fa-heart fa-stack-1x fa-inverse"/>
             </span>
+            <span class="_pdl-2px _cl-pink">3</span>
           </div>
           <!-- Lang switcher -->
           <div 
             id="lang-switcher" 
+            class="_ff-dcv"
           >
             <span 
-              class="_cs-pt" 
+              class="_cs-pt _fs-4 _fs-5-md" 
               @click="changeLang('th')">ไทย</span>
             <span 
-              class="_cs-pt" 
+              class="_cs-pt _fs-4 _fs-5-md" 
               @click="changeLang('en')">EN</span>
           </div>
         </div>
         <!-- Menu items -->
-        <ul class="nav _tal-ct _tal-l-md">
+        <ul class="nav _tal-ct _tal-l-md _ff-dcv">
           <li 
             v-for="(item, i) in $store.state.primaryMenu" 
             :key="i" 
             class="_pst-rlt list-title _cs-pt"
           >
             <div
-              v-if="item.submenu" 
               class="_ttf-upc _pdt-16px _pdbt-8px _pdv-0px-md title">
               <!-- Icon -->
-              <i class="fal fa-home fa-fw fa-md"/>
+              <i 
+                :class="item.icon" 
+                class="fa-fw fa-md"/>
               <span 
                 class="_pst-rlt _t-2px _ttf-upc" 
                 v-html="item.title"/>
@@ -114,12 +117,12 @@ export default {
 
 #lang-switcher {
   > span {
-    font-size: 150%;
     padding-right: 8px;
     padding-left: 8px;
     &:last-child {
       border-left: 2px solid $pink-400;
       padding-left: 10px;
+      padding-right: 0px;
     }
   }
 }
@@ -128,7 +131,7 @@ header {
   @media (max-width: $sm) {
     padding: 16px 0px;
   }
-  padding: 32px 0px;
+  padding: 24px 0px;
 }
 
 #extra-bar {
@@ -158,6 +161,7 @@ header {
     }
     /* Make nav a modal */
     nav {
+      user-select: none !important;
       transition: opacity 0.5s ease-out;
       opacity: 0;
       height: 0;
@@ -165,7 +169,7 @@ header {
       visibility: hidden;
       position: absolute;
       width: 100%;
-      min-height: calc(100vh - 90px);
+      min-height: calc(93vh - 90px);
       top: 90px;
       left: 0;
       right: 0;
@@ -203,6 +207,8 @@ ul.nav {
 }
 
 .dropdown {
+  user-select: none !important;
+  outline: none !important;
   visibility: hidden;
   opacity: 0;
   transition: height 0.5s, visibility 0s,
@@ -254,6 +260,8 @@ ul.nav {
       visibility: visible;
       opacity: 1;
       height: auto;
+      user-select: none !important;
+      outline: none !important;
     }
   }
 }
