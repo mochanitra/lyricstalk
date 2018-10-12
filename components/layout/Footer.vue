@@ -17,6 +17,7 @@
             v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')" 
             :key="i">
             <h5 
+              class="_ff-dcv _ttf-upc _cl-pink"
               v-html="item.title"/>
             <ul v-if="item.submenu">
               <li 
@@ -25,13 +26,14 @@
                 class="_pdbt-4px">
                 <nuxt-link 
                   :to="localePath(list.path)"
+                  class="_cl-white hover-spacing white _ttf-upc"
                   v-html="list.title"/>
               </li>
             </ul>
           </div>
           <!-- Contact -->
           <div>
-            <h5>Contact Us</h5>
+            <h5 class="_ff-dcv _ttf-upc _cl-pink">Contact Us</h5>
             <div 
               class="contact-container _mxw-256px" 
               v-html="$store.state.pages.contact.acf.contact"/>
@@ -45,7 +47,7 @@
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
 footer {
-  background: black;
+  background: $blue-400;
   padding: 64px 0px;
   color: #fff;
   @media (max-width: $md - 1px) {
