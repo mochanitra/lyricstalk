@@ -28,7 +28,8 @@
       <div class="container _pdv-48px">
         <div class="row">
           <div 
-            v-for="(item, i) in $store.state.hilightArticles || [0, 0, 0]" 
+            v-scroll-reveal="{delay: i * 100}" 
+            v-for="(item, i) in $store.state.hilightArticles || [0, 0, 0]"
             :key="i" 
             class="col _mgbt-24px">
             <EventCard />
@@ -50,7 +51,8 @@
             <!-- 2 Col EventCard -->
             <div class="row">
               <div 
-                v-for="(item, i) in [0, 0]" 
+                v-scroll-reveal="{delay: i * 100}" 
+                v-for="(item, i) in [0, 0]"
                 :key="i" 
                 class="col">
                 <EventCard />
@@ -64,13 +66,14 @@
             <!-- ul -->
             <ul class="_mgt-48px-sm">
               <li 
-                v-for="(item, i) in [0, 0, 0,]" 
+                v-scroll-reveal="{delay: i * 100}" 
+                v-for="(item, i) in [0, 0, 0,]"
                 :key="i"
                 class="_pdv-12px"
               >
                 <nuxt-link 
                   to="/" 
-                  class="hover-spacing white _dp-f _alit-ct _jtfct-spbtw">
+                  class="hover-spacing tpr _dp-f _alit-ct _jtfct-spbtw">
                   <div class="_dp-f">
                     <!-- dot -->
                     <div class="_bgcl-pink _w-12px _h-12px _bdrd-50pct _mgl-8px _mgr-16px _mgt-8px"/>
@@ -106,8 +109,9 @@
         </div>
         <div class="row">
           <div 
+            v-scroll-reveal="{delay: i * 100}"
             v-for="(item, i) in [0,0,0, 0]" 
-            :key="i" 
+            :key="i"
             class="col">
             <NewsCard />
           </div>

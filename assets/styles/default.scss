@@ -18,6 +18,7 @@ body {
   font-size: 110%;
   font-family: 'Neue Frutiger Thai Trad W05 Rg';
   color: $blue-400;
+  background: rgba(0, 0, 0, 0.03);
 }
 
 *,
@@ -127,6 +128,12 @@ a {
   &.white {
     &::after {
       background: #fff;
+    }
+  }
+
+  &.tpr {
+    &::after {
+      background: transparent;
     }
   }
 
