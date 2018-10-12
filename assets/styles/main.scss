@@ -8,6 +8,29 @@
 @import 'assets/styles/offline-language-english.css';
 @import 'swiper/dist/css/swiper.css';
 
+/* WP Content */
+._wp-content {
+  h4 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  h5 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+  }
+
+  p {
+    line-height: 150% !important;
+  }
+
+  a {
+    color: rgba(57, 59, 70, 0.9) !important;
+  }
+}
+
 /*** G Map ***/
 .gm-style-iw {
   .info-box {
