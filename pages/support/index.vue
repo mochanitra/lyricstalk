@@ -1,5 +1,5 @@
 <template>
   <div>
-    sup
+    supporters
   </div>
 </template>

@@ -1,5 +1,5 @@
 <template>
   <div>
-    slug
+    benefits
   </div>
 </template>
