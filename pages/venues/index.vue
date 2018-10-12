@@ -2,7 +2,7 @@
   <no-ssr>
     <div class="_w-100pct">
       <div class="container">
-        <div class="row">
+        <div class="row no-gutters">
           <!-- Venues Map -->
           <div 
             id="gMap" 
@@ -37,13 +37,13 @@
               <div 
                 v-for="(v, i) in _markers"
                 :key="i"
-                class="venue-box _dp-f _mgv-24px _cs-pt"
-                @click="toggleInfoWindow(v,i)">
-                <div class="marker-icon _tal-ct _f-1 _fs-7 _cl-white _mgr-12px">{{ i+1 }}</div>
+                class="venue-box _dp-f _pdv-16px _cs-pt"
+                @click="toggleInfoWindow(v, i)">
+                <div class="marker-icon _tal-ct _f-1 _fs-7 _cl-white _mgh-12px">{{ i + 1 }}</div>
                 <div class="venue-info _f-7 _pdr-12px">
-                  <h6 class="_cl-blue-400 _fs-5 _fw-700 _mgbt-8px">{{ v.title }}</h6>
+                  <h6 class="_cl-blue _lh-125pct _fs-5 _fw-700 _mgbt-8px">{{ v.title }}</h6>
                   <div 
-                    class="_cl-blue-400 _fs-6 _lh-125pct" 
+                    class="_cl-blue _fs-6 _lh-125pct" 
                     v-html="v.address"/>
                 </div> 
               </div>
@@ -116,10 +116,10 @@ export default {
           <div class="info-image _pdv-12px">
             <div style="background:url('https://placeimg.com/640/480/any')" class="_w-100pct _h-128px"></div>
           </div>
-          <h6 class="_f-kn _fs-6 _fw-700 _cl-blue-400 _mgbt-8px">
+          <h6 class="_f-kn _fs-6 _fw-700 _cl-blue _mgbt-8px">
             ${marker.title}
             </h6>
-          <div class="_f-kn _fs-7 _fw-300 _cl-blue-400 _lh-125pct">
+          <div class="_f-kn _fs-7 _fw-300 _cl-blue _lh-125pct">
             ${marker.address}
           </div>
         </div>`
@@ -131,6 +131,11 @@ export default {
 
 
 <style lang="scss" scoped>
+.venue-box {
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.05);
+  }
+}
 .venues-list {
   max-height: 700px;
   height: 100%;
