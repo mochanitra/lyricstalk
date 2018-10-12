@@ -90,10 +90,7 @@ export const actions = {
       }, {
         title: 'benefits',
         path: {
-          name: 'support-slug',
-          params: {
-            slug: 'benefits'
-          }
+          name: 'support-benefits',
         }
       }]
     }]
