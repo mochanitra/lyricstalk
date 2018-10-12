@@ -40,9 +40,9 @@
               @click="toggleInfoWindow(v,i)">
               <div class="marker-icon _fs-7 _cl-white _mgr-8px">{{ i+1 }}</div>
               <div class="venue-info">
-                <h6 class="_fs-5 _fw-700 _mgbt-8px">{{ v.title }}</h6>
+                <h6 class="_cl-blue-400 _fs-5 _fw-700 _mgbt-8px">{{ v.title }}</h6>
                 <div 
-                  class="_fs-6 _lh-125pct" 
+                  class="_cl-blue-400 _fs-6 _lh-125pct" 
                   v-html="v.address"/>
               </div> 
             </div>
@@ -109,14 +109,14 @@ export default {
     },
     getInfoWindowContent: function (marker) {
       return (
-        `<div class="info-box _pdl-24px _pdt-16px">
+        `<div class="info-box _pdl-24px _pdt-16px _pdbt-8px">
           <div class="info-image _pdv-12px">
             <div style="background:url('https://placeimg.com/640/480/any')" class="_w-100pct _h-128px"></div>
           </div>
-          <h6 class="_fs-6 _fw-700 _mgbt-8px">
+          <h6 class="_f-kn _fs-6 _fw-700 _cl-blue-400 _mgbt-8px">
             ${marker.title}
             </h6>
-          <div class="_f-kn _fs-7 _fw-300 _lh-125pct">
+          <div class="_f-kn _fs-7 _fw-300 _cl-blue-400 _lh-125pct">
             ${marker.address}
           </div>
         </div>`

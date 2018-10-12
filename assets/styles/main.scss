@@ -8,13 +8,18 @@
 @import 'assets/styles/offline-language-english.css';
 @import 'swiper/dist/css/swiper.css';
 
+._cl-blue-400 {
+  color: $blue-400 !important;
+}
+
 ._f-kn {
   font-family: Kanit;
   font-weight: 400;
 }
 
-
 /*** G Map ***/
 .gm-style-iw {
-  max-width: 350px !important;
+  .info-box {
+    min-width: 350px !important;
+  }
 }
