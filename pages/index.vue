@@ -9,7 +9,7 @@
         <div class="col-md-5 col-12 _dp-f _alit-ct _jtfct-ct _pdh-48px-md _pdh-24px">
           <div>
             <h6 class="_ttf-upc">hilights of cmdw18</h6>
-            <h1 class="_mgt-16px _ttf-upc">flower in the vase</h1>
+            <h1 class="_mgt-16px _ttf-upc _ff-dcv">ดอกไม้ in the vase</h1>
             <h4 class="_mgt-16px _ttf-upc">above the surface of the earth</h4>
             <p class="_mgt-16px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus odit reiciendis, ad facere rerum.</p>
             <!-- All programmes -->

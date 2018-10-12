@@ -49,7 +49,7 @@
           </div>
         </div>
         <!-- Menu items -->
-        <ul class="nav _tal-ct _tal-l-md _ff-dcv">
+        <ul class="nav _tal-ct _tal-l-md">
           <li 
             v-for="(item, i) in $store.state.primaryMenu" 
             :key="i" 
@@ -62,7 +62,7 @@
                 :class="item.icon" 
                 class="fa-fw fa-md"/>
               <span 
-                class="_pst-rlt _t-2px _ttf-upc" 
+                class="_pst-rlt _t-2px _ttf-upc _ff-dcv" 
                 v-html="item.title"/>
             </div>
             <!-- <nuxt-link
@@ -250,7 +250,7 @@ ul.nav {
     }
   }
   li {
-    margin: 12px 0px 8px 0px;
+    margin: 12px 0px 12px 0px;
   }
 }
 

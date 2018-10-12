@@ -25,6 +25,11 @@ body {
   outline: none !important;
 }
 
+div,
+span {
+  font-family: 'Neue Frutiger Thai Trad W05 Rg';
+}
+
 h1,
 h2,
 h3,
@@ -93,7 +98,7 @@ h1 {
 }
 
 ._ff-dcv {
-  font-family: 'decovar' !important;
+  font-family: 'decovar', 'Neue Frutiger Thai Trad W05 Rg' !important;
 }
 
 a {
