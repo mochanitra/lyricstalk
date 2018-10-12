@@ -1,7 +1,22 @@
+@font-face {
+  font-family: 'decovar';
+  src: url('/fonts/decovaralpha-vf-webfont.woff2') format('woff2'),
+    url('/fonts/decovaralpha-vf-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Neue Frutiger Thai Trad W05 Rg";
+  src: url("/fonts/5344484/235d00ed-ec87-4d5c-a3dc-ca5d47e30959.eot?#iefix");
+  src: url("/fonts/5344484/235d00ed-ec87-4d5c-a3dc-ca5d47e30959.eot?#iefix") format("eot"), url("/fonts/5344484/1aac4ce3-38b4-405c-8605-3af06c2efb5b.woff2") format("woff2"), url("/fonts/5344484/2f2d3172-8a99-47f0-9001-70a385f2774f.woff") format("woff"), url("/fonts/5344484/7f219f99-44a6-49e7-ae10-5ca998dba34b.ttf") format("truetype");
+}
+
 body {
   overflow: hidden;
   overflow-y: auto;
   font-size: 110%;
+  font-family: 'Neue Frutiger Thai Trad W05 Rg';
 }
 
 *,
@@ -17,7 +32,6 @@ h4,
 h5,
 h6,
 button {
-  font-family: Kanit;
   font-weight: 400;
   line-height: 100%;
   outline: none !important;
@@ -76,14 +90,6 @@ h1 {
 
 ._mnh-512px {
   min-height: 512px !important;
-}
-
-@font-face {
-  font-family: 'decovar';
-  src: url('/fonts/decovaralpha-vf-webfont.woff2') format('woff2'),
-    url('/fonts/decovaralpha-vf-webfont.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
 }
 
 ._ff-dcv {
@@ -148,4 +154,9 @@ a {
 
 ._w-200px {
   width: 200px !important;
+}
+
+
+._h-72px {
+  height: 72px;
 }
