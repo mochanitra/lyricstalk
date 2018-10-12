@@ -7,7 +7,8 @@ export const state = () => ({
   newsCategories: [],
   programCategories: [],
   venues: [],
-  pages: null
+  pages: null,
+  menuSticky: false
 })
 
 export const actions = {
@@ -103,6 +104,9 @@ export const actions = {
 }
 
 export const mutations = {
+  SET_MENU_STICKY(state, bool) {
+    state.menuSticky = bool
+  },
   SET_PRIMARY_MENU(state, menu) {
     state.primaryMenu = menu
   },

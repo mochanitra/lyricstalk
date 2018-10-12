@@ -6,12 +6,24 @@
       to="/">
       <div 
         v-lazy:background-image="`https://placeimg.com/640/480/any`" 
-        class="_aprt-4-3 _bgrp-nrp _bgpst-ct"/>
-      <span>Lorem ipsum, dolor</span>
+        class="_aprt-4-3 _bgrp-nrp _bgpst-ct _pst-rlt">
+        <FavoriteButton class="_pst-asl _t-8px _r-8px" />
+      </div>
+      <span class="_ff-dcv">Lorem ipsum, dolor</span>
     </nuxt-link>
     <div class="_mgbt-16px">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</div>
   </div>
 </template>
+
+<script>
+import FavoriteButton from '~/components/FavoriteButton'
+export default {
+  components: {
+    FavoriteButton
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 @import '~assets/styles/variables';

@@ -29,10 +29,7 @@
           <div 
             id="favorites" 
             class="_f-1 order-last order-md-first _dp-f _dp-ilb-md _jtfct-fe _alit-ct">
-            <span class="fa-stack _fs-5 _fs-6-md">
-              <i class="fas fa-fw fa-circle fa-stack-2x _cl-pink"/>
-              <i class="fal fa-fw fa-heart fa-stack-1x fa-inverse"/>
-            </span>
+            <FavoriteButton />
             <span class="_pdl-2px _cl-pink">3</span>
           </div>
           <!-- Lang switcher -->
@@ -98,9 +95,11 @@
 </template>
 
 <script>
+import FavoriteButton from '~/components/FavoriteButton'
 import Hamburger from '~/components/defaults/Hamburger'
 export default {
   components: {
+    FavoriteButton,
     Hamburger
   },
   methods: {
@@ -131,7 +130,7 @@ header {
   @media (max-width: $sm) {
     padding: 16px 0px;
   }
-  padding: 24px 0px;
+  padding: 18px 0px;
 }
 
 #extra-bar {
