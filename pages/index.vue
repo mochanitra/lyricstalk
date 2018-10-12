@@ -41,11 +41,11 @@
       <div class="container _pdt-24px _pdbt-48px">
         <div class="row">
           <!-- Happening -->
-          <div class="col-sm-8 col-12">
+          <div class="col-sm-7 col-12">
             <!-- Title -->
             <div class="_mgbt-24px">
               <h2 class="_ff-dcv _ttf-upc">Happening!</h2>
-              <h4 class="_ttf-upc">{{ $moment().format('d MMMM YYYY') }}</h4>
+              <h4 class="_ttf-upc">{{ $moment().format('D MMMM YYYY') }}</h4>
             </div>
             <!-- 2 Col EventCard -->
             <div class="row">
@@ -58,9 +58,40 @@
             </div>
           </div>
           <!-- What's on -->
-          <div class="col-sm-4 col-12">
+          <div class="col-sm-5 col-12 _mgt-48px _mgt-0px-sm">
             <!-- Title -->
             <h2 class="_ff-dcv _ttf-upc">What's on?</h2>
+            <!-- ul -->
+            <ul class="_mgt-48px-sm">
+              <li 
+                v-for="(item, i) in [0, 0, 0,]" 
+                :key="i"
+                class="_pdv-12px"
+              >
+                <nuxt-link 
+                  to="/" 
+                  class="hover-spacing white _dp-f _alit-ct _jtfct-spbtw">
+                  <div class="_dp-f">
+                    <!-- dot -->
+                    <div class="_bgcl-pink _w-12px _h-12px _bdrd-50pct _mgl-8px _mgr-16px _mgt-8px"/>
+                    <!-- Content -->
+                    <div class="_cl-blue">
+                      <h4 class="_ff-dcv _lh-150pct">COTH-ING</h4>
+                      <p>Project: 10 year</p>
+                    </div>
+                  </div>
+                  <!-- Arrow -->
+                  <i class="fal fa-long-arrow-right fa-2x _cl-pink"/>
+                </nuxt-link>
+              </li>
+            </ul>
+            <!-- See more -->
+            <nuxt-link 
+              :to="localePath('programmes')" 
+              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -pink">
+              <span>see more</span>
+              <i class="fal fa-long-arrow-right"/>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -70,7 +101,7 @@
       <div class="container _pdv-48px">
         <div class="row">
           <div class="col-12">
-            x
+            <HeadingWithLine heading="latest news" />
           </div>
         </div>
         <div class="row">
@@ -89,10 +120,12 @@
 <script>
 import EventCard from '~/components/EventCard'
 import NewsCard from '~/components/NewsCard'
+import HeadingWithLine from '~/components/HeadingWithLine'
 export default {
   components: {
     EventCard,
-    NewsCard
+    NewsCard,
+    HeadingWithLine
   },
   mounted () {
   }

@@ -9,6 +9,10 @@
         class="_aprt-4-3 _bgrp-nrp _bgpst-ct _pst-rlt">
         <FavoriteButton class="_pst-asl _t-8px _r-8px" />
       </div>
+      <div>
+        <!-- Cat tag -->
+        <CategoryTag />
+      </div>
       <span class="_ff-dcv">Lorem ipsum, dolor</span>
     </nuxt-link>
     <div class="_mgbt-16px">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</div>
@@ -17,9 +21,11 @@
 
 <script>
 import FavoriteButton from '~/components/FavoriteButton'
+import CategoryTag from '~/components/CategoryTag'
 export default {
   components: {
-    FavoriteButton
+    FavoriteButton,
+    CategoryTag
   }
 }
 </script>
