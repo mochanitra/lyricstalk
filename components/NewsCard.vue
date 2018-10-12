@@ -2,7 +2,7 @@
   <div class="_w-100pct wrapper">
     <!-- Image -->
     <nuxt-link 
-      class="link _ttf-upc" 
+      class="link _ttf-cptl" 
       to="/">
       <div 
         v-lazy:background-image="`https://placeimg.com/640/480/any`" 
@@ -17,10 +17,14 @@
 @import '~assets/styles/variables';
 
 .wrapper {
+  transition: 0.15s;
   background: #ffffff;
   padding: 14px 16px;
   box-shadow: 6px -5px 44px 0 rgba(243, 122, 138, 0.05),
     -3px 5px 35px 0 rgba(49, 111, 183, 0.06);
+  &:hover {
+    transform: scale(1.05);
+  }
 }
 
 .link {
