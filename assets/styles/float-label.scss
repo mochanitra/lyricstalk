@@ -1,0 +1,124 @@
+// Placeholder
+@mixin inputPlaceholder() {
+  $selector: '';
+  $prefixes: (moz: '::-moz', webkit: '::-webkit', ie: ':-ms');
+
+  @each $prop,
+  $value in $prefixes {
+    @if $prop !='moz' {
+      $selector: #{$value}-input-placeholder;
+    }
+
+    @else {
+      $selector: #{$value}-placeholder;
+    }
+
+    @if & {
+      &#{$selector} {
+        @content;
+      }
+    }
+
+    @else {
+      #{$selector} {
+        @content;
+      }
+    }
+  }
+
+  &::placeholder {
+    @content;
+  }
+}
+
+// Float input
+.vfl-label {
+  color: #666 !important; // top: 8px !important;
+  left: 12px !important;
+  padding: 4px 0px;
+}
+
+.vfl-has-label {
+  &:not(:first-child) {
+    margin-top: 0px;
+  }
+
+  margin-bottom: 12px;
+
+  input,
+  textarea {
+    margin: 4px 0px 0px 0px;
+    padding: 0px 4px;
+
+    @include inputPlaceholder() {
+      opacity: 1;
+    }
+  }
+}
+
+.vfl-label-on-input {
+  top: 8px !important;
+}
+
+.vfl-label-on-focus {
+  color: $pink-400;
+}
+
+.vfl-label+input,
+.vfl-label+.thai-address-input input {
+  // height: 2em;
+  font-size: 1rem;
+  line-height: 1.5em;
+  border: 0;
+  border-bottom: 2px solid rgb(215, 215, 215);
+  transition: border 0.2s;
+  width: 100%;
+  padding: 16px 10px 16px 10px;
+}
+
+.vfl-label+textarea {
+  height: 10em;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  border: 0;
+  border-bottom: 2px solid rgb(215, 215, 215);
+  transition: border 0.2s;
+  width: 100%;
+  padding: 24px 10px 16px 10px;
+}
+
+.vfl-label+select {
+  width: 100%;
+  border-radius: 0;
+  border: none;
+  background-color: transparent;
+  appearance: none;
+  outline: none;
+  border-bottom: 2px solid rgb(215, 215, 215); // margin-bottom: 25px;
+  margin-top: 4px;
+  padding: 12px 10px 12px 10px;
+  line-height: 150%;
+  color: #444;
+  background: url(~/assets/images/dropdown-blue.svg) no-repeat 96% 56% #fff;
+}
+
+.vfl-label-on-input+input,
+.vfl-label-on-input+.thai-address-input input {
+  padding: 24px 10px 8px 10px;
+}
+
+.vfl-label-on-input+select {
+  padding: 24px 10px 8px 10px;
+}
+
+.thai-address-input {
+  .suggestion-list {
+    top: 24px;
+    height: 220px;
+    overflow-y: scroll; // border: 1px solid rgba(0, 0, 0, 0.1);
+  }
+}
+
+.vfl-label-on-focus+input {
+  border-bottom: 2px solid $pink-400;
+}

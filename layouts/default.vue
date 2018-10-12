@@ -1,5 +1,5 @@
 <template>
-  <div class="_ovfx-hd">
+  <div class="_ovf-hd">
     <!-- Header -->
     <div :class="{'has-shadow animate sticky _bgcl-white animate': $store.state.menuSticky}">
       <Header/>
@@ -7,7 +7,7 @@
     <!-- Content -->
     <main 
       :class="{'menu-sticky-active': $store.state.menuSticky}" 
-      class="min-height-100vh _dp-f _alit-ct _ovfx-hd">
+      class="min-height-100vh _dp-f _alit-ct _ovf-hd">
       <nuxt/>
     </main>
     <!-- Footer -->

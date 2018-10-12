@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import VueScrollReveal from 'vue-scroll-reveal'
 import VueFloatLabel from 'vue-float-label'
 const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
 import * as VueGoogleMaps from 'vue2-google-maps'
@@ -30,4 +31,12 @@ Vue.use(VueGoogleMaps, {
   //// Vue.component('GmapMarker', GmapMarker)
   //// then disable the following:
   // installComponents: true,
+})
+
+Vue.use(VueScrollReveal, {
+  class: 'v-scroll-reveal',
+  duration: 500,
+  scale: 0.9,
+  distance: '50px',
+  mobile: false
 })
