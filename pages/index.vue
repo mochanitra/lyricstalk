@@ -1,21 +1,24 @@
 <template>
-  <div class="_w-100pct">
+  <div class="_w-100pct _pdt-24px-sm">
     <!-- Hero -->
     <div class="container-fluid">
       <div class="row _mnh-512px">
         <div 
           v-lazy:background="`https://placeimg.com/640/480/any`" 
-          class="col-12 col-md-7 _bgs-cv"/>
+          class="col-12 col-md-7 _bgs-cv _mnh-512px"/>
         <div class="col-md-5 col-12 _dp-f _alit-ct _jtfct-ct _pdh-48px-md _pdh-24px">
           <div>
-            <h6 class="_ttf-upc">hilights of cmdw18</h6>
+            <h5 class="_ttf-upc _pdv-16px">hilights of cmdw18</h5>
             <h1 class="_mgt-16px _ttf-upc _ff-dcv">ดอกไม้ in the vase</h1>
-            <h4 class="_mgt-16px _ttf-upc">above the surface of the earth</h4>
+            <h4 class="_mgt-8px _ttf-upc">above the surface of the earth</h4>
             <p class="_mgt-16px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus odit reiciendis, ad facere rerum.</p>
             <!-- All programmes -->
             <nuxt-link 
               :to="localePath('programmes')" 
-              class="_mgt-16px bio-button _dp-ilb _ttf-upc">all programmes</nuxt-link>
+              class="_mgt-16px bio-button _dp-ilb _ttf-upc -pink">
+              <span>all programmes</span>
+              <i class="fal fa-long-arrow-right"/>
+            </nuxt-link>
           </div>
         </div>
       </div>
@@ -27,7 +30,7 @@
           <div 
             v-for="(item, i) in $store.state.hilightArticles || [0, 0, 0]" 
             :key="i" 
-            class="col">
+            class="col _mgbt-24px">
             <EventCard />
           </div>
         </div>
@@ -35,10 +38,10 @@
     </div>
     <!-- Happening & What's on -->
     <div id="happening">
-      <div class="container _pdv-48px">
+      <div class="container _pdt-24px _pdbt-48px">
         <div class="row">
           <!-- Happening -->
-          <div class="col-8">
+          <div class="col-sm-8 col-12">
             <!-- Title -->
             <div class="_mgbt-24px">
               <h2 class="_ff-dcv _ttf-upc">Happening!</h2>
@@ -55,7 +58,7 @@
             </div>
           </div>
           <!-- What's on -->
-          <div class="col-4">
+          <div class="col-sm-4 col-12">
             <!-- Title -->
             <h2 class="_ff-dcv _ttf-upc">What's on?</h2>
           </div>

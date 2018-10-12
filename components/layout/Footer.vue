@@ -26,7 +26,7 @@
                 class="_pdbt-4px">
                 <nuxt-link 
                   :to="localePath(list.path)"
-                  class="_cl-white hover-spacing white _ttf-upc"
+                  class="_cl-white hover-spacing white _ttf-cptl"
                   v-html="list.title"/>
               </li>
             </ul>
@@ -47,11 +47,22 @@
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
 footer {
+  position: relative;
   background: $blue-400;
   padding: 64px 0px;
+  margin-top: 20px;
   color: #fff;
   @media (max-width: $md - 1px) {
     padding: 32px 0px;
+  }
+  &::before {
+    content: '';
+    width: 100%;
+    height: 48px;
+    background-image: url(/images/patterns/pink-weaving.jpg);
+    position: absolute;
+    top: -20px;
+    left: 0px;
   }
 }
 nav {
