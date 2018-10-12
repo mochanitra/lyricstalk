@@ -156,6 +156,14 @@ a {
   background: $blue-400;
 }
 
+._bdcl-blue {
+  border-color: $blue-400 !important;
+}
+
+._bdcl-pink {
+  border-color: $pink-400 !important;
+}
+
 // Aspect ratios
 ._aprt-4-3 {
   padding-top: 75%;
@@ -168,4 +176,8 @@ a {
 
 ._h-72px {
   height: 72px;
+}
+
+._h-36px {
+  height: 36px;
 }
