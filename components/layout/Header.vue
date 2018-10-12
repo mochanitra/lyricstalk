@@ -80,7 +80,7 @@
                   class="_ttf-upc">
                   <nuxt-link 
                     :to="localePath(list.path)" 
-                    class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md"
+                    class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md _ff-dcv"
                     v-html="list.title"/>
                 </li>
               </ul>
