@@ -11,7 +11,7 @@
           v-html="benefitContent"/>
 
         <!-- Benefit Images  -->
-        <div class="_dp-f _jtfct-spbtw">
+        <div class="_dp-f _fw-w _jtfct-spbtw">
           <div 
             v-for="(item,i) in benefitLink" 
             :key="i">

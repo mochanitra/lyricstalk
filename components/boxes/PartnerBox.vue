@@ -1,19 +1,19 @@
 <template>
-  <div class="_mgbt-48px">
-    <div class="_dp-f _mgbt-24px">
-      <div class="_ttf-upc _fs-8 _pdr-2px partner-heading">{{ heading }}</div>
+  <div>
+    <div class="_mgbt-24px">
       <div 
-        v-if="hasLine" 
-        class="_h-1px _bgcl-blue _w-at"/>
+        :class="{'no-line': !hasLine}" 
+        class="_ttf-upc _fs-7 _pdr-2px partner-heading">{{ heading }}</div>
     </div>
-    <div class="_dp-f _w-100pct">
+    <div class="partner-list">
       <div 
         v-for="(p,i) in partners" 
         :key="i" 
+        class="partner-logo _mgbt-16px _mgbt-16px-md"
       >
         <img 
           v-lazy="p.image" 
-          class="_w-100pct _h-at _pdr-32px">
+          class="_w-100pct _h-at">
           <!-- <div 
           v-lazy:background="p.image" 
           class="_bgs-ct _bgrp-nrp _w-128px _h-64px" /> -->
@@ -42,20 +42,36 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.partner-heading {
-  position: relative;
-  width: 100%;
+@import 'assets/styles/variables';
 
-  &::after {
+.partner-heading:not(.no-line) {
+  display: table;
+  white-space: nowrap;
+
+  &:after {
     content: '';
-    position: absolute;
+    display: table-cell;
+    position: relative;
+    top: 0;
     bottom: 0;
-    left: 0;
-    right: 0;
-    border: 0;
-    height: 1px;
-    background-color: red;
-    z-index: -1;
+    left: 12px;
+    width: 100%;
+    border-bottom: 1px solid #000;
+  }
+}
+
+.partner-list {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media screen and (max-width: $md) {
+    flex-wrap: wrap;
+  }
+}
+.partner-logo {
+  padding-right: 32px;
+  &:last-child {
+    padding-right: 0;
   }
 }
 </style>
