@@ -4,13 +4,14 @@
       <div class="col-12 _mgbt-48px">
         <HeadingWithLine :heading="`Benefits`"/>
       </div>
+      <!-- Benefit Left -->
       <div class="col-12 col-md-8 _wp-content">
         <div 
           class="_mgbt-48px" 
           v-html="benefitContent"/>
 
         <!-- Benefit Images  -->
-        <div class="_dp-f _jtfct-spbtw">
+        <div class="_dp-f _fw-w _jtfct-spbtw">
           <div 
             v-for="(item,i) in benefitLink" 
             :key="i">
@@ -24,8 +25,8 @@
             </a>
           </div>
         </div>
-
       </div>
+      <!-- Benefit Right -->
       <div class="col-12 col-md-4 _mgt-24px _mgt-0px-md _wp-content">
         <div 
           class="_mgbt-48px" 
@@ -38,16 +39,21 @@
         />
       </div>
     </div>
+    <hr class="_mgv-48px">
+    <!-- Partners Section -->
+    <Partners/>
   </div>
 </template>
 
 <script>
 import HeadingWithLine from '~/components/HeadingWithLine'
 import ButtonOutlineWithIcon from '~/components/button/ButtonOutlineWithIcon'
+import Partners from '~/components/sections/Partners'
 export default {
   components: {
     HeadingWithLine,
-    ButtonOutlineWithIcon
+    ButtonOutlineWithIcon,
+    Partners
   },
   data: () => ({ 
     benefitContent: `
