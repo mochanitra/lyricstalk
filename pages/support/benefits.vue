@@ -12,13 +12,14 @@
             v-html="benefitContent"/>
 
           <!-- Benefit Images  -->
-          <div class="_dp-f _fw-w _jtfct-spbtw">
+          <div class="row">
             <div 
               v-for="(item,i) in benefitLink" 
-              :key="i">
+              :key="i"
+              class="col-12 col-sm-6">
               <div 
                 v-lazy:background="item.image" 
-                class="_bgs-cv _bgrp-nrp benefit-image _mgbt-16px" />
+                class="_bgs-cv _bgrp-nrp benefit-image _mgbt-12px" />
               <a :href="item.path">
                 <h4 
                   class="_cl-blue" 
@@ -43,8 +44,6 @@
           </a>
         </div>
       </div>
-      <!-- Partners Section -->
-      <Partners class="_mgt-64px" />
     </div>
   </div>
 </template>

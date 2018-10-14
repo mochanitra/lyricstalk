@@ -22,7 +22,8 @@
           <!-- Search -->
           <div 
             id="search" 
-            class="_f-1 _dp-f _dp-ilb-md">
+            class="_f-1 _dp-f _dp-ilb-md _cs-pt"
+            @click="$store.commit('SET_SEARCH_MODAL_ACTIVE', !$store.state.isSearchModalActive)">
             <i class="fas fa-fw fa-lg fa-search _fs-3 _fs-4-md"/>
           </div>
           <!-- favorites -->
@@ -38,10 +39,14 @@
             class="_ff-dcv"
           >
             <span 
-              class="_cs-pt _fs-4 _fs-5-md" 
+              :class="{'-active': $store.state.i18n.locale === 'th'}"
+              class="_cs-pt _fs-4 _fs-5-md hover-spacing" 
               @click="changeLang('th')">ไทย</span>
+            <!-- Border -->
+            <div class="_dp-ilb">/</div>
             <span 
-              class="_cs-pt _fs-4 _fs-5-md" 
+              :class="{'-active': $store.state.i18n.locale === 'en'}"
+              class="_cs-pt _fs-4 _fs-5-md hover-spacing" 
               @click="changeLang('en')">EN</span>
           </div>
         </div>
@@ -98,22 +103,35 @@
       <!-- Hamburger Menu Icon -->
       <Hamburger id="hamburger" />
     </div>
+    <!-- Search Modal -->
+    <SearchModal />
   </header>
 </template>
 
 <script>
 import FavoriteButton from '~/components/FavoriteButton'
 import Hamburger from '~/components/defaults/Hamburger'
+import SearchModal from '~/components/modals/Search'
 export default {
   components: {
     FavoriteButton,
-    Hamburger
+    Hamburger,
+    SearchModal
+  },
+  watch: {
+    '$store.state.isSearchModalActive' (val) {
+      if (val) {
+        this.$modal.show('search')
+      } else {
+        this.$modal.hide('search')
+      }
+    }
   },
   methods: {
     changeLang (locale) {
       return window.location.href = this.switchLocalePath(locale)
     }
-  }
+  },
 }
 </script>
 
@@ -123,13 +141,8 @@ export default {
 
 #lang-switcher {
   > span {
-    padding-right: 8px;
-    padding-left: 8px;
-    &:last-child {
-      border-left: 2px solid $pink-400;
-      padding-left: 10px;
-      padding-right: 0px;
-    }
+    margin-right: 4px;
+    margin-left: 4px;
   }
 }
 

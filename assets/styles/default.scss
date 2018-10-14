@@ -113,6 +113,21 @@ a {
   display: inline-block;
   position: relative;
 
+  &.-active {
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      transform: scaleX(1) translateY(3px);
+      height: 2px;
+      bottom: 0;
+      left: 0;
+      background: $pink-400;
+      transform-origin: bottom right;
+      transition: transform 0.25s ease-out;
+    }
+  }
+
   &::after {
     content: '';
     position: absolute;
@@ -140,7 +155,7 @@ a {
 
   &:hover {
     letter-spacing: 2px;
-    font-weight: 700;
+    // font-weight: 700;
 
     &::after {
       transform: scaleX(1) translateY(3px);
@@ -206,4 +221,8 @@ a {
     border: 1px solid $pink-400;
     color: $pink-400;
   }
+}
+
+.v--modal {
+  background: transparent;
 }

@@ -13,9 +13,6 @@
         </div>
 
         <div class="col-12">
-          <!-- Partners Section -->
-          <Partners/>
-
           <!-- Program Partners -->
           <PartnerBox
             :heading="`Program Partners`"

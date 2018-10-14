@@ -4,6 +4,7 @@ export const state = () => ({
   primaryMenu: [],
   footerMenu: [],
   isMobileMenuActive: false,
+  isSearchModalActive: false,
   newsCategories: [],
   programCategories: [],
   venues: [],
@@ -101,6 +102,9 @@ export const actions = {
 }
 
 export const mutations = {
+  SET_SEARCH_MODAL_ACTIVE(state, bool) {
+    state.isSearchModalActive = bool
+  },
   SET_MENU_STICKY(state, bool) {
     state.menuSticky = bool
   },

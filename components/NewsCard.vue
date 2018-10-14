@@ -7,11 +7,25 @@
       <div 
         v-lazy:background-image="`https://placeimg.com/640/480/any`" 
         class="_aprt-4-3 _bgrp-nrp _bgpst-ct"/>
-      <span>Lorem ipsum, dolor</span>
+      <div class="_mgt-8px">
+        <!-- Cat tag -->
+        <CategoryTag />
+      </div>
+      <h4 class="_mgv-8px">Lorem ipsum, dolor</h4>
     </nuxt-link>
     <div class="_mgbt-16px">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</div>
   </div>
 </template>
+
+<script>
+import CategoryTag from '~/components/CategoryTag'
+export default {
+  components: {
+    CategoryTag
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
