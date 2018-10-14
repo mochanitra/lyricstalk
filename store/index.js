@@ -74,12 +74,9 @@ export const actions = {
     }, {
       title: 'venues',
       icon: 'fal fa-map-pin',
-      submenu: [{
-        title: 'CMDW Venues',
-        path: {
-          name: 'venues'
-        }
-      }]
+      path: {
+        name: 'venues'
+      }
     }, {
       title: 'support',
       icon: 'fal fa-users',

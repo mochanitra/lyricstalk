@@ -55,17 +55,24 @@
             <div
               class="_ttf-upc _pdt-16px _pdbt-8px _pdv-0px-md title">
               <!-- Icon -->
-              <i 
-                :class="item.icon" 
-                class="fa-fw fa-md"/>
-              <span 
-                class="_pst-rlt _t-2px _ttf-upc _ff-dcv" 
-                v-html="item.title"/>
+              <div v-if="item.submenu">
+                <i 
+                  :class="item.icon" 
+                  class="fa-fw fa-md"/>
+                <span 
+                  class="_pst-rlt _t-2px _ttf-upc _ff-dcv" 
+                  v-html="item.title"/>
+              </div>
+              <nuxt-link
+                v-else
+                :to="localePath(item.path)">
+                <i 
+                  :class="item.icon" 
+                  class="fa-fw fa-md _cl-blue"/>
+                <span 
+                  class="_pst-rlt _t-2px _ttf-upc _ff-dcv _cl-blue" 
+                  v-html="item.title"/></nuxt-link>
             </div>
-            <!-- <nuxt-link
-              v-if="!item.submenu" 
-              :to="localePath(item.path)"
-              class="_ttf-upc">{{ item.title }}</nuxt-link> -->
             <div 
               v-if="item.submenu" 
               class="dropdown _pst-asl-md">
@@ -217,14 +224,11 @@ ul.nav {
   min-width: 200px;
   z-index: 9;
   position: relative;
-  @media (max-width: $md - 1px) {
-    ul {
-      /* padding-top: 24px; */
-    }
+  /* @media (max-width: $md - 1px) {
     &::before {
       content: '';
     }
-  }
+  } */
   @media (min-width: $md) {
     padding-top: 24px;
     left: calc(50% - 100px);
