@@ -1,27 +1,29 @@
 <template>
-  <div class="row _pdbt-24px _pdbt-48px-md">
-    <div class="col-12 col-md-7 _pdbt-16px _pdbt-24px-md" >
-      <PartnerBox 
-        :heading="`Organised by`" 
-        :partners="orginised"
-      />
-    </div>
-    <div class="col-12 col-md-5 _pdbt-16px _pdbt-24px-md">
-      <PartnerBox 
-        :heading="`Offial Partners`" 
-        :partners="officialPartners"/>
-    </div>
-    <div class="col-12 col-md-3 _pdbt-16px _pdbt-24px-md">
-      <PartnerBox 
-        :heading="`Top Supporter`" 
-        :partners="topSupporter"
-        :has-line="false"
-      />
-    </div>
-    <div class="col-12 col-md-9 _pdbt-16px _pdbt-24px-md">
-      <PartnerBox 
-        :heading="`Major Supporters`" 
-        :partners="majorSupporters"/>
+  <div class="container">
+    <div class="row">
+      <div class="col-12 col-md-7 _pdbt-16px _pdbt-24px-md" >
+        <PartnerBox 
+          :heading="`Organised by`" 
+          :partners="orginised"
+        />
+      </div>
+      <div class="col-12 col-md-5 _pdbt-16px _pdbt-24px-md">
+        <PartnerBox 
+          :heading="`Offial Partners`" 
+          :partners="officialPartners"/>
+      </div>
+      <div class="col-12 col-md-3 _pdbt-16px _pdbt-24px-md">
+        <PartnerBox 
+          :heading="`Top Supporter`" 
+          :partners="topSupporter"
+          :has-line="false"
+        />
+      </div>
+      <div class="col-12 col-md-9 _pdbt-16px _pdbt-24px-md">
+        <PartnerBox 
+          :heading="`Major Supporters`" 
+          :partners="majorSupporters"/>
+      </div>
     </div>
   </div>
 </template>

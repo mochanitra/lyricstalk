@@ -1,63 +1,65 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="col-12 _mgbt-48px">
-        <HeadingWithLine :heading="`Benefits`"/>
-      </div>
-      <!-- Benefit Left -->
-      <div class="col-12 col-md-8 _wp-content">
-        <div 
-          class="_mgbt-48px" 
-          v-html="benefitContent"/>
-
-        <!-- Benefit Images  -->
-        <div class="_dp-f _fw-w _jtfct-spbtw">
+  <div class="_w-100pct">
+    <div class="container">
+      <div class="row">
+        <div class="col-12">
+          <Breadcrumb page-title="benefits" />
+        </div>
+        <!-- Benefit Left -->
+        <div class="col-12 col-md-8 _wp-content">
           <div 
-            v-for="(item,i) in benefitLink" 
-            :key="i">
+            class="_mgbt-48px" 
+            v-html="benefitContent"/>
+
+          <!-- Benefit Images  -->
+          <div class="_dp-f _fw-w _jtfct-spbtw">
             <div 
-              v-lazy:background="item.image" 
-              class="_bgs-cv _bgrp-nrp benefit-image _mgbt-16px" />
-            <a :href="item.path">
-              <h4 
-                class="_cl-blue" 
-                v-html="item.title"/>
-            </a>
+              v-for="(item,i) in benefitLink" 
+              :key="i">
+              <div 
+                v-lazy:background="item.image" 
+                class="_bgs-cv _bgrp-nrp benefit-image _mgbt-16px" />
+              <a :href="item.path">
+                <h4 
+                  class="_cl-blue" 
+                  v-html="item.title"/>
+              </a>
+            </div>
           </div>
         </div>
-      </div>
-      <!-- Benefit Right -->
-      <div class="col-12 col-md-4 _mgt-24px _mgt-0px-md _wp-content">
-        <div 
-          class="_mgbt-48px" 
-          v-html="benefitContact"/>
+        <!-- Benefit Right -->
+        <div class="col-12 col-md-4 _mgt-24px _mgt-0px-md">
+          <div 
+            class="_mgbt-48px _wp-content" 
+            v-html="benefitContact"/>
 
-        <ButtonOutlineWithIcon 
-          :title="`Download Partership Overview`"
-          :icon="`fal fa-long-arrow-right`"
-          :button-color-class="`pink`"
-        />
+          <a 
+            href="#" 
+            class="_mgt-16px bio-button _dp-ilb _ttf-upc -pink">
+            <span>
+              Download partnership overview
+            </span>
+            <i class="fal fa-long-arrow-right"/>
+          </a>
+        </div>
       </div>
+      <!-- Partners Section -->
+      <Partners class="_mgt-64px" />
     </div>
-    <hr class="_mgv-48px">
-    <!-- Partners Section -->
-    <Partners/>
   </div>
 </template>
 
 <script>
-import HeadingWithLine from '~/components/HeadingWithLine'
-import ButtonOutlineWithIcon from '~/components/button/ButtonOutlineWithIcon'
+import Breadcrumb from '~/components/Breadcrumb'
 import Partners from '~/components/sections/Partners'
 export default {
   components: {
-    HeadingWithLine,
-    ButtonOutlineWithIcon,
+    Breadcrumb,
     Partners
   },
   data: () => ({ 
     benefitContent: `
-    <h4>Become a patrin today!</h4>
+    <h4>Become a patron today!</h4>
     <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.</p>`,
 
     benefitContact: `
