@@ -1,5 +1,7 @@
 <template>
-  <div class="_ovf-hd">
+  <div 
+    id="top" 
+    class="_ovf-hd">
     <!-- Header -->
     <div :class="{'has-shadow animate sticky _bgcl-white': $store.state.menuSticky && !$store.state.isMobileMenuActive}">
       <Header/>

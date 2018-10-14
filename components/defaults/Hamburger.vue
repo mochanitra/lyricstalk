@@ -1,12 +1,24 @@
 <template>
   <button 
     class="bio-button _pd-0px _r-4px _zid-1 _bgcl-tpr _bdcl-tpr hamburger-container _w-32px _h-32px"
-    @click="$store.commit('SET_MOBILE_MENU_ACTIVE', !$store.state.isMobileMenuActive)">
+    @click="click">
     <div 
       :class="{'-open': $store.state.isMobileMenuActive}" 
       class="hamburger-btn -black" />
   </button>
 </template>
+
+<script>
+export default {
+  methods: {
+    click () {
+      this.$scrollTo('#top', 500)
+      return this.$store.commit('SET_MOBILE_MENU_ACTIVE', !this.$store.state.isMobileMenuActive)
+    }
+  }
+}
+</script>
+
 
 <style lang="scss" scoped>
 .hamburger-container {

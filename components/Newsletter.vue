@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div class="row _jtfct-ct">
-      <div class="col-12 col-sm-8 _mgt-48px _bgcl-gray _pdbt-48px _pdt-48px _pdh-48px">
+      <div class="col-12 col-sm-8 _mgt-48px _bgcl-gray _pdbt-48px _pdt-48px _pdh-48px-sm _pdh-24px">
         <h3 class="_ttf-upc _lh-125pct _tal-ct">
           <i class="fal fa-paper-plane _mgr-8px"/>
           <span class="_ff-dcv">Subscribe to our CMDW newsletter</span>
