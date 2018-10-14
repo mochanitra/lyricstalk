@@ -175,7 +175,7 @@ header {
       visibility: hidden;
       position: absolute;
       width: 100%;
-      min-height: calc(93vh - 90px);
+      min-height: calc(90vh - 90px);
       top: 90px;
       left: 0;
       right: 0;
@@ -224,11 +224,12 @@ ul.nav {
   min-width: 200px;
   z-index: 9;
   position: relative;
-  /* @media (max-width: $md - 1px) {
+  @media (max-width: $md - 1px) {
     &::before {
       content: '';
     }
-  } */
+    transition-delay: 0.2s;
+  }
   @media (min-width: $md) {
     padding-top: 24px;
     left: calc(50% - 100px);

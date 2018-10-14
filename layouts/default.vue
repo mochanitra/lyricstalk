@@ -1,7 +1,7 @@
 <template>
   <div class="_ovf-hd">
     <!-- Header -->
-    <div :class="{'has-shadow animate sticky _bgcl-white animate': $store.state.menuSticky}">
+    <div :class="{'has-shadow animate sticky _bgcl-white': $store.state.menuSticky && !$store.state.isMobileMenuActive}">
       <Header/>
     </div>
     <!-- Content -->
@@ -11,7 +11,7 @@
       <nuxt/>
     </main>
     <!-- Footer -->
-    <Footer/>
+    <Footer class="_mgt-64px"/>
   </div>
 </template>
 
