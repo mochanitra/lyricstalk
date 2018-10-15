@@ -1,5 +1,5 @@
 <template>
-  <div class="_mgt-24px _mgbt-48px">
+  <div class="_mgt-24px _mgbt-32px">
     <!-- home -->
     <div class="_dp-ilb _mgv-12px">
       <!-- <i class="fal fa-home fa-fw fa-lg"/> -->

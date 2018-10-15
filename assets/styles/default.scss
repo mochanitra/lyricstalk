@@ -213,13 +213,24 @@ a {
 
   &:hover {
     letter-spacing: 1px;
-    font-weight: 600;
+
+    // font-weight: 600;
+    &.-pink {
+      // border: 2px solid $pink-400;
+      background-color: $pink-400;
+      color: #fff;
+    }
   }
 
   &.-pink {
     background: #fff;
     border: 1px solid $pink-400;
     color: $pink-400;
+
+    &.-active {
+      color: #fff;
+      background: $pink-400;
+    }
   }
 }
 

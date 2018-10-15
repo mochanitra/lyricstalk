@@ -61,7 +61,12 @@ export const actions = {
     }, {
       title: 'programme',
       icon: 'fal fa-list-alt',
-      submenu: state.programCategories.map(pc => {
+      submenu: [{
+        title: 'All Programmes',
+        path: {
+          name: 'programmes'
+        }
+      }, ...state.programCategories.map(pc => {
         return {
           title: pc.name,
           path: {
@@ -71,7 +76,7 @@ export const actions = {
             }
           }
         }
-      })
+      })]
     }, {
       title: 'venues',
       icon: 'fal fa-map-pin',
