@@ -10,31 +10,33 @@
           Capture the worlds of design and creative culture in Chiang Mai. Stay connected with the community of creators from different industries, designers, craftsmen, artists and entrepreneurs and get our latest news.
         </p>
         <!-- Form -->
-        <form class="row no-gutters">
-          <float-label class="col-sm-9">
-            <input 
-              v-validate="{required: true}" 
-              v-model="email"
-              :placeholder="`Email Address`"
-              maxlength="100"
-              class="_w-95pct"
-              type="email"
-              name="email">
-            <small 
-              v-show="errors.has('email')"
-              class="_cl-negative" 
-            >Please enter email</small>
-          </float-label>
-          <!-- Submit button -->
-          <div class="col-sm-3">
-            <button 
-              type="submit" 
-              class="bio-button _dp-ilb _ttf-upc -pink _w-100pct _mgt-4px">
-              <span>Subscribe</span>
-              <i class="fal fa-long-arrow-right"/>
-            </button>
-          </div>
-        </form>
+        <no-ssr>
+          <form class="row no-gutters">
+            <float-label class="col-sm-9">
+              <input 
+                v-validate="{required: true}" 
+                v-model="email"
+                :placeholder="`Email Address`"
+                maxlength="100"
+                class="_w-95pct"
+                type="email"
+                name="email">
+              <small 
+                v-show="errors.has('email')"
+                class="_cl-negative" 
+              >Please enter email</small>
+            </float-label>
+            <!-- Submit button -->
+            <div class="col-sm-3">
+              <button 
+                type="submit" 
+                class="bio-button _dp-ilb _ttf-upc -pink _w-100pct _mgt-4px">
+                <span>Subscribe</span>
+                <i class="fal fa-long-arrow-right"/>
+              </button>
+            </div>
+          </form>
+        </no-ssr>
       </div>
     </div>
   </div>
