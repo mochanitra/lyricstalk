@@ -14,4 +14,7 @@ export default function ({
   if (app.i18n.locale === 'en' && app.$axios.defaults.baseURL.indexOf('en') === -1) {
     app.$axios.defaults.baseURL += `${app.i18n.locale}/`
   }
+
+  // Terminate search modal
+  store.commit('SET_SEARCH_MODAL_ACTIVE', false)
 }

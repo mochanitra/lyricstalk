@@ -1,7 +1,9 @@
 <template>
-  <div class="_ovf-hd">
+  <div 
+    id="top" 
+    class="_ovf-hd">
     <!-- Header -->
-    <div :class="{'has-shadow animate sticky _bgcl-white animate': $store.state.menuSticky}">
+    <div :class="{'has-shadow animate sticky _bgcl-white': $store.state.menuSticky && !$store.state.isMobileMenuActive}">
       <Header/>
     </div>
     <!-- Content -->
@@ -10,18 +12,22 @@
       class="min-height-100vh _dp-f _alit-ct _ovf-hd">
       <nuxt/>
     </main>
+    <!-- Sponsors -->
+    <Partners class="_mgt-128px" />
     <!-- Footer -->
-    <Footer/>
+    <Footer class="_mgt-32px"/>
   </div>
 </template>
 
 <script>
   import Header from '~/components/layout/Header'
   import Footer from '~/components/layout/Footer'
+  import Partners from '~/components/sections/Partners'
   export default {
     components: {
       Header,
-      Footer
+      Footer,
+      Partners
     },
     created() {
       if (process.browser) {

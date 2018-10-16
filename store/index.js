@@ -4,6 +4,7 @@ export const state = () => ({
   primaryMenu: [],
   footerMenu: [],
   isMobileMenuActive: false,
+  isSearchModalActive: false,
   newsCategories: [],
   programCategories: [],
   venues: [],
@@ -60,7 +61,12 @@ export const actions = {
     }, {
       title: 'programme',
       icon: 'fal fa-list-alt',
-      submenu: state.programCategories.map(pc => {
+      submenu: [{
+        title: 'All Programmes',
+        path: {
+          name: 'programmes'
+        }
+      }, ...state.programCategories.map(pc => {
         return {
           title: pc.name,
           path: {
@@ -70,16 +76,13 @@ export const actions = {
             }
           }
         }
-      })
+      })]
     }, {
       title: 'venues',
       icon: 'fal fa-map-pin',
-      submenu: [{
-        title: 'CMDW Venues',
-        path: {
-          name: 'venues'
-        }
-      }]
+      path: {
+        name: 'venues'
+      }
     }, {
       title: 'support',
       icon: 'fal fa-users',
@@ -104,6 +107,9 @@ export const actions = {
 }
 
 export const mutations = {
+  SET_SEARCH_MODAL_ACTIVE(state, bool) {
+    state.isSearchModalActive = bool
+  },
   SET_MENU_STICKY(state, bool) {
     state.menuSticky = bool
   },

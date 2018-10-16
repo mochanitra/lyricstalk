@@ -47,6 +47,7 @@ export default {
 .partner-heading:not(.no-line) {
   display: table;
   white-space: nowrap;
+  overflow: hidden;
 
   &:after {
     content: '';
@@ -54,9 +55,9 @@ export default {
     position: relative;
     top: 0;
     bottom: 0;
-    left: 12px;
+    left: 4px;
     width: 100%;
-    border-bottom: 1px solid #000;
+    border-bottom: 1px solid $blue-400;
   }
 }
 

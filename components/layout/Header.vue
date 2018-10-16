@@ -22,7 +22,8 @@
           <!-- Search -->
           <div 
             id="search" 
-            class="_f-1 _dp-f _dp-ilb-md">
+            class="_f-1 _dp-f _dp-ilb-md _cs-pt"
+            @click="$store.commit('SET_SEARCH_MODAL_ACTIVE', !$store.state.isSearchModalActive)">
             <i class="fas fa-fw fa-lg fa-search _fs-3 _fs-4-md"/>
           </div>
           <!-- favorites -->
@@ -38,10 +39,14 @@
             class="_ff-dcv"
           >
             <span 
-              class="_cs-pt _fs-4 _fs-5-md" 
+              :class="{'-active': $store.state.i18n.locale === 'th'}"
+              class="_cs-pt _fs-4 _fs-5-md hover-spacing" 
               @click="changeLang('th')">ไทย</span>
+            <!-- Border -->
+            <div class="_dp-ilb">/</div>
             <span 
-              class="_cs-pt _fs-4 _fs-5-md" 
+              :class="{'-active': $store.state.i18n.locale === 'en'}"
+              class="_cs-pt _fs-4 _fs-5-md hover-spacing" 
               @click="changeLang('en')">EN</span>
           </div>
         </div>
@@ -55,17 +60,24 @@
             <div
               class="_ttf-upc _pdt-16px _pdbt-8px _pdv-0px-md title">
               <!-- Icon -->
-              <i 
-                :class="item.icon" 
-                class="fa-fw fa-md"/>
-              <span 
-                class="_pst-rlt _t-2px _ttf-upc _ff-dcv" 
-                v-html="item.title"/>
+              <div v-if="item.submenu">
+                <i 
+                  :class="item.icon" 
+                  class="fa-fw fa-md"/>
+                <span 
+                  class="_pst-rlt _t-2px _ttf-upc _ff-dcv" 
+                  v-html="item.title"/>
+              </div>
+              <nuxt-link
+                v-else
+                :to="localePath(item.path)">
+                <i 
+                  :class="item.icon" 
+                  class="fa-fw fa-md _cl-blue"/>
+                <span 
+                  class="_pst-rlt _t-2px _ttf-upc _ff-dcv _cl-blue" 
+                  v-html="item.title"/></nuxt-link>
             </div>
-            <!-- <nuxt-link
-              v-if="!item.submenu" 
-              :to="localePath(item.path)"
-              class="_ttf-upc">{{ item.title }}</nuxt-link> -->
             <div 
               v-if="item.submenu" 
               class="dropdown _pst-asl-md">
@@ -91,22 +103,35 @@
       <!-- Hamburger Menu Icon -->
       <Hamburger id="hamburger" />
     </div>
+    <!-- Search Modal -->
+    <SearchModal />
   </header>
 </template>
 
 <script>
 import FavoriteButton from '~/components/FavoriteButton'
 import Hamburger from '~/components/defaults/Hamburger'
+import SearchModal from '~/components/modals/Search'
 export default {
   components: {
     FavoriteButton,
-    Hamburger
+    Hamburger,
+    SearchModal
+  },
+  watch: {
+    '$store.state.isSearchModalActive' (val) {
+      if (val) {
+        this.$modal.show('search')
+      } else {
+        this.$modal.hide('search')
+      }
+    }
   },
   methods: {
     changeLang (locale) {
       return window.location.href = this.switchLocalePath(locale)
     }
-  }
+  },
 }
 </script>
 
@@ -116,13 +141,8 @@ export default {
 
 #lang-switcher {
   > span {
-    padding-right: 8px;
-    padding-left: 8px;
-    &:last-child {
-      border-left: 2px solid $pink-400;
-      padding-left: 10px;
-      padding-right: 0px;
-    }
+    margin-right: 4px;
+    margin-left: 4px;
   }
 }
 
@@ -168,7 +188,7 @@ header {
       visibility: hidden;
       position: absolute;
       width: 100%;
-      min-height: calc(93vh - 90px);
+      min-height: calc(90vh - 90px);
       top: 90px;
       left: 0;
       right: 0;
@@ -218,12 +238,10 @@ ul.nav {
   z-index: 9;
   position: relative;
   @media (max-width: $md - 1px) {
-    ul {
-      /* padding-top: 24px; */
-    }
     &::before {
       content: '';
     }
+    transition-delay: 0.2s;
   }
   @media (min-width: $md) {
     padding-top: 24px;

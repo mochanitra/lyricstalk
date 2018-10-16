@@ -2,6 +2,11 @@
   <no-ssr>
     <div class="_w-100pct">
       <div class="container">
+        <div class="row">
+          <div class="col-12">
+            <Breadcrumb page-title="venues" />
+          </div>
+        </div>
         <div class="row no-gutters">
           <!-- Venues Map -->
           <div 
@@ -11,7 +16,7 @@
               :center="{lat:18.7890055, lng:98.9871237 }"
               :zoom="15"
               map-type-id="terrain"
-              style="width: 100%; height: 700px"
+              class="g-map"
             >
               <gmap-info-window 
                 :options="infoOptions"
@@ -54,11 +59,14 @@
       </div>
     </div>
   </no-ssr>
-
 </template>
 
 <script>
+import Breadcrumb from '~/components/Breadcrumb'
 export default {
+  components: {
+    Breadcrumb
+  },
   data: () => ({
     markers: [],
     place: null,
@@ -133,6 +141,8 @@ export default {
 
 
 <style lang="scss" scoped>
+@import 'assets/styles/variables';
+
 .venue-box {
   &:hover {
     background-color: rgba(0, 0, 0, 0.05);
@@ -141,7 +151,7 @@ export default {
 .venues-list {
   max-height: 700px;
   height: 100%;
-  overflow: scroll;
+  overflow-y: auto;
   font-weight: 400;
 }
 .marker-icon {
@@ -154,5 +164,13 @@ export default {
   justify-content: center;
   align-items: flex-start; */
   padding-top: 8px;
+}
+
+.g-map {
+  width: 100%;
+  height: 700px;
+  @media (max-width: $md - 1px) {
+    height: 50vh;
+  }
 }
 </style>

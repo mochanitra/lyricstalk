@@ -31,7 +31,8 @@
             v-scroll-reveal="{delay: i * 100}" 
             v-for="(item, i) in $store.state.hilightArticles || [0, 0, 0]"
             :key="i" 
-            class="col _mgbt-24px">
+            :class="{'col-6': i !== 0, 'col-12': i === 0}"
+            class="_mgbt-24px col-sm-4">
             <EventCard />
           </div>
         </div>
@@ -114,7 +115,7 @@
             v-scroll-reveal="{delay: i * 100}"
             v-for="(item, i) in [0,0,0, 0]" 
             :key="i"
-            class="col _mgv-12px">
+            class="col-sm-3 col-12 _mgv-12px">
             <NewsCard />
           </div>
         </div>
