@@ -37,6 +37,7 @@
               <div 
                 v-for="(v, i) in _markers"
                 :key="i"
+                :id="`vunue-${i+1}`"
                 class="venue-box _dp-f _pdv-16px _cs-pt"
                 @click="toggleInfoWindow(v, i)">
                 <div class="marker-icon _tal-ct _f-1 _fs-7 _cl-white _mgh-12px">{{ i + 1 }}</div>
@@ -96,7 +97,8 @@ export default {
   },
   methods: {
     toggleInfoWindow: function(marker, idx) {
-      // this.$scrollTo('#gMap', 500)
+      // this.$scrollTo(`#venue-${idx+1}`, 500)
+
       this.infoWindowPos = marker.position;
       this.infoContent = this.getInfoWindowContent(marker);
 
