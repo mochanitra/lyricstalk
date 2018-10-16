@@ -38,11 +38,13 @@
           </div>
           <!-- Venues List -->
           <div class="col-12 col-md-4 _mgbt-24px _mgbt-0px-md">
-            <div class="venues-list">
+            <div 
+              id="venues-list" 
+              class="venues-list">
               <div 
                 v-for="(v, i) in _markers"
                 :key="i"
-                :id="`vunue-${i+1}`"
+                :id="`venue-${i+1}`"
                 class="venue-box _dp-f _pdv-16px _cs-pt"
                 @click="toggleInfoWindow(v, i)">
                 <div class="marker-icon _tal-ct _f-1 _fs-7 _cl-white _mgh-12px">{{ i + 1 }}</div>
@@ -105,7 +107,9 @@ export default {
   },
   methods: {
     toggleInfoWindow: function(marker, idx) {
-      // this.$scrollTo(`#venue-${idx+1}`, 500)
+
+      // var topPos = document.getElementById(`venue-${idx+1}`).offsetTop;
+      // document.getElementById('venues-list').scrollTop = topPos-10;
 
       this.infoWindowPos = marker.position;
       this.infoContent = this.getInfoWindowContent(marker);
