@@ -3,7 +3,7 @@ const api = {
   cat: `${prefix}/wp/v2/categories?per_page=100`,
   news: `${prefix}/wp/v2/news?per_page=100`,
   venue: `${prefix}/wp/v2/venue?per_page=100`,
-  program: `${prefix}/wp/v2/`,
+  program: `${prefix}/wp/v2/program`,
   page: `${prefix}/wp/v2/pages?per_page=20`
 }
 

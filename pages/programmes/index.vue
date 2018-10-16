@@ -13,7 +13,7 @@
             <!-- Categories -->
             <div class="col-12 col-sm-3 _dp-f _jtfct-spbtw _alit-ct">
               <div>
-                <h4 class="_dp-ilb _ff-dcv _ttf-upc">134 Found</h4>
+                <h4 class="_dp-ilb _ttf-upc">{{ programs.length }} Found</h4>
                 <i class="fal fa-times fa-lg _pdh-12px _cl-pink"/>
               </div>
               <!-- Mobile Filter -->
@@ -32,7 +32,9 @@
                 class="_mgl-12px bio-button -pink" 
                 @click="openFilter('programmes')">
                 <h5 class="_dp-ilb _ff-dcv _ttf-upc">Programmes</h5>
-                <i :class="{'fa-chevron-down': filterTypeOpen !== 'programmes', 'fa-chevron-up': filterTypeOpen === 'programmes'}" class="fal fa-lg _pdl-4px"/>
+                <i 
+                  :class="{'fa-chevron-down': filterTypeOpen !== 'programmes', 'fa-chevron-up': filterTypeOpen === 'programmes'}" 
+                  class="fal fa-lg _pdl-4px"/>
               </button>
               <!-- Date -->
               <button 
@@ -40,7 +42,9 @@
                 class="_mgl-12px bio-button -pink"
                 @click="openFilter('dates')">
                 <h5 class="_dp-ilb _ff-dcv _ttf-upc">{{ date.start }}–{{ date.end }} {{ $moment().format(`MMMM`) }}</h5>
-                <i :class="{'fa-chevron-down': filterTypeOpen !== 'dates', 'fa-chevron-up': filterTypeOpen === 'dates'}" class="fal fa-lg _pdl-4px"/>
+                <i 
+                  :class="{'fa-chevron-down': filterTypeOpen !== 'dates', 'fa-chevron-up': filterTypeOpen === 'dates'}" 
+                  class="fal fa-lg _pdl-4px"/>
               </button>
               <!-- Venues -->
               <button 
@@ -48,7 +52,9 @@
                 class="_mgl-12px bio-button -pink"
                 @click="openFilter('venues')">
                 <h5 class="_dp-ilb _ff-dcv _ttf-upc">venues</h5>
-                <i :class="{'fa-chevron-down': filterTypeOpen !== 'venues', 'fa-chevron-up': filterTypeOpen === 'venues'}" class="fal fa-lg _pdl-4px"/>
+                <i 
+                  :class="{'fa-chevron-down': filterTypeOpen !== 'venues', 'fa-chevron-up': filterTypeOpen === 'venues'}" 
+                  class="fal fa-lg _pdl-4px"/>
               </button>
             </div>
           </div>
@@ -62,10 +68,23 @@
         <div 
           v-if="filterTypeOpen" 
           id="filters"
-          class="_pdv-32px _bgcl-gray _mgv-16px">
+          class="_pdv-16px _pdh-16px _bgcl-gray _mgv-16px">
           <div class="col-12">
             <div class="row">
-              x
+              <div 
+                v-for="(item, i) in $store.state.programCategories" 
+                :key="i" 
+                class="col-6 col-sm-3">
+                <!-- Checkbox -->
+                <div class="bio-checkbox _mgv-8px">
+                  <input 
+                    :id="`c${i}`" 
+                    type="checkbox">
+                  <label 
+                    :for="`c${i}`" 
+                    v-html="item.name"/>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -73,11 +92,13 @@
       <!--  -->
       <div class="row _mgt-24px">
         <div 
-          v-for="(item, i) in [0, 0, 0, 0, 0, 0, 0]" 
+          v-for="(item, i) in programs" 
           :key="i" 
           :class="{'col-md-6': i === 0 || i === 1}" 
           class="col-12 col-sm-6 col-md-3 _mgbt-16px">
-          <EventCard />
+          <EventCard 
+            :title="item.title && item.title.rendered"
+          />
         </div>
       </div>
       <!-- See more -->
@@ -104,7 +125,10 @@ export default {
     EventCard
   },
   async asyncData({ store, redirect, query }) {
-
+    const programs = await store.dispatch('api/listPrograms')
+    return {
+      programs
+    }
   },
   data: () => ({
     date: {

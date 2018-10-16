@@ -80,9 +80,12 @@ export const actions = {
     }, {
       title: 'venues',
       icon: 'fal fa-map-pin',
-      path: {
-        name: 'venues'
-      }
+      submenu: [{
+        title: 'all venues',
+        path: {
+          name: 'venues'
+        }
+      }]
     }, {
       title: 'support',
       icon: 'fal fa-users',

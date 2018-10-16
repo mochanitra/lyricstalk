@@ -8,7 +8,7 @@ const path = require('path')
 module.exports = {
   mode: 'universal',
   head: {
-    title: pkg.name,
+    title: pkg.title,
     meta: [{
         charset: 'utf-8'
       },
@@ -20,6 +20,11 @@ module.exports = {
         hid: 'og:type',
         property: 'og:type',
         content: 'website'
+      },
+      {
+        hid: 'title',
+        name: 'title',
+        content: pkg.title
       },
       {
         hid: 'description',
@@ -93,6 +98,11 @@ module.exports = {
           fallbackLocale: 'th',
           messages
         }
+      }
+    ],
+    [
+      'nuxt-rfg-icon', {
+        masterPicture: 'http://128.199.245.162/wp-content/uploads/2018/09/logo-1.png'
       }
     ],
     'nuxt-babel',

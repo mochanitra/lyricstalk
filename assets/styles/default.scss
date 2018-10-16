@@ -28,6 +28,11 @@ body {
   appearance: none;
 }
 
+.bio-checkbox:not(.-switch)>label:after {
+  height: 7px;
+  width: 12px;
+}
+
 div,
 span {
   font-family: 'Neue Frutiger Thai Trad W05 Rg';

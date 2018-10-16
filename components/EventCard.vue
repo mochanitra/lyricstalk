@@ -14,7 +14,10 @@
           <!-- Cat tag -->
           <CategoryTag />
         </div>
-        <span class="_ff-dcv">Lorem ipsum, dolor</span>
+        <!-- Title -->
+        <span 
+          class="_ff-dcv" 
+          v-html="title"/>
       </nuxt-link>
       <div class="_mgbt-16px">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</div>
       <!-- Date & Time -->
@@ -39,6 +42,16 @@ export default {
   components: {
     FavoriteButton,
     CategoryTag
+  },
+  props: {
+    image: {
+      type: String,
+      default: ''
+    },
+    title: {
+      type: String,
+      default: 'x'
+    }
   }
 }
 </script>
