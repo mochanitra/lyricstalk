@@ -36,7 +36,6 @@
           <!-- Lang switcher -->
           <div 
             id="lang-switcher" 
-            class="_ff-dcv"
           >
             <span 
               :class="{'-active': $store.state.i18n.locale === 'th'}"
@@ -65,7 +64,7 @@
                   :class="item.icon" 
                   class="fa-fw fa-md"/>
                 <span 
-                  class="_pst-rlt _t-2px _ttf-upc _ff-dcv" 
+                  class="_pst-rlt _t-2px _ttf-upc" 
                   v-html="item.title"/>
               </div>
               <nuxt-link
@@ -75,7 +74,7 @@
                   :class="item.icon" 
                   class="fa-fw fa-md _cl-blue"/>
                 <span 
-                  class="_pst-rlt _t-2px _ttf-upc _ff-dcv _cl-blue" 
+                  class="_pst-rlt _t-2px _ttf-upc _cl-blue" 
                   v-html="item.title"/></nuxt-link>
             </div>
             <div 
@@ -92,7 +91,7 @@
                   class="_ttf-upc">
                   <nuxt-link 
                     :to="localePath(list.path)" 
-                    class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md _ff-dcv"
+                    class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md"
                     v-html="list.title"/>
                 </li>
               </ul>

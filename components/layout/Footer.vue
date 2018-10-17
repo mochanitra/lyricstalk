@@ -17,7 +17,7 @@
             v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')" 
             :key="i">
             <h5 
-              class="_ff-dcv _ttf-upc _cl-pink"
+              class="_ttf-upc _cl-pink"
               v-html="item.title"/>
             <ul v-if="item.submenu">
               <li 
@@ -33,10 +33,10 @@
           </div>
           <!-- Contact -->
           <div>
-            <h5 class="_ff-dcv _ttf-upc _cl-pink">Contact Us</h5>
-            <div 
+            <h5 class="_ttf-upc _cl-pink">Contact Us</h5>
+            <!-- <div 
               class="contact-container _mxw-256px" 
-              v-html="$store.state.pages.contact.acf.contact"/>
+              v-html="$store.state.pages.contact.acf.contact"/> -->
           </div>
         </nav>
       </div>

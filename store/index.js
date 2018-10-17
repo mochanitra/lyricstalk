@@ -6,8 +6,6 @@ export const state = () => ({
   isMobileMenuActive: false,
   isSearchModalActive: false,
   newsCategories: [],
-  programCategories: [],
-  venues: [],
   pages: null,
   menuSticky: false
 })
@@ -25,82 +23,15 @@ export const actions = {
     let lc = app.i18n.locale === 'th' ? '' : app.i18n.locale
     app.$axios.defaults.baseURL = `${app.$axios.defaults.baseURL}${lc}`
     // List categories
-    const all = [
-      dispatch('api/listCategories'),
-      dispatch('api/listPages'),
-      dispatch('api/listVenues')
-    ]
+    // const all = [
+    //   dispatch('api/listCategories'),
+    //   dispatch('api/listPages'),
+    //   dispatch('api/listVenues')
+    // ]
 
-    await Promise.all(all)
+    // await Promise.all(all)
 
-    const primaryMenu = [{
-      title: 'home',
-      icon: 'fal fa-home',
-      path: {
-        name: 'index'
-      }
-    }, {
-      title: 'info',
-      icon: 'fal fa-info-circle',
-      submenu: [{
-        title: 'news',
-        path: {
-          name: 'news'
-        }
-      }, {
-        title: 'guide',
-        path: {
-          name: 'guide'
-        }
-      }, {
-        title: 'about',
-        path: {
-          name: 'about'
-        }
-      }]
-    }, {
-      title: 'programme',
-      icon: 'fal fa-list-alt',
-      submenu: [{
-        title: 'All Programmes',
-        path: {
-          name: 'programmes'
-        }
-      }, ...state.programCategories.map(pc => {
-        return {
-          title: pc.name,
-          path: {
-            name: 'programmes-slug',
-            params: {
-              slug: pc.slug
-            }
-          }
-        }
-      })]
-    }, {
-      title: 'venues',
-      icon: 'fal fa-map-pin',
-      submenu: [{
-        title: 'all venues',
-        path: {
-          name: 'venues'
-        }
-      }]
-    }, {
-      title: 'support',
-      icon: 'fal fa-users',
-      submenu: [{
-        title: 'our supporters',
-        path: {
-          name: 'support'
-        }
-      }, {
-        title: 'benefits',
-        path: {
-          name: 'support-benefits',
-        }
-      }]
-    }]
+    const primaryMenu = []
 
     const footerMenu = primaryMenu
 

@@ -6,7 +6,7 @@
         class="_bdw-1px _dp-f _jtfct-ct _alit-ct _h-36px _pdt-4px _cs-pt">
         <span 
           :class="`_cl-${buttonColorClass}`" 
-          class="_ff-dcv _fs-5 _ttf-upc _lh-100pct">{{ title }}</span>
+          class="_fs-5 _ttf-upc _lh-100pct">{{ title }}</span>
         <i 
           :class="`${icon} _cl-${buttonColorClass}`" 
           class="_pdl-8px"/>

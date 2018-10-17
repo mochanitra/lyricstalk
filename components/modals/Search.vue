@@ -25,7 +25,7 @@
                   v-model="q" 
                   maxlength="30"
                   type="text"
-                  class="_bgcl-tpr _fs-2 _pdbt-0px _ff-dcv"
+                  class="_bgcl-tpr _fs-2 _pdbt-0px"
                   placeholder="SEARCH CMDW">
               </float-label>
               <button 

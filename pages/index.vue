@@ -9,7 +9,7 @@
         <div class="col-md-5 col-12 _dp-f _alit-ct _jtfct-ct _pdh-48px-md _pdh-24px _bgcl-white">
           <div class="_mgbt-32px _mgbt-0px-sm">
             <h5 class="_ttf-upc _pdv-16px">hilights of cmdw18</h5>
-            <h1 class="_mgt-16px _ttf-upc _ff-dcv">ดอกไม้ in the vase</h1>
+            <h1 class="_mgt-16px _ttf-upc">ดอกไม้ in the vase</h1>
             <h4 class="_mgt-8px _ttf-upc">above the surface of the earth</h4>
             <p class="_mgt-16px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus odit reiciendis, ad facere rerum.</p>
             <!-- All programmes -->
@@ -48,7 +48,7 @@
           <div class="col-sm-7 col-12">
             <!-- Title -->
             <div class="_mgbt-24px">
-              <h2 class="_ff-dcv _ttf-upc">Happening!</h2>
+              <h2 class="_ttf-upc">Happening!</h2>
               <h4 class="_ttf-upc">{{ $moment().format('D MMMM YYYY') }}</h4>
             </div>
             <!-- 2 Col EventCard -->
@@ -65,7 +65,7 @@
           <!-- What's on -->
           <div class="col-sm-5 col-12 _mgt-48px _mgt-0px-sm">
             <!-- Title -->
-            <h2 class="_ff-dcv _ttf-upc">What's on?</h2>
+            <h2 class="_ttf-upc">What's on?</h2>
             <!-- ul -->
             <ul class="_mgt-48px-sm">
               <li 
@@ -82,7 +82,7 @@
                     <div class="_bgcl-pink _w-12px _h-12px _bdrd-50pct _mgl-8px _mgr-16px _mgt-8px"/>
                     <!-- Content -->
                     <div class="_cl-blue">
-                      <h4 class="_ff-dcv _lh-150pct">COTH-ING</h4>
+                      <h4 class="_lh-150pct">COTH-ING</h4>
                       <p>Project: 10 year</p>
                     </div>
                   </div>
@@ -132,25 +132,6 @@
         </div>
       </div>
     </div>
-    <!-- Instagram -->
-    <div id="instagram">
-      <div class="ig-heading _f-r _bgcl-blue _dp-ilb _cl-white _pdv-12px _pdh-64px _mgbt-48px">
-        <!-- <i class="fab fa-facebook-square fa-lg"/> -->
-        <i class="fab fa-instagram fa-lg _mgr-4px"/>
-        <h4 class="_dp-ilb">
-          <span>#</span>
-          <span class="_ff-dcv">CMDW18</span>
-        </h4>
-      </div>
-      <!-- Copy the following to where you want the widget to appear in your html file. -->
-      <div id="bigw-iframe-container"/>
-      <script src="https://api.bestinstagramwidget.com/script/embed.js?id=eyJzdHlsZSI6ImNhcm91c2VsIiwidGFnIjoiamFtYXRldXJ3YW5kZXJlciIsInBhZGRpbmciOjIsIm1heFBvc3QiOjEyfQ=="/>
-      <!-- END -->
-    </div>
-    <!-- Newsletter -->
-    <div id="newsletter">
-      <Newsletter />
-    </div>
   </div>
 </template>
 
@@ -158,13 +139,11 @@
 import EventCard from '~/components/EventCard'
 import NewsCard from '~/components/NewsCard'
 import HeadingWithLine from '~/components/HeadingWithLine'
-import Newsletter from '~/components/Newsletter'
 export default {
   components: {
     EventCard,
     NewsCard,
-    HeadingWithLine,
-    Newsletter
+    HeadingWithLine
   },
   mounted () {
   }

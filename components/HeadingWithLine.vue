@@ -1,7 +1,7 @@
 <template>
   <div class="_dp-f _ovf-hd">
     <h2 
-      class="_ff-dcv _ttf-upc" 
+      class="_ttf-upc" 
       v-html="heading"/>
   </div>
 </template>

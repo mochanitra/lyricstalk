@@ -3,7 +3,7 @@
     <div class="_w-100pct wrapper">
       <!-- Image -->
       <nuxt-link 
-        class="link _ttf-upc _ff-dcv" 
+        class="link _ttf-upc" 
         to="/">
         <div 
           v-lazy:background-image="`https://placeimg.com/640/480/any`" 
@@ -16,7 +16,6 @@
         </div>
         <!-- Title -->
         <span 
-          class="_ff-dcv" 
           v-html="title"/>
       </nuxt-link>
       <div class="_mgbt-16px">Lorem ipsum dolor sit, amet consectetur adipisicing elit?</div>

@@ -31,7 +31,7 @@
                 :class="{'-active': filterTypeOpen === 'programmes'}"
                 class="_mgl-12px bio-button -pink" 
                 @click="openFilter('programmes')">
-                <h5 class="_dp-ilb _ff-dcv _ttf-upc">Programmes</h5>
+                <h5 class="_dp-ilb _ttf-upc">Programmes</h5>
                 <i 
                   :class="{'fa-chevron-down': filterTypeOpen !== 'programmes', 'fa-chevron-up': filterTypeOpen === 'programmes'}" 
                   class="fal fa-lg _pdl-4px"/>
@@ -41,7 +41,7 @@
                 :class="{'-active': filterTypeOpen === 'dates'}" 
                 class="_mgl-12px bio-button -pink"
                 @click="openFilter('dates')">
-                <h5 class="_dp-ilb _ff-dcv _ttf-upc">{{ date.start }}–{{ date.end }} {{ $moment().format(`MMMM`) }}</h5>
+                <h5 class="_dp-ilb _ttf-upc">{{ date.start }}–{{ date.end }} {{ $moment().format(`MMMM`) }}</h5>
                 <i 
                   :class="{'fa-chevron-down': filterTypeOpen !== 'dates', 'fa-chevron-up': filterTypeOpen === 'dates'}" 
                   class="fal fa-lg _pdl-4px"/>
@@ -51,7 +51,7 @@
                 :class="{'-active': filterTypeOpen === 'venues'}" 
                 class="_mgl-12px bio-button -pink"
                 @click="openFilter('venues')">
-                <h5 class="_dp-ilb _ff-dcv _ttf-upc">venues</h5>
+                <h5 class="_dp-ilb _ttf-upc">venues</h5>
                 <i 
                   :class="{'fa-chevron-down': filterTypeOpen !== 'venues', 'fa-chevron-up': filterTypeOpen === 'venues'}" 
                   class="fal fa-lg _pdl-4px"/>

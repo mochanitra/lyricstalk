@@ -12,8 +12,6 @@
       class="min-height-100vh _dp-f _alit-ct _ovf-hd">
       <nuxt/>
     </main>
-    <!-- Sponsors -->
-    <Partners class="_mgt-128px" />
     <!-- Footer -->
     <Footer class="_mgt-32px"/>
   </div>
@@ -22,12 +20,10 @@
 <script>
   import Header from '~/components/layout/Header'
   import Footer from '~/components/layout/Footer'
-  import Partners from '~/components/sections/Partners'
   export default {
     components: {
       Header,
       Footer,
-      Partners
     },
     created() {
       if (process.browser) {
