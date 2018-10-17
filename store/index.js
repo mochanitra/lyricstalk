@@ -90,7 +90,7 @@ export const actions = {
       title: 'support',
       icon: 'fal fa-users',
       submenu: [{
-        title: 'our support',
+        title: 'our supporters',
         path: {
           name: 'support'
         }
