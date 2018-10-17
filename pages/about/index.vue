@@ -1,21 +1,21 @@
 <template>
   <div class="_w-100pct">
     <div class="container">
-      <div class="row">
+      <div class="row _mgbt-32px">
         <div class="col-12">
           <Breadcrumb page-title="Chiang mai design week" />
         </div>
         <!-- About image -->
         <div class="col-12 col-md-6">
           <div 
-            v-lazy:background="about.image" 
+            v-lazy:background="$store.state.pages.about.acf.page_about.cover_image.url" 
             class="_bgs-cv _bgrp-nrp about-image" />
         </div>
         <!-- About content -->
         <div class="col-12 col-md-6">
           <div 
             class="_mgbt-48px _fs-6 _wp-content" 
-            v-html="about.content"/>
+            v-html="$store.state.pages.about.acf.page_about.description"/>
         </div>
       </div>
       <div class="row">

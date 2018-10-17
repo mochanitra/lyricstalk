@@ -14,9 +14,6 @@
         <img 
           v-lazy="p.image" 
           class="_w-100pct _h-at">
-          <!-- <div 
-          v-lazy:background="p.image" 
-          class="_bgs-ct _bgrp-nrp _w-128px _h-64px" /> -->
       </div>
     </div>
   </div>
