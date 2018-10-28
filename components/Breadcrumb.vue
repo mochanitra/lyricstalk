@@ -8,7 +8,7 @@
         to="/"
         tag="i"/>
       <!-- Right arrow -->
-      <i class="fal fa-long-arrow-right _cl-pink _mgh-4px"/>
+      <i class="fal fa-long-arrow-right _cl-red _mgh-4px"/>
     </div>
     <HeadingWithLine :heading="pageTitle" />
   </div>

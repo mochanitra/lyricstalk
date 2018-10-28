@@ -7,7 +7,8 @@ export const state = () => ({
   isSearchModalActive: false,
   newsCategories: [],
   pages: null,
-  menuSticky: false
+  menuSticky: false,
+  products: []
 })
 
 export const actions = {
@@ -23,17 +24,65 @@ export const actions = {
     let lc = app.i18n.locale === 'th' ? '' : app.i18n.locale
     app.$axios.defaults.baseURL = `${app.$axios.defaults.baseURL}${lc}`
     // List categories
-    // const all = [
-    //   dispatch('api/listCategories'),
-    //   dispatch('api/listPages'),
-    //   dispatch('api/listVenues')
-    // ]
+    const all = [
+      // dispatch('api/listCategories'),
+      dispatch('api/listPages'),
+      // dispatch('api/listVenues')
+      dispatch('api/listProducts')
+    ]
 
-    // await Promise.all(all)
+    await Promise.all(all)
 
-    const primaryMenu = []
+    // console.log(Object.keys(state.pages))
 
-    const footerMenu = primaryMenu
+    const primaryMenu = [{
+        title: 'Company',
+        submenu: Object.keys(state.pages).filter(ps => state.pages[ps].parent === 1080).map(c => {
+          return {
+            title: state.pages[c].title.rendered,
+            path: {
+              name: `our-company`,
+              params: {
+                slug: state.pages[c].slug
+              }
+            }
+          }
+        })
+      },
+      {
+        title: 'products',
+        submenu: state.products.map(p => {
+          return {
+            title: p.title.rendered,
+            path: {
+              name: 'products',
+              params: {
+                slug: p.slug
+              }
+            }
+          }
+        })
+      },
+      {
+        title: 'Our Process',
+        path: {
+          name: 'our-process'
+        }
+      },
+      {
+        title: 'events',
+        path: {
+          name: 'events'
+        }
+      }, {
+        title: 'contact',
+        path: {
+          name: 'contact'
+        }
+      }
+    ]
+
+    const footerMenu = primaryMenu.filter(pm => pm.submenu)
 
     commit('SET_PRIMARY_MENU', primaryMenu)
     commit('SET_FOOTER_MENU', footerMenu)
@@ -41,6 +90,9 @@ export const actions = {
 }
 
 export const mutations = {
+  SET_PRODUCTS(state, products) {
+    state.products = products
+  },
   SET_SEARCH_MODAL_ACTIVE(state, bool) {
     state.isSearchModalActive = bool
   },

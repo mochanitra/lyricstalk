@@ -3,13 +3,16 @@
     id="top" 
     class="_ovf-hd">
     <!-- Header -->
-    <div :class="{'has-shadow animate sticky _bgcl-white': $store.state.menuSticky && !$store.state.isMobileMenuActive}">
+    <div
+      id="header" 
+      :class="{'has-shadow animate sticky _bgcl-white': $store.state.menuSticky && !$store.state.isMobileMenuActive}" 
+      class="_pst-asl _w-100pct">
       <Header/>
     </div>
     <!-- Content -->
     <main 
       :class="{'menu-sticky-active': $store.state.menuSticky}" 
-      class="min-height-100vh _dp-f _alit-ct _ovf-hd">
+      class="min-height-100vh _dp-f _ovf-hd">
       <nuxt/>
     </main>
     <!-- Footer -->
@@ -47,12 +50,9 @@
 <style lang="scss" scoped>
 @import 'assets/styles/variables';
 
-.sticky {
-  position: fixed !important;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  width: 100%;
+#header {
+  z-index: 9;
+  /* background-color: rgba(255, 255, 255, 0.8); */
 }
 
 .has-shadow {

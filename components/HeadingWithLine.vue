@@ -13,7 +13,7 @@ h2 {
   position: relative;
   &::after {
     content: '';
-    background: $pink-400;
+    background: $red-400;
     width: 100vw;
     height: 1px;
     bottom: 8px;

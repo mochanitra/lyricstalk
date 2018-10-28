@@ -4,6 +4,8 @@ body {
   font-size: 110%;
   color: $blue-400;
   background: rgba(0, 0, 0, 0.015);
+  font-family: 'Crimson Text',
+    'Kanit';
 }
 
 *,
@@ -31,8 +33,12 @@ button {
   user-select: none !important;
 }
 
+._ff-ds {
+  font-family: 'Dancing Script';
+}
+
 h1 {
-  font-size: 3.5rem;
+  font-size: 4rem;
 }
 
 ._cs-pt {
@@ -41,7 +47,7 @@ h1 {
 
 .page-enter-active,
 .page-leave-active {
-  transition: opacity .25s;
+  transition: opacity 0.25s;
 }
 
 .page-enter,
@@ -61,15 +67,18 @@ h1 {
 [lazy] {
   transition: 0.25s;
   transition-property: background-image !important;
+  // background-size: 100px;
 }
 
 [lazy=loading] {
+  background-size: 200px !important;
+  background-repeat: no-repeat !important;
   background-position: center center !important;
 }
 
 [lazy=loaded] {
   opacity: 1;
-  background-size: cover;
+  // background-size: 50px;
 }
 
 // Min height
@@ -103,7 +112,7 @@ a {
       height: 2px;
       bottom: 0;
       left: 0;
-      background: $pink-400;
+      background: $red-400;
       transform-origin: bottom right;
       transition: transform 0.25s ease-out;
     }
@@ -117,7 +126,7 @@ a {
     height: 2px;
     bottom: 0;
     left: 0;
-    background: $pink-400;
+    background: $red-400;
     transform-origin: bottom right;
     transition: transform 0.25s ease-out;
   }
@@ -135,7 +144,7 @@ a {
   }
 
   &:hover {
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     // font-weight: 700;
 
     &::after {
@@ -149,12 +158,12 @@ a {
   color: $blue-400 !important;
 }
 
-._cl-pink {
-  color: $pink-400;
+._cl-red {
+  color: $red-400;
 }
 
-._bgcl-pink {
-  background: $pink-400;
+._bgcl-red {
+  background: $red-400;
 }
 
 ._bgcl-blue {
@@ -165,8 +174,8 @@ a {
   border-color: $blue-400 !important;
 }
 
-._bdcl-pink {
-  border-color: $pink-400 !important;
+._bdcl-red {
+  border-color: $red-400 !important;
 }
 
 // Aspect ratios
@@ -177,7 +186,6 @@ a {
 ._w-200px {
   width: 200px !important;
 }
-
 
 ._h-72px {
   height: 72px;
@@ -196,25 +204,47 @@ a {
     letter-spacing: 1px;
 
     // font-weight: 600;
-    &.-pink {
-      // border: 2px solid $pink-400;
-      background-color: $pink-400;
+    &.-red {
+      // border: 2px solid $red-400;
+      background-color: $red-400;
       color: #fff;
     }
   }
 
-  &.-pink {
+  &.-red {
     background: #fff;
-    border: 1px solid $pink-400;
-    color: $pink-400;
+    border: 1px solid $red-400;
+    color: $red-400;
 
     &.-active {
       color: #fff;
-      background: $pink-400;
+      background: $red-400;
     }
   }
 }
 
 .v--modal {
   background: transparent;
+}
+
+#branding div {
+  width: 160px;
+  height: 36px;
+
+  @media (min-width: $md) {
+    width: 256px;
+    height: 50px;
+  }
+}
+
+.sticky {
+  position: fixed !important;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  width: 100%;
+
+  span {
+    color: $blue-400 !important;
+  }
 }

@@ -4,7 +4,7 @@
     @click="click">
     <div 
       :class="{'-open': $store.state.isMobileMenuActive}" 
-      class="hamburger-btn -black" />
+      class="hamburger-btn" />
   </button>
 </template>
 
@@ -27,7 +27,7 @@ export default {
   .hamburger-btn {
     /* If menu is open */
     &.-open {
-      background: #fff !important;
+      background: transparent !important;
       &::before {
         width: 33px;
         top: 0px;
@@ -60,7 +60,7 @@ export default {
       }
     }
     width: 33px;
-    height: 3px;
+    height: 2px;
     background: #fff;
     border-radius: 8px;
     position: absolute;
@@ -80,11 +80,11 @@ export default {
     &::before {
       width: 28px;
       position: absolute;
-      height: 3px;
+      height: 2px;
       background: #fff;
       border-radius: 8px;
       content: ' ';
-      top: -11px;
+      top: -10px;
       right: 0px;
       transition: 0.2s;
     }
@@ -92,11 +92,11 @@ export default {
     &::after {
       position: absolute;
       width: 28px;
-      height: 3px;
+      height: 2px;
       background: #fff;
       border-radius: 8px;
       content: ' ';
-      top: 11px;
+      top: 10px;
       right: 0px;
       transition: 0.2s;
     }

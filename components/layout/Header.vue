@@ -4,48 +4,33 @@
       <!-- Brand -->
       <nuxt-link 
         id="branding" 
-        :to="localePath('index')"
-        class="_w-256px">
+        :to="localePath('index')">
         <div 
-          v-lazy:background-image="require('assets/images/brand/logo_header.png')" 
-          class="_w-256px _bgs-ct _bgrp-nrp _h-64px"/>
+          v-lazy:background-image="`https://cms.kasisuri.com/wp-content/uploads/2018/10/kssr-logo.png`" 
+          class="_bgs-ct _bgrp-nrp"/>
       </nuxt-link>
       <!-- Menu -->
       <nav 
         :class="{'-show-mobile': $store.state.isMobileMenuActive}" 
-        class="_dp-f _fdrt-cl _h-72px _jtfct-spbtw">
+        class="_dp-f _fdrt-cl _jtfct-spbtw">
         <!-- Search + Lang -->
         <div 
           id="extra-bar"
           class="order-last order-md-first _tal-ct _tal-r-md _pdt-8px _pdbt-12px _pdv-0px-md _dp-f _dp-b-md _jtfct-spbtw _alit-ct"
         >
-          <!-- Search -->
-          <div 
-            id="search" 
-            class="_f-1 _dp-f _dp-ilb-md _cs-pt"
-            @click="$store.commit('SET_SEARCH_MODAL_ACTIVE', !$store.state.isSearchModalActive)">
-            <i class="fas fa-fw fa-lg fa-search _fs-3 _fs-4-md"/>
-          </div>
-          <!-- favorites -->
-          <div 
-            id="favorites" 
-            class="_f-1 order-last order-md-first _dp-f _dp-ilb-md _jtfct-fe _alit-ct">
-            <FavoriteButton />
-            <span class="_pdl-2px _cl-pink">3</span>
-          </div>
           <!-- Lang switcher -->
           <div 
             id="lang-switcher" 
           >
             <span 
               :class="{'-active': $store.state.i18n.locale === 'th'}"
-              class="_cs-pt _fs-4 _fs-5-md hover-spacing" 
+              class="_cs-pt _fs-4 _fs-5-md hover-spacing _cl-white" 
               @click="changeLang('th')">ไทย</span>
             <!-- Border -->
-            <div class="_dp-ilb">/</div>
+            <span class="_dp-ilb _cl-white">/</span>
             <span 
               :class="{'-active': $store.state.i18n.locale === 'en'}"
-              class="_cs-pt _fs-4 _fs-5-md hover-spacing" 
+              class="_cs-pt _fs-4 _fs-5-md hover-spacing _cl-white" 
               @click="changeLang('en')">EN</span>
           </div>
         </div>
@@ -60,21 +45,19 @@
               class="_ttf-upc _pdt-16px _pdbt-8px _pdv-0px-md title">
               <!-- Icon -->
               <div v-if="item.submenu">
-                <i 
+                <!-- <i 
                   :class="item.icon" 
-                  class="fa-fw fa-md"/>
+                  class="fa-fw fa-md"/> -->
                 <span 
-                  class="_pst-rlt _t-2px _ttf-upc" 
+                  class="_pst-rlt _t-2px _ttf-upc _fs-5 _cl-white" 
                   v-html="item.title"/>
               </div>
               <nuxt-link
                 v-else
-                :to="localePath(item.path)">
-                <i 
-                  :class="item.icon" 
-                  class="fa-fw fa-md _cl-blue"/>
+                :to="localePath(item.path)"
+                exact-active-class="_fw-800">
                 <span 
-                  class="_pst-rlt _t-2px _ttf-upc _cl-blue" 
+                  class="_pst-rlt _t-2px _ttf-upc _cl-white _fs-5" 
                   v-html="item.title"/></nuxt-link>
             </div>
             <div 
@@ -88,7 +71,7 @@
                 <li 
                   v-for="(list, j) in item.submenu" 
                   :key="j"
-                  class="_ttf-upc">
+                  class="_ttf-cptl">
                   <nuxt-link 
                     :to="localePath(list.path)" 
                     class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md"
@@ -233,7 +216,7 @@ ul.nav {
     opacity 1s cubic-bezier(0.19, 1, 0.22, 1);
   height: 0;
   overflow: hidden;
-  min-width: 200px;
+  min-width: 240px;
   z-index: 9;
   position: relative;
   @media (max-width: $md - 1px) {
@@ -251,13 +234,13 @@ ul.nav {
       border-radius: 4px;
       position: relative;
       z-index: 9;
-      background: $pink-400;
+      background: $red-400;
       &::before {
         width: 0;
         height: 0;
         border-style: solid;
         border-width: 0 10px 10px 10px;
-        border-color: transparent transparent $pink-400 transparent;
+        border-color: transparent transparent $red-400 transparent;
         content: '';
         position: absolute;
         top: -10px;

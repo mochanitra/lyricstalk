@@ -45,7 +45,7 @@ module.exports = {
    ** Customize the progress-bar color
    */
   loading: {
-    color: '#001E4D'
+    color: '#669146'
   },
 
   /*
@@ -93,16 +93,16 @@ module.exports = {
           }
         ],
         detectBrowserLanguage: false,
-        defaultLocale: 'th',
+        defaultLocale: 'en',
         vueI18n: {
-          fallbackLocale: 'th',
+          fallbackLocale: 'en',
           messages
         }
       }
     ],
     [
       'nuxt-rfg-icon', {
-        masterPicture: 'http://128.199.245.162/wp-content/uploads/2018/09/logo-1.png'
+        masterPicture: 'https://cms.kasisuri.com/wp-content/uploads/2018/10/favicon.png'
       }
     ],
     'nuxt-babel',

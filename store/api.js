@@ -3,7 +3,7 @@ const api = {
   cat: `${prefix}/wp/v2/categories?per_page=100`,
   news: `${prefix}/wp/v2/news?per_page=100`,
   venue: `${prefix}/wp/v2/venue?per_page=100`,
-  program: `${prefix}/wp/v2/program`,
+  product: `${prefix}/wp/v2/product`,
   page: `${prefix}/wp/v2/pages?per_page=20`
 }
 
@@ -21,9 +21,14 @@ export const actions = {
     const news = await this.$axios.$get(api.news)
     return news
   },
-  async listPrograms({}) {
-    const programs = await this.$axios.$get(api.program)
-    return programs
+  async listProducts({
+    commit
+  }) {
+    const products = await this.$axios.$get(api.product)
+    return commit('SET_PRODUCTS', products, {
+      root: true
+    })
+    // return products
   },
   async listVenues({
     commit

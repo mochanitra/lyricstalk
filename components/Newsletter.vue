@@ -30,7 +30,7 @@
             <div class="col-sm-3">
               <button 
                 type="submit" 
-                class="bio-button _dp-ilb _ttf-upc -pink _w-100pct _mgt-4px">
+                class="bio-button _dp-ilb _ttf-upc -red _w-100pct _mgt-4px">
                 <span>Subscribe</span>
                 <i class="fal fa-long-arrow-right"/>
               </button>

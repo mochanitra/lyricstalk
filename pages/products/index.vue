@@ -14,12 +14,12 @@
             <div class="col-12 col-sm-3 _dp-f _jtfct-spbtw _alit-ct">
               <div>
                 <h4 class="_dp-ilb _ttf-upc">{{ programs.length }} Found</h4>
-                <i class="fal fa-times fa-lg _pdh-12px _cl-pink"/>
+                <i class="fal fa-times fa-lg _pdh-12px _cl-red"/>
               </div>
               <!-- Mobile Filter -->
               <div class="_dp-n-sm">
                 <span class="fa-stack _fs-5 _fs-6-md">
-                  <i class="fas fa-fw fa-circle fa-stack-2x _cl-pink"/>
+                  <i class="fas fa-fw fa-circle fa-stack-2x _cl-red"/>
                   <i class="fal fa-fw fa-tasks fa-stack-1x fa-inverse"/>
                 </span>
               </div>
@@ -29,7 +29,7 @@
               <!-- Categories -->
               <button 
                 :class="{'-active': filterTypeOpen === 'programmes'}"
-                class="_mgl-12px bio-button -pink" 
+                class="_mgl-12px bio-button -red" 
                 @click="openFilter('programmes')">
                 <h5 class="_dp-ilb _ttf-upc">Programmes</h5>
                 <i 
@@ -39,7 +39,7 @@
               <!-- Date -->
               <button 
                 :class="{'-active': filterTypeOpen === 'dates'}" 
-                class="_mgl-12px bio-button -pink"
+                class="_mgl-12px bio-button -red"
                 @click="openFilter('dates')">
                 <h5 class="_dp-ilb _ttf-upc">{{ date.start }}–{{ date.end }} {{ $moment().format(`MMMM`) }}</h5>
                 <i 
@@ -49,7 +49,7 @@
               <!-- Venues -->
               <button 
                 :class="{'-active': filterTypeOpen === 'venues'}" 
-                class="_mgl-12px bio-button -pink"
+                class="_mgl-12px bio-button -red"
                 @click="openFilter('venues')">
                 <h5 class="_dp-ilb _ttf-upc">venues</h5>
                 <i 
@@ -106,7 +106,7 @@
         <div class="col-12 _dp-f _jtfct-ct">
           <nuxt-link 
             :to="localePath('programmes')" 
-            class="_mgt-16px bio-button _dp-ilb _ttf-upc -pink">
+            class="_mgt-16px bio-button _dp-ilb _ttf-upc -red">
             <span>see more</span>
             <i class="fal fa-long-arrow-right"/>
           </nuxt-link>

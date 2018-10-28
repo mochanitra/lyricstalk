@@ -6,7 +6,9 @@
         <div class="col-12 col-md-3 _dp-f order-md-first order-last _mgt-32px _mgt-0px-md">
           <div>
             <small>
-              All Rights Reserved {{ new Date().getFullYear() }}<br>TCDC Chiang Mai
+              All Rights Reserved {{ new Date().getFullYear() }}
+              <br>
+              Kasisuri Co., Ltd.
             </small>
           </div>
         </div>
@@ -15,9 +17,10 @@
           <!-- col 1 -->
           <div 
             v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')" 
-            :key="i">
+            :key="i"
+            class="_f-1">
             <h5 
-              class="_ttf-upc _cl-pink"
+              class="_ttf-upc _cl-white"
               v-html="item.title"/>
             <ul v-if="item.submenu">
               <li 
@@ -32,11 +35,11 @@
             </ul>
           </div>
           <!-- Contact -->
-          <div>
-            <h5 class="_ttf-upc _cl-pink">Contact Us</h5>
-            <!-- <div 
+          <div class="_f-2">
+            <h5 class="_ttf-upc _cl-white">Contact Us</h5>
+            <div 
               class="contact-container _mxw-256px" 
-              v-html="$store.state.pages.contact.acf.contact"/> -->
+              v-html="$store.state.pages.contact.acf.contact"/>
           </div>
         </nav>
       </div>
@@ -48,8 +51,8 @@
 @import '~assets/styles/variables';
 footer {
   position: relative;
-  background: $blue-400;
-  padding: 64px 0px;
+  background: darken($green-400, 10);
+  padding: 64px 0px 48px 0px;
   margin-top: 20px;
   color: #fff;
   @media (max-width: $md - 1px) {
@@ -58,10 +61,10 @@ footer {
   &::before {
     content: '';
     width: 100%;
-    height: 48px;
-    background-image: url(/images/patterns/pink-weaving.jpg);
+    height: 24px;
+    background: $red-400;
     position: absolute;
-    top: -20px;
+    top: 0px;
     left: 0px;
   }
 }

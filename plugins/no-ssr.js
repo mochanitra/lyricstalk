@@ -3,6 +3,7 @@ import VueScrollReveal from 'vue-scroll-reveal'
 import VueFloatLabel from 'vue-float-label'
 const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
 import * as VueGoogleMaps from 'vue2-google-maps'
+import WebFont from 'webfontloader'
 
 Vue.use(VueFloatLabel)
 
@@ -39,4 +40,12 @@ Vue.use(VueScrollReveal, {
   scale: 0.9,
   distance: '50px',
   mobile: false
+})
+
+WebFont.load({
+  google: {
+    families: ['Crimson Text', 'Dancing Script',
+      'Kanit'
+    ]
+  }
 })

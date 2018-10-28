@@ -3,23 +3,8 @@
     <!-- Hero -->
     <div class="container-fluid">
       <div class="row _mnh-512px">
-        <div 
-          v-lazy:background="`https://placeimg.com/640/480/any`" 
-          class="col-12 col-md-7 _bgs-cv _mnh-512px"/>
         <div class="col-md-5 col-12 _dp-f _alit-ct _jtfct-ct _pdh-48px-md _pdh-24px _bgcl-white">
-          <div class="_mgbt-32px _mgbt-0px-sm">
-            <h5 class="_ttf-upc _pdv-16px">hilights of cmdw18</h5>
-            <h1 class="_mgt-16px _ttf-upc">ดอกไม้ in the vase</h1>
-            <h4 class="_mgt-8px _ttf-upc">above the surface of the earth</h4>
-            <p class="_mgt-16px">Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus odit reiciendis, ad facere rerum.</p>
-            <!-- All programmes -->
-            <nuxt-link 
-              :to="localePath('programmes')" 
-              class="_mgt-16px bio-button _dp-ilb _ttf-upc -pink">
-              <span>all programmes</span>
-              <i class="fal fa-long-arrow-right"/>
-            </nuxt-link>
-          </div>
+          x
         </div>
       </div>
     </div>
@@ -79,7 +64,7 @@
                   class="hover-spacing tpr _dp-f _alit-ct _jtfct-spbtw">
                   <div class="_dp-f">
                     <!-- dot -->
-                    <div class="_bgcl-pink _w-12px _h-12px _bdrd-50pct _mgl-8px _mgr-16px _mgt-8px"/>
+                    <div class="_bgcl-red _w-12px _h-12px _bdrd-50pct _mgl-8px _mgr-16px _mgt-8px"/>
                     <!-- Content -->
                     <div class="_cl-blue">
                       <h4 class="_lh-150pct">COTH-ING</h4>
@@ -87,14 +72,14 @@
                     </div>
                   </div>
                   <!-- Arrow -->
-                  <i class="fal fa-long-arrow-right fa-2x _cl-pink"/>
+                  <i class="fal fa-long-arrow-right fa-2x _cl-red"/>
                 </nuxt-link>
               </li>
             </ul>
             <!-- See more -->
             <nuxt-link 
               :to="localePath('programmes')" 
-              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -pink">
+              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -red">
               <span>see more</span>
               <i class="fal fa-long-arrow-right"/>
             </nuxt-link>
@@ -124,7 +109,7 @@
           <div class="col-12">
             <nuxt-link 
               :to="localePath('news')" 
-              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -pink">
+              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -red">
               <span>see all</span>
               <i class="fal fa-long-arrow-right"/>
             </nuxt-link>
@@ -158,7 +143,7 @@ export default {
   &::after {
     position: absolute;
     content: '';
-    background: $pink-400;
+    background: $red-400;
     width: 100%;
     height: 12px;
     bottom: -12px;

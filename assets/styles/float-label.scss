@@ -1,15 +1,16 @@
 // Placeholder
 @mixin inputPlaceholder() {
   $selector: '';
-  $prefixes: (moz: '::-moz', webkit: '::-webkit', ie: ':-ms');
+  $prefixes: (
+    moz: '::-moz',
+    webkit: '::-webkit',
+    ie: ':-ms'
+  );
 
-  @each $prop,
-  $value in $prefixes {
-    @if $prop !='moz' {
+  @each $prop, $value in $prefixes {
+    @if $prop != 'moz' {
       $selector: #{$value}-input-placeholder;
-    }
-
-    @else {
+    } @else {
       $selector: #{$value}-placeholder;
     }
 
@@ -17,9 +18,7 @@
       &#{$selector} {
         @content;
       }
-    }
-
-    @else {
+    } @else {
       #{$selector} {
         @content;
       }
@@ -61,11 +60,11 @@
 }
 
 .vfl-label-on-focus {
-  color: $pink-400;
+  color: $red-400;
 }
 
-.vfl-label+input,
-.vfl-label+.thai-address-input input {
+.vfl-label + input,
+.vfl-label + .thai-address-input input {
   // height: 2em;
   font-size: 1rem;
   line-height: 1.5em;
@@ -76,7 +75,7 @@
   padding: 16px 10px 16px 10px;
 }
 
-.vfl-label+textarea {
+.vfl-label + textarea {
   height: 10em;
   font-size: 1rem;
   line-height: 1.5rem;
@@ -87,7 +86,7 @@
   padding: 24px 10px 16px 10px;
 }
 
-.vfl-label+select {
+.vfl-label + select {
   width: 100%;
   border-radius: 0;
   border: none;
@@ -102,12 +101,12 @@
   background: url(~/assets/images/dropdown-blue.svg) no-repeat 96% 56% #fff;
 }
 
-.vfl-label-on-input+input,
-.vfl-label-on-input+.thai-address-input input {
+.vfl-label-on-input + input,
+.vfl-label-on-input + .thai-address-input input {
   padding: 24px 10px 8px 10px;
 }
 
-.vfl-label-on-input+select {
+.vfl-label-on-input + select {
   padding: 24px 10px 8px 10px;
 }
 
@@ -119,6 +118,6 @@
   }
 }
 
-.vfl-label-on-focus+input {
-  border-bottom: 2px solid $pink-400;
+.vfl-label-on-focus + input {
+  border-bottom: 2px solid $red-400;
 }

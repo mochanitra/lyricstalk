@@ -29,7 +29,7 @@
                   placeholder="SEARCH CMDW">
               </float-label>
               <button 
-                class="bio-button -pink _f-r" 
+                class="bio-button -red _f-r" 
                 type="submit">
                 <i class="fal fa-long-arrow-right"/>
               </button>
@@ -66,6 +66,6 @@ export default {
 <style lang="scss" scoped>
 @import 'assets/styles/variables';
 .wrapper {
-  background: rgba($pink-400, 0.97);
+  background: rgba($red-400, 0.97);
 }
 </style>
