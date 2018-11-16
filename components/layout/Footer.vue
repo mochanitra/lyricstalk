@@ -8,7 +8,7 @@
             <small>
               All Rights Reserved {{ new Date().getFullYear() }}
               <br>
-              Kasisuri Co., Ltd.
+              lyricstalk Co., Ltd.
             </small>
           </div>
         </div>
@@ -35,11 +35,8 @@
             </ul>
           </div>
           <!-- Contact -->
-          <div class="_f-2">
-            <h5 class="_ttf-upc _cl-white">Contact Us</h5>
-            <div 
-              class="contact-container _mxw-256px" 
-              v-html="$store.state.pages.contact.acf.contact"/>
+          <div class="_f-2 _dp-f _fdrt-cl _alit-fe">
+            <h4 class="_ttf-upc _cl-white">#lyricstalk</h4>
           </div>
         </nav>
       </div>
@@ -51,7 +48,7 @@
 @import '~assets/styles/variables';
 footer {
   position: relative;
-  background: darken($green-400, 10);
+  background: #BB777C;
   padding: 64px 0px 48px 0px;
   margin-top: 20px;
   color: #fff;
@@ -62,7 +59,7 @@ footer {
     content: '';
     width: 100%;
     height: 24px;
-    background: $red-400;
+    background: #BB777C;
     position: absolute;
     top: 0px;
     left: 0px;

@@ -102,7 +102,7 @@ module.exports = {
     ],
     [
       'nuxt-rfg-icon', {
-        masterPicture: 'https://cms.kasisuri.com/wp-content/uploads/2018/10/favicon.png'
+        masterPicture: ''
       }
     ],
     'nuxt-babel',

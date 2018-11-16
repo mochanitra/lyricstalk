@@ -1,153 +1,44 @@
 <template>
-  <div class="_w-100pct _pdt-24px-sm">
-    <!-- Hero -->
-    <div class="container-fluid">
-      <div class="row _mnh-512px">
-        <div class="col-md-5 col-12 _dp-f _alit-ct _jtfct-ct _pdh-48px-md _pdh-24px _bgcl-white">
-          x
-        </div>
+  <div class="_w-100pct _pdt-128px-sm _pdbt-128px bgcl">
+
+    <div class="row">
+      <div class="col-12 _dp-f _fdrt-cl _alit-ct">
+        <img class="_h-256px" src="~/assets/images/logohome.png">
       </div>
     </div>
-    <!-- Hilights -->
-    <div id="hilights">
-      <div class="container _pdv-48px">
-        <div class="row">
-          <div 
-            v-scroll-reveal="{delay: i * 100}" 
-            v-for="(item, i) in $store.state.hilightArticles || [0, 0, 0]"
-            :key="i" 
-            :class="{'col-6': i !== 0, 'col-12': i === 0}"
-            class="_mgbt-24px col-sm-4">
-            <EventCard />
-          </div>
-        </div>
+
+   
+    <div class="row">
+      <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-32px-sm">
+        <h4 class="text-center _cl-white"> มาเริ่มต้นบทสนทนาเชิงลึกด้วยคำถามเหล่านี้กันเถอะ </h4>
       </div>
     </div>
-    <!-- Happening & What's on -->
-    <div 
-      id="happening" 
-      class="_bgcl-white">
-      <div class="container _pdt-24px _pdbt-48px">
-        <div class="row">
-          <!-- Happening -->
-          <div class="col-sm-7 col-12">
-            <!-- Title -->
-            <div class="_mgbt-24px">
-              <h2 class="_ttf-upc">Happening!</h2>
-              <h4 class="_ttf-upc">{{ $moment().format('D MMMM YYYY') }}</h4>
-            </div>
-            <!-- 2 Col EventCard -->
-            <div class="row">
-              <div 
-                v-scroll-reveal="{delay: i * 100}" 
-                v-for="(item, i) in [0, 0]"
-                :key="i" 
-                class="col">
-                <EventCard />
-              </div>
-            </div>
-          </div>
-          <!-- What's on -->
-          <div class="col-sm-5 col-12 _mgt-48px _mgt-0px-sm">
-            <!-- Title -->
-            <h2 class="_ttf-upc">What's on?</h2>
-            <!-- ul -->
-            <ul class="_mgt-48px-sm">
-              <li 
-                v-scroll-reveal="{delay: i * 100}" 
-                v-for="(item, i) in [0, 0, 0,]"
-                :key="i"
-                class="_pdv-12px"
-              >
-                <nuxt-link 
-                  to="/" 
-                  class="hover-spacing tpr _dp-f _alit-ct _jtfct-spbtw">
-                  <div class="_dp-f">
-                    <!-- dot -->
-                    <div class="_bgcl-red _w-12px _h-12px _bdrd-50pct _mgl-8px _mgr-16px _mgt-8px"/>
-                    <!-- Content -->
-                    <div class="_cl-blue">
-                      <h4 class="_lh-150pct">COTH-ING</h4>
-                      <p>Project: 10 year</p>
-                    </div>
-                  </div>
-                  <!-- Arrow -->
-                  <i class="fal fa-long-arrow-right fa-2x _cl-red"/>
-                </nuxt-link>
-              </li>
-            </ul>
-            <!-- See more -->
-            <nuxt-link 
-              :to="localePath('programmes')" 
-              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -red">
-              <span>see more</span>
-              <i class="fal fa-long-arrow-right"/>
-            </nuxt-link>
-          </div>
-        </div>
+
+    <div class="row">
+      <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-64px-sm">
+        <nuxt-link to="/create"> 
+          <img class="_h-64px" src="~/assets/images/createquiz.png">
+        </nuxt-link>
       </div>
     </div>
-    <!-- Latest news -->
-    <div id="latest-news">
-      <div class="container _pdv-48px">
-        <div class="row">
-          <div class="col-12">
-            <HeadingWithLine heading="latest news" />
-          </div>
-        </div>
-        <div class="row">
-          <div 
-            v-scroll-reveal="{delay: i * 100}"
-            v-for="(item, i) in [0,0,0, 0]" 
-            :key="i"
-            class="col-sm-3 col-12 _mgv-12px">
-            <NewsCard />
-          </div>
-        </div>
-        <!-- see more -->
-        <div class="row">
-          <div class="col-12">
-            <nuxt-link 
-              :to="localePath('news')" 
-              class="_f-r _mgt-16px bio-button _dp-ilb _ttf-upc -red">
-              <span>see all</span>
-              <i class="fal fa-long-arrow-right"/>
-            </nuxt-link>
-          </div>
-        </div>
-      </div>
-    </div>
+    
   </div>
 </template>
 
 <script>
-import EventCard from '~/components/EventCard'
-import NewsCard from '~/components/NewsCard'
-import HeadingWithLine from '~/components/HeadingWithLine'
+
 export default {
-  components: {
-    EventCard,
-    NewsCard,
-    HeadingWithLine
-  },
-  mounted () {
-  }
+  
 }
 </script>
 
 <style lang="scss" scoped>
-@import 'assets/styles/variables';
 
-.ig-heading {
-  position: relative;
-  &::after {
-    position: absolute;
-    content: '';
-    background: $red-400;
-    width: 100%;
-    height: 12px;
-    bottom: -12px;
-    left: 0;
-  }
+.bgcl {
+  background-color : #5F7E8F;
 }
+
+
+
+
 </style>

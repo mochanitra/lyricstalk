@@ -1,92 +1,26 @@
 <template>
-  <header class="container">
-    <div class="menu-container">
-      <!-- Brand -->
-      <nuxt-link 
-        id="branding" 
-        :to="localePath('index')">
-        <div 
-          v-lazy:background-image="`https://cms.kasisuri.com/wp-content/uploads/2018/10/kssr-logo.png`" 
-          class="_bgs-ct _bgrp-nrp"/>
-      </nuxt-link>
-      <!-- Menu -->
-      <nav 
-        :class="{'-show-mobile': $store.state.isMobileMenuActive}" 
-        class="_dp-f _fdrt-cl _jtfct-spbtw">
-        <!-- Search + Lang -->
-        <div 
-          id="extra-bar"
-          class="order-last order-md-first _tal-ct _tal-r-md _pdt-8px _pdbt-12px _pdv-0px-md _dp-f _dp-b-md _jtfct-spbtw _alit-ct"
-        >
-          <!-- Lang switcher -->
-          <div 
-            id="lang-switcher" 
-          >
-            <span 
-              :class="{'-active': $store.state.i18n.locale === 'th'}"
-              class="_cs-pt _fs-4 _fs-5-md hover-spacing _cl-white" 
-              @click="changeLang('th')">ไทย</span>
-            <!-- Border -->
-            <span class="_dp-ilb _cl-white">/</span>
-            <span 
-              :class="{'-active': $store.state.i18n.locale === 'en'}"
-              class="_cs-pt _fs-4 _fs-5-md hover-spacing _cl-white" 
-              @click="changeLang('en')">EN</span>
-          </div>
-        </div>
-        <!-- Menu items -->
-        <ul class="nav _tal-ct _tal-l-md">
-          <li 
-            v-for="(item, i) in $store.state.primaryMenu" 
-            :key="i" 
-            class="_pst-rlt list-title _cs-pt"
-          >
-            <div
-              class="_ttf-upc _pdt-16px _pdbt-8px _pdv-0px-md title">
-              <!-- Icon -->
-              <div v-if="item.submenu">
-                <!-- <i 
-                  :class="item.icon" 
-                  class="fa-fw fa-md"/> -->
-                <span 
-                  class="_pst-rlt _t-2px _ttf-upc _fs-5 _cl-white" 
-                  v-html="item.title"/>
-              </div>
-              <nuxt-link
-                v-else
-                :to="localePath(item.path)"
-                exact-active-class="_fw-800">
-                <span 
-                  class="_pst-rlt _t-2px _ttf-upc _cl-white _fs-5" 
-                  v-html="item.title"/></nuxt-link>
-            </div>
-            <div 
-              v-if="item.submenu" 
-              class="dropdown _pst-asl-md">
-              <!-- [Mobile only] Down arrow -->
-              <div class="_dp-b _dp-n-md">
-                <i class="fal fa-long-arrow-down fa-2x _cl-pink"/>
-              </div>
-              <ul>
-                <li 
-                  v-for="(list, j) in item.submenu" 
-                  :key="j"
-                  class="_ttf-cptl">
-                  <nuxt-link 
-                    :to="localePath(list.path)" 
-                    class="_cl-white-md _cl-pink hover-spacing _dp-ilb _dp-b-md _fs-4 _fs-5-md"
-                    v-html="list.title"/>
-                </li>
-              </ul>
-            </div>
-          </li>
-        </ul>
-      </nav>
-      <!-- Hamburger Menu Icon -->
-      <Hamburger id="hamburger" />
+  <header class ="container">
+
+    <div class="row _pdv-12px _alit-ct">
+
+      <div class="col-6">
+        <img class="_h-64px _cs-pt" src="~/assets/images/logo.png">
+      </div>
+
+      <div class="col-2 _dp-f _fdrt-cl _alit-ct">
+        <nuxt-link to="/">home</nuxt-link>
+      </div>
+
+      <div class="col-2 _dp-f _fdrt-cl _alit-ct">
+        <nuxt-link to="/question-list">question list</nuxt-link>
+      </div>
+
+      <div class="col-2 _dp-f _fdrt-cl _alit-ct">
+        <nuxt-link to="/feed">feed</nuxt-link>
+      </div>
+
     </div>
-    <!-- Search Modal -->
-    <SearchModal />
+
   </header>
 </template>
 
@@ -120,6 +54,7 @@ export default {
 
 <style lang="scss" scoped>
 @import '~assets/styles/variables';
+
 
 #lang-switcher {
   > span {

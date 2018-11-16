@@ -12,7 +12,7 @@
     <!-- Content -->
     <main 
       :class="{'menu-sticky-active': $store.state.menuSticky}" 
-      class="min-height-100vh _dp-f _ovf-hd">
+      class="min-height-100vh _dp-f _ovf-hd _pdt-128px">
       <nuxt/>
     </main>
     <!-- Footer -->
@@ -52,7 +52,7 @@
 
 #header {
   z-index: 9;
-  /* background-color: rgba(255, 255, 255, 0.8); */
+  background-color: #FBF8F3;
 }
 
 .has-shadow {

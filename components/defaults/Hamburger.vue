@@ -81,7 +81,7 @@ export default {
       width: 28px;
       position: absolute;
       height: 2px;
-      background: #fff;
+      background: #BC5E60;
       border-radius: 8px;
       content: ' ';
       top: -10px;
@@ -93,7 +93,7 @@ export default {
       position: absolute;
       width: 28px;
       height: 2px;
-      background: #fff;
+      background: #BC5E60;
       border-radius: 8px;
       content: ' ';
       top: 10px;

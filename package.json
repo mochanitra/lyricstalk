@@ -1,11 +1,11 @@
 {
-  "name": "kasisuri-com",
+  "name": "lyricstalk-com",
   "version": "1.0.0",
-  "title": "Kasisuri",
+  "title": "lyricstalk",
   "description": "Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque repellendus odit reiciendis, ad facere rerum.",
   "author": "Apon Palanuwech",
   "fbAppId": "XXXXXXXXXXXX",
-  "apiUrl": "cms.kasisuri.com",
+  "apiUrl": "cms.lyricstalk.com",
   "gaId": "UA-XXXXXXXX-X",
   "private": true,
   "browserslist": [

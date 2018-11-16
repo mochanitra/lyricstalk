@@ -4,11 +4,8 @@ export const state = () => ({
   primaryMenu: [],
   footerMenu: [],
   isMobileMenuActive: false,
-  isSearchModalActive: false,
-  newsCategories: [],
-  pages: null,
   menuSticky: false,
-  products: []
+  questions: []
 })
 
 export const actions = {
@@ -26,60 +23,16 @@ export const actions = {
     // List categories
     const all = [
       // dispatch('api/listCategories'),
-      dispatch('api/listPages'),
+      // dispatch('api/listPages'),
       // dispatch('api/listVenues')
-      dispatch('api/listProducts')
+      dispatch('api/listQuestions')
     ]
 
     await Promise.all(all)
 
     // console.log(Object.keys(state.pages))
 
-    const primaryMenu = [{
-        title: 'Company',
-        submenu: Object.keys(state.pages).filter(ps => state.pages[ps].parent === 1080).map(c => {
-          return {
-            title: state.pages[c].title.rendered,
-            path: {
-              name: `our-company`,
-              params: {
-                slug: state.pages[c].slug
-              }
-            }
-          }
-        })
-      },
-      {
-        title: 'products',
-        submenu: state.products.map(p => {
-          return {
-            title: p.title.rendered,
-            path: {
-              name: 'products',
-              params: {
-                slug: p.slug
-              }
-            }
-          }
-        })
-      },
-      {
-        title: 'Our Process',
-        path: {
-          name: 'our-process'
-        }
-      },
-      {
-        title: 'events',
-        path: {
-          name: 'events'
-        }
-      }, {
-        title: 'contact',
-        path: {
-          name: 'contact'
-        }
-      }
+    const primaryMenu = [
     ]
 
     const footerMenu = primaryMenu.filter(pm => pm.submenu)
@@ -90,8 +43,8 @@ export const actions = {
 }
 
 export const mutations = {
-  SET_PRODUCTS(state, products) {
-    state.products = products
+  SET_MOBILE_MENU_ACTIVE(state, bool) {
+    state.isMobileMenuActive = bool
   },
   SET_SEARCH_MODAL_ACTIVE(state, bool) {
     state.isSearchModalActive = bool
@@ -105,23 +58,7 @@ export const mutations = {
   SET_FOOTER_MENU(state, menu) {
     state.footerMenu = menu
   },
-  SET_MOBILE_MENU_ACTIVE(state, bool) {
-    state.isMobileMenuActive = bool
-  },
-  SET_CATEGORIES(state, cats) {
-    // program id = 2
-    // news id = 1
-    state.newsCategories = cats.filter(c => c.parent === 1)
-    state.programCategories = cats.filter(c => c.parent === 2)
-  },
-  SET_PAGES(state, pages) {
-    state.pages = pages.reduce((result, item) => {
-      const key = item.slug
-      result[key] = item
-      return result
-    }, {})
-  },
-  SET_VENUES(state, venues) {
-    state.venues = venues
+  SET_QUESTIONS(state, questions) {
+    state.questions = questions
   }
 }
