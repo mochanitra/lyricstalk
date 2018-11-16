@@ -4,6 +4,7 @@ import VueFloatLabel from 'vue-float-label'
 const VueAwesomeSwiper = require('vue-awesome-swiper/dist/ssr')
 import * as VueGoogleMaps from 'vue2-google-maps'
 import WebFont from 'webfontloader'
+import * as Auth from '~/services/auth'
 
 Vue.use(VueFloatLabel)
 
@@ -49,3 +50,5 @@ WebFont.load({
     ]
   }
 })
+
+Auth.initFirebase()
