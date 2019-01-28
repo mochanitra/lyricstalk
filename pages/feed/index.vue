@@ -9,34 +9,41 @@
 
     <div class="row">
       <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-32px-sm">
-        <h4 class="text-center _cl-white"> 
+        <h3 class="text-center _cl-white"> 
           เชื่อในสิ่งเหล่านี้ ที่เรียกว่าความรักกันมั้ย ?
-        </h4>
+        </h3>
       </div>
     </div>
 
     <div class="row">
+      <div class="col-1">
 
-      <div class="col-2 _dp-f _fdrt-cl _alit-ct _pdt-64px-sm">
-        
       </div>
 
-      <div class="col-3 _dp-f _fdrt-cl _alit-ct _pdt-64px-sm">
-        <img class="_h-512px" src="~/assets/images/greasy1.jpg">
+      <div class="col-4 _dp-f _fdrt-cl _alit-ct _pdt-64px">
+        <img class="_h-512px" src="~static/images/greasy1.jpg">
       </div>
 
-      <div class="col-2 _dp-f _fdrt-cl _alit-ct _pdt-256px-sm ">
-        <h1 class="text-center _cl-white"> vs </h1>
+      <div class="col-2 _dp-f _fdrt-cl _alit-ct _jtfit-ct _pdt-256px">
+        <h1> vs </h1>
       </div>
 
-      <div class="col-3 _dp-f _fdrt-cl _alit-ct _pdt-64px-sm">
-        <img class="_h-512px" src="~/assets/images/greasy2.jpg">
+      <div class="col-4 _dp-f _fdrt-cl _alit-ct _pdt-64px">
+        <img class="_h-512px" src="~static/images/greasy2.jpg">
       </div>
 
-      <div class="col-2 _dp-f _fdrt-cl _alit-ct _pdt-64px-sm">
-        
+      <div class="col-1">
+
       </div>
 
+    </div>
+
+    <div class="row">
+      <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-64px-sm">
+        <nuxt-link to="/home"> 
+          <img class="_h-64px" src="~/assets/images/random.png">
+        </nuxt-link>
+      </div>
     </div>
 
     
@@ -57,7 +64,7 @@ export default {
 <style lang="scss" scoped>
 
 .bgcl {
-  background-color : #5F7E8F;
+  background-color : #9BB4BC;
 }
 
 

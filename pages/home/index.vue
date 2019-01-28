@@ -22,6 +22,7 @@
           <div class="col-6 _tal-ct _mgv-24px" v-for="(song, i) in q.songs" :key="i">
             <audio :id="song.title" :src="song.mp3"></audio>
             <img @click="playSongById(song.title, q.songs.map(x => x.title))" class="_h-200px _cs-pt" src="~/assets/images/album-01.png">
+           
           </div>
         </div>
 
@@ -73,11 +74,11 @@ export default {
 @import 'assets/styles/variables';
 
 .bgcl {
-  background-color : #EBD7D3;
+  background-color : #EDE1DF;
 }
 
 .bgimg {
-  background-image : url(~/assets/images/redcenter-03.png);
+  background-image : url(~/assets/images/red.png);
   
   
 }
@@ -102,7 +103,7 @@ export default {
   &::after {
     position: absolute;
     content: '';
-    background: #EBD7D3;
+    background: #EDE1DF;
     width: 100%;
     height: 12px;
     bottom: -12px;

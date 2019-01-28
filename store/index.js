@@ -5,7 +5,24 @@ export const state = () => ({
   footerMenu: [],
   isMobileMenuActive: false,
   menuSticky: false,
-  questions: []
+  questions: [],
+  myQuiz: {
+    quiz: [],
+    name: null,
+    cover: null,
+    slug: null
+  },
+  loadedQuiz: null,
+  quizTaker: {
+    name: null ,
+    answers: {
+      1: {},
+      2: {},
+      3: {},
+      4: {},
+      5: {}
+    }
+  }
 })
 
 export const actions = {
@@ -60,5 +77,27 @@ export const mutations = {
   },
   SET_QUESTIONS(state, questions) {
     state.questions = questions
+  },
+  SET_MYQUIZ (state, x) {
+    state.myQuiz.quiz = x
+  },
+  SET_MYQUIZ_PROFILE (state, x) {
+    state.myQuiz.name = x.name
+    state.myQuiz.cover = x.cover
+    state.myQuiz.slug = x.slug
+  },
+  SET_QUIZ_ANSWER (state, { item, answerIndex }) {
+    state.quizTaker.answers[item].answer = answerIndex
+  },
+  SET_QUIZ_ANSWER_WHY(state, { item, why }) {
+    state.quizTaker.answers[item].why = why
+  },
+  SET_QUIZ_ANSWER_NAME(state, {
+    item, name  })  {
+      state.quizTaker.name = name
+    },
+  SET_LOADED_QUIZ (state, loadedQuiz) {
+    state.loadedQuiz = loadedQuiz
+    
   }
 }

@@ -1,29 +1,39 @@
 <template>
   <div class="_w-100pct bgcl">
     <div class="container">
+
+      <div class="row">
+        <div class="col-12 _pdt-64px _pdbt-8px _dp-f _fdrt-cl _alit-ct">
+            <img class="_h-256px" src="~static/images/instruction.png">
+        </div>
+      </div>
+
+   
         
       <!-- 1 -->
       <div 
-        v-for="(item, i) in [0, 0, 0, 0, 0]" 
+        v-for="(item, i) in myQuiz" 
         :key="i" 
         class="row _jtfct-ct _pdt-32px _pdbt-32px">
         <div class="col-12">
           <QuestionItem 
+            @selectSong="(index) => item.selectedAnswerIndex = index"
             :selected-question="questions[i]" 
             :number="i + 1" />
         </div>
 
-        <div class="row _jtfct-ct _pdt-32px _pdbt-8px">
-          <div class="col-12">
-            <div class="bio-input">
-              <input 
-                type="text" 
-                placeholder="why ?">
-            </div>
+      
+        <div class="col-10 _pdt-32px _pdbt-8px">
+          <div class="bio-input">
+            <input
+            type="text" 
+            v-model="item.reason"
+            placeholder="why ?">
           </div>
         </div>
-
       </div>
+
+    </div>
         
       <!-- Modal -->
       <modal 
@@ -51,16 +61,16 @@
 
       <div class="row">
         <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-16px _pdbt-64px">
-          <nuxt-link to="/playlist">
-            <img 
+          <!-- <button type="button" @click="goToPlaylist"> -->
+            <img @click="goToPlaylist"
               class="_h-64px" 
               src="~/assets/images/next.png">
-          </nuxt-link>
+          <!-- </button> -->
         </div>
       </div>
 
     </div>
-  </div>
+  
 </template>
 
 <script>
@@ -72,12 +82,45 @@ export default {
         QuestionList
     },
     data: () => ({
+        myQuiz: [
+          {
+            selectedSongId: null,
+            selectedAnswerIndex: null,
+            reason: null
+          },
+          {
+            selectedSongId: null,
+            selectedAnswerIndex: null,
+            reason: null
+          },
+          {
+            selectedSongId: null,
+            selectedAnswerIndex: null,
+            reason: null
+          },
+          {
+            selectedSongId: null,
+            selectedAnswerIndex: null,
+            reason: null
+          },
+          {
+            selectedSongId: null,
+            selectedAnswerIndex: null,
+            reason: null
+          }
+        ],
         questions: []
     }),
     methods: {
-        addQuestion (id) {
+        goToPlaylist () {
+          // commit
+          this.$store.commit('SET_MYQUIZ', this.myQuiz)
+          return this.$router.replace('/playlist')
+        },
+        addQuestion (item) {
             this.$modal.hide('question-list')
-            this.questions.push(id)
+            this.questions.push(item)
+            this.myQuiz[this.questions.length - 1].selectedSongId = item.id
         }
     }
 }
@@ -85,6 +128,6 @@ export default {
 
 <style>
 .bgcl {
-  background-color: #ebd7d3;
+  background-color: #E8DBD6;
 }
 </style>

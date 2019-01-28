@@ -14,7 +14,7 @@
         type="button"
         @click="$refs.input.click()"
       >
-        <p>Upload</p>
+        <p>Upload Picture</p>
         <div 
           :style="{ width: progressUpload + '%'}"
           class="fill" 
@@ -61,7 +61,8 @@ export default {
       console.log(file)
       const fileType = file.type.split('/')[1]
       console.log(fileType)
-      this.uploadTask = firebase.storage().ref().child(`quiz-cover/${this.orderId}.${fileType}`).put(file)
+      let randomNumber = ~~(Math.random() * 1000000)
+      this.uploadTask = firebase.storage().ref().child(`quiz-cover/${randomNumber}.${fileType}`).put(file)
       this.uploadTask.then(snapshot => {
         snapshot.ref.getDownloadURL().then((url) => {
           this.$emit('url', url)

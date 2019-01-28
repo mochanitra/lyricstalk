@@ -8,15 +8,15 @@
       </div>
 
       <div class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <nuxt-link to="/">home</nuxt-link>
+        <nuxt-link to="/">Home</nuxt-link>
       </div>
 
       <div class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <nuxt-link to="/question-list">question list</nuxt-link>
+        <nuxt-link to="/question-list">Question List</nuxt-link>
       </div>
 
       <div class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <nuxt-link to="/feed">feed</nuxt-link>
+        <nuxt-link to="/feed">Feed</nuxt-link>
       </div>
 
     </div>

@@ -1,7 +1,7 @@
 <template>
     <div>
 
-       <div class="bgimg _bgs-ct _bgrp-nrp _bgpst-ct">
+       <div v-lazy:background="bgimg" class="_bgs-ct _bgrp-nrp _bgpst-ct">
 
         <div class="row _pdv-24px ">
           <div class="center">
@@ -25,7 +25,7 @@
 
               
               <div class="_mgh-at" style="width: 300px;">
-              <div @click="selectSong(i)" :class="{'selected': selectedSong === i}" class="_h-200px _bgs-ct _bgrp-nrp _bgpst-ct _cs-pt _dp-f _alit-ct" v-lazy:background-image="require(`assets/images/albumchoice.png`)">
+              <div @click="selectSong(i)" :class="{'selected': selectedSong === i, 'correct': correctAnswerIndex === i, 'answer': userAnswerIndex === i}" class="_h-200px _bgs-ct _bgrp-nrp _bgpst-ct _cs-pt _dp-f _alit-ct" v-lazy:background-image="require(`assets/images/albumchoice.png`)">
 
               <div class="marginplay">
               <img @click="playSongById(song.title)" style="width: 50px;" src="~/assets/images/play.png">
@@ -58,6 +58,18 @@ export default {
         selectedQuestion: {
             type: Object,
             default: () => {}
+        },
+        bgimg: {
+          type: String,
+          default: require('~/assets/images/red.png')
+        },
+        correctAnswerIndex: {
+          type: Number,
+          default: null
+        },
+        userAnswerIndex: {
+          type: Number,
+          default: null
         }
     },
   methods: {
@@ -69,6 +81,7 @@ export default {
     },
     selectSong (i) {
       this.selectedSong = i
+      this.$emit('selectSong', i)
     }
   },
   data: () => ({
@@ -82,11 +95,11 @@ export default {
 @import 'assets/styles/variables';
 
 .bgcl {
-  background-color : #EBD7D3;
+  background-color : #E8DBD6;
 }
 
 .bgimg {
-  background-image : url(~/assets/images/redcenter-03.png);
+  background-image : url(~/assets/images/red.png);
   
 }
 
@@ -99,6 +112,13 @@ export default {
   border: 4px solid white;
 }
 
+.correct {
+  border: 4px solid green;
+}
+
+.answer {
+  border: 4px solid white;
+}
 
 ._h-200px {
   height: 200px;
@@ -119,7 +139,7 @@ export default {
   &::after {
     position: absolute;
     content: '';
-    background: #EBD7D3;
+    background: #E8DBD6;
     width: 100%;
     height: 12px;
     bottom: -12px;

@@ -35,7 +35,7 @@ export default {
 <style lang="scss" scoped>
 
 .bgcl {
-  background-color : #5F7E8F;
+  background-color : #9BB4BC;
 }
 
 

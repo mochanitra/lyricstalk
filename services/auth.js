@@ -1,6 +1,12 @@
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
 import 'firebase/storage'
+import 'firebase/database'
+
+async function saveUserAnswer (key, answers) {
+  const x = await firebase.database().ref(`quizes/${key}/answers`).push(answers)
+  return x
+}
 
 function initFirebase() {
   // Initialize Firebase
@@ -38,5 +44,6 @@ function facebookSignIn() {
 export {
   initFirebase,
   facebookSignIn,
-  facebookGetRedirectResult
+  facebookGetRedirectResult,
+  saveUserAnswer
 }
