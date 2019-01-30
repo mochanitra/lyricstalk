@@ -1,9 +1,7 @@
 <template>
-  <header class ="container">
-
+  <header class="container">
     <div class="row _pdv-12px _alit-ct">
-
-      <div class="col-6">
+      <div class="col-4">
         <img class="_h-64px _cs-pt" src="~/assets/images/logo.png">
       </div>
 
@@ -18,43 +16,94 @@
       <div class="col-2 _dp-f _fdrt-cl _alit-ct">
         <nuxt-link to="/feed">Feed</nuxt-link>
       </div>
-
+      <div v-if="!$store.state.auth" class="col-2 _dp-f _fdrt-cl _alit-ct">
+        <button @click="login()">Login</button>
+      </div>
+      <div v-else class="col-2 _dp-f _fdrt-cl _alit-ct">
+        <img v-show="$store.state.auth" @click="signOut()" v-bind:src="user.photoURL" />
+      </div>
     </div>
-
   </header>
 </template>
 
 <script>
-import FavoriteButton from '~/components/FavoriteButton'
-import Hamburger from '~/components/defaults/Hamburger'
-import SearchModal from '~/components/modals/Search'
+import FavoriteButton from "~/components/FavoriteButton";
+import Hamburger from "~/components/defaults/Hamburger";
+import SearchModal from "~/components/modals/Search";
+import * as FBSE from "~/services/auth";
 export default {
   components: {
     FavoriteButton,
     Hamburger,
     SearchModal
   },
+  data: () => ({
+    user: {photoURL: null}
+  }),
+  mounted() {
+    const fb = FBSE.getUser();
+    fb.onAuthStateChanged(user => {
+      if (user) {
+        this.user = user.providerData[0];
+        this.$store.commit('SET_AUTH',user.providerData[0]);
+      }
+    });
+    
+  },
   watch: {
-    '$store.state.isSearchModalActive' (val) {
+    "$store.state.isSearchModalActive"(val) {
       if (val) {
-        this.$modal.show('search')
+        this.$modal.show("search");
       } else {
-        this.$modal.hide('search')
+        this.$modal.hide("search");
       }
     }
   },
   methods: {
-    changeLang (locale) {
-      return window.location.href = this.switchLocalePath(locale)
+    changeLang(locale) {
+      return (window.location.href = this.switchLocalePath(locale));
+    },
+    login() {
+      let fb = FBSE.facebookSignIn();
+      fb.then((result) => {
+        if (result.credential) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          let token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        let user = result.user;
+        this.user = user.providerData[0];
+      }).then(() => {
+        this.$store.commit('SET_AUTH', this.user);
+      }).catch(function(error) {
+        // Handle Errors here.
+        let errorCode = error.code;
+        let errorMessage = error.message;
+        // The email of the user's account used.
+        let email = error.email;
+        // The firebase.auth.AuthCredential type that was used.
+        let credential = error.credential;
+        // ...
+      });
+    },
+    signOut() {
+      let fb = FBSE.facebookSignOut();
+      fb.then(() => {
+        // Sign-out successful.
+        this.$store.commit('SET_AUTH',null);
+        this.user = {photoURL: null};
+      }).catch(function(error) {
+        // An error happened.
+      });
     }
-  },
-}
+  }
+};
 </script>
 
 
 <style lang="scss" scoped>
-@import '~assets/styles/variables';
-
+@import "~assets/styles/variables";
 
 #lang-switcher {
   > span {
@@ -156,7 +205,7 @@ ul.nav {
   position: relative;
   @media (max-width: $md - 1px) {
     &::before {
-      content: '';
+      content: "";
     }
     transition-delay: 0.2s;
   }
@@ -176,7 +225,7 @@ ul.nav {
         border-style: solid;
         border-width: 0 10px 10px 10px;
         border-color: transparent transparent $red-400 transparent;
-        content: '';
+        content: "";
         position: absolute;
         top: -10px;
         left: calc(50% - 5px);

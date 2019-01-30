@@ -37,7 +37,7 @@
       handleScroll() {
         // console.log(window.scrollY)
         if (window.scrollY > 160) {
-        this.$store.commit('SET_MENU_STICKY', true)
+        this.$store.commit('SET_MENU_STICKY', true);
         } else {
           this.$store.commit('SET_MENU_STICKY', false)
         }

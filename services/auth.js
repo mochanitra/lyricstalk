@@ -1,49 +1,59 @@
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/storage'
-import 'firebase/database'
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
+import 'firebase/storage';
+import 'firebase/database';
 
-async function saveUserAnswer (key, answers) {
-  const x = await firebase.database().ref(`quizes/${key}/answers`).push(answers)
-  return x
+async function saveUserAnswer(key, answers) {
+  const x = await firebase
+    .database()
+    .ref(`quizes/${key}/answers`)
+    .push(answers);
+  return x;
 }
 
 function initFirebase() {
   // Initialize Firebase
   const config = {
-    apiKey: "AIzaSyAxK9IfAoHr9sVo429wb-Eb-CISzCghgW8",
-    authDomain: "lyricstalk-1fb09.firebaseapp.com",
-    databaseURL: "https://lyricstalk-1fb09.firebaseio.com",
-    projectId: "lyricstalk-1fb09",
-    storageBucket: "lyricstalk-1fb09.appspot.com",
-    messagingSenderId: "254840958476"
-  }
+    apiKey: 'AIzaSyAxK9IfAoHr9sVo429wb-Eb-CISzCghgW8',
+    authDomain: 'lyricstalk-1fb09.firebaseapp.com',
+    databaseURL: 'https://lyricstalk-1fb09.firebaseio.com',
+    projectId: 'lyricstalk-1fb09',
+    storageBucket: 'lyricstalk-1fb09.appspot.com',
+    messagingSenderId: '254840958476'
+  };
   if (!firebase.apps.length) {
-    return firebase.initializeApp(config)
+    return firebase.initializeApp(config);
   }
-  return
+  return;
 }
 
 function facebookGetRedirectResult() {
-  return firebase
-    .auth()
-    .getRedirectResult()
+  return firebase.auth().getRedirectResult()
 }
 
 function facebookSignIn() {
-  let provider = new firebase.auth.FacebookAuthProvider()
-  // provider.addScope('email')
+  let provider = new firebase.auth.FacebookAuthProvider();
+  provider.addScope('email');
+  // provider.addScope('user_friends');
   // provider.setCustomParameters({
   //   'display': 'popup'
   // })
-  return firebase
-    .auth()
-    .signInWithRedirect(provider)
+  return firebase.auth().signInWithPopup(provider);
+}
+
+function facebookSignOut() {
+  return firebase.auth().signOut();
+}
+
+function getUser() {
+  return firebase.auth();
 }
 
 export {
   initFirebase,
   facebookSignIn,
   facebookGetRedirectResult,
-  saveUserAnswer
-}
+  saveUserAnswer,
+  facebookSignOut,
+  getUser
+};

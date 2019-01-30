@@ -18,8 +18,11 @@
         <div class="col-12">
           <QuestionItem 
             @selectSong="(index) => item.selectedAnswerIndex = index"
+            @selectQuestion="modal_index=i"
             :selected-question="questions[i]" 
-            :number="i + 1" />
+            :number="i + 1"
+            :playedSong="playedSong"
+             />
         </div>
 
       
@@ -109,18 +112,49 @@ export default {
             reason: null
           }
         ],
-        questions: []
+        questions: {
+          0: null,
+          1: null,
+          2: null,
+          3: null,
+          4: null
+        },
+        modal_index: null,
+        playedSong: null
     }),
     methods: {
         goToPlaylist () {
+          let isFull = true
+          let err = ''
+          for(let i = 0; i < this.myQuiz.length; i++) {
+            if(this.myQuiz[i].selectedSongId == null) {
+              err+=('ยังไม่เลือกข้อ ' + (i+1) + '\n')
+              isFull = false
+            }
+            if(this.myQuiz[i].selectedAnswerIndex == null) {
+              err+=('ยังไม่ตอบข้อ ' + (i+1) + '\n')
+              isFull = false
+            }
+            if(!this.myQuiz[i].reason || this.myQuiz[i].reason == '') {
+              err+=('ยังไม่ได้เขียนเหตุผลข้อ ' + (i+1) + '\n')
+              isFull = false
+            }
+          }
+          if(!isFull) {
+            alert(err)
+            return
+          }
           // commit
           this.$store.commit('SET_MYQUIZ', this.myQuiz)
           return this.$router.replace('/playlist')
         },
         addQuestion (item) {
             this.$modal.hide('question-list')
-            this.questions.push(item)
-            this.myQuiz[this.questions.length - 1].selectedSongId = item.id
+            const idx = this.modal_index
+            this.questions[idx] = item
+            this.modal_index = null
+            // this.questions2.push(i)
+            this.myQuiz[idx].selectedSongId = item.id
         }
     }
 }

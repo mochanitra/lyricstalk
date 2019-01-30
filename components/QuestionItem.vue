@@ -11,7 +11,7 @@
 
         <div class="row">
           <div class="col-12">
-            <h2 @click="!selectedQuestion && $modal.show('question-list')" class="text-center _cl-white">
+            <h2 @click="showQuestionList()" class="text-center _cl-white">
                 <span v-if="!selectedQuestion">Choose question {{ number }}</span>
                 <span v-else>{{ selectedQuestion.title }}</span>
             </h2>
@@ -28,10 +28,10 @@
               <div @click="selectSong(i)" :class="{'selected': selectedSong === i, 'correct': correctAnswerIndex === i, 'answer': userAnswerIndex === i}" class="_h-200px _bgs-ct _bgrp-nrp _bgpst-ct _cs-pt _dp-f _alit-ct" v-lazy:background-image="require(`assets/images/albumchoice.png`)">
 
               <div class="marginplay">
-              <img @click="playSongById(song.title)" style="width: 50px;" src="~/assets/images/play.png">
+              <img @click="playSongById(song.title,i)" style="width: 50px;" src="~/assets/images/play.png">
               </div>
 
-              <div v-if="true" class="_w-50pct _mgl-at _pdr-24px">
+              <div v-if="show[i]" class="_w-50pct _mgl-at _pdr-24px">
                 {{ song.lyrics }}
               </div>
 
@@ -70,22 +70,45 @@ export default {
         userAnswerIndex: {
           type: Number,
           default: null
+        },
+        playedSong: {
+          type: Number,
+          default: null
         }
     },
   methods: {
-    playSongById (id) {
+    playSongById (id,i) {
       // this.show[i] = true
       
       const x = document.getElementById(id)
-      x.play()  
+      if(x.paused) {
+        x.play();
+      }
+      else {
+        x.pause();
+        x.load();
+      }
+      x.onended = () => {
+        this.show[i] = true;
+      }  
     },
     selectSong (i) {
       this.selectedSong = i
       this.$emit('selectSong', i)
+    },
+    
+    showQuestionList() {
+      this.$modal.show('question-list')
+      this.$emit('selectQuestion', this.$props.number)
     }
   },
   data: () => ({
-    show: [false, false, false, false],
+    show: {
+      0: false,
+      1: false,
+      2: false,
+      3: false
+    },
     selectedSong: null
   })
 }
