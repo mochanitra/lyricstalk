@@ -79,14 +79,22 @@ export default {
   methods: {
     playSongById (id,i) {
       // this.show[i] = true
-      
+      if(this.$props.playedSong && this.$props.playedSong != id) {
+        const prev = document.getElementById(this.$props.playedSong)
+        prev.pause()
+        prev.load()
+      }
+
       const x = document.getElementById(id)
       if(x.paused) {
-        x.play();
+        x.play()
+        this.$emit('setPlayedSong',id)
       }
+
       else {
-        x.pause();
-        x.load();
+        x.pause()
+        x.load()
+        this.$emit('setPlayedSong',id)
       }
       x.onended = () => {
         this.show[i] = true;
@@ -98,8 +106,9 @@ export default {
     },
     
     showQuestionList() {
-      this.$modal.show('question-list')
       this.$emit('selectQuestion', this.$props.number)
+      this.$emit('deleteSelectedQuestions')
+      this.$modal.show('question-list')
     }
   },
   data: () => ({

@@ -19,6 +19,8 @@
           <QuestionItem 
             @selectSong="(index) => item.selectedAnswerIndex = index"
             @selectQuestion="modal_index=i"
+            @setPlayedSong="(id) => playedSong=id"
+            @deleteSelectedQuestions="deleteSelectedQuestions"
             :selected-question="questions[i]" 
             :number="i + 1"
             :playedSong="playedSong"
@@ -52,6 +54,7 @@
               <div class="col-12">
                 <QuestionList 
                   @onSelect="addQuestion"
+                  :selectedQuestions="selectedQuestions"
                 />
               </div>
             </div>
@@ -120,7 +123,8 @@ export default {
           4: null
         },
         modal_index: null,
-        playedSong: null
+        playedSong: null,
+        selectedQuestions: new Set()
     }),
     methods: {
         goToPlaylist () {
@@ -151,10 +155,23 @@ export default {
         addQuestion (item) {
             this.$modal.hide('question-list')
             const idx = this.modal_index
+            if(this.questions[idx] != null) {
+              this.selectedQuestions.delete(this.questions[idx].id)
+            }
             this.questions[idx] = item
+            this.selectedQuestions.add(item.id)
             this.modal_index = null
-            // this.questions2.push(i)
+
             this.myQuiz[idx].selectedSongId = item.id
+        },
+
+        deleteSelectedQuestions () {
+          if(this.questions[this.modal_index] != null) {
+            this.selectedQuestions.delete(this.questions[this.modal_index].id)
+          }
+        },
+        setPlayedsong (id) {
+          this.playedSong = id
         }
     }
 }

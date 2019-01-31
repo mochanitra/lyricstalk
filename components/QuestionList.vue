@@ -9,7 +9,7 @@
 
 
     <div v-for="(item, i) in $store.state.questions" :key="i" class="row _jtfct-ct _pdt-4px-sm _pdbt-4px" @click="$emit('onSelect', item)">
-      <div class="col-6">
+      <div v-show="!$props.selectedQuestions.has(item.id)" class="col-6">
         <div class="bio-card">
           <div class="bio-card-content">{{ item.title }}</div>
         </div>
@@ -25,6 +25,12 @@
 
 <script>
 export default {
+    props: {
+      selectedQuestions: { 
+        type: Set,
+        default: new Set()
+      }
+    },
 
 }
 </script>
