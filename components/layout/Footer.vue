@@ -7,30 +7,26 @@
           <div>
             <small>
               All Rights Reserved {{ new Date().getFullYear() }}
-              <br>
-              lyricstalk Co., Ltd.
+              <br>lyricstalk Co., Ltd.
             </small>
           </div>
         </div>
         <!-- FooterMenu -->
         <nav class="col-12 col-md-9 _dp-f-md _jtfct-spbtw-md">
           <!-- col 1 -->
-          <div 
-            v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')" 
+          <div
+            v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')"
             :key="i"
-            class="_f-1">
-            <h5 
-              class="_ttf-upc _cl-white"
-              v-html="item.title"/>
+            class="_f-1"
+          >
+            <h5 class="_ttf-upc _cl-white" v-html="item.title"/>
             <ul v-if="item.submenu">
-              <li 
-                v-for="(list, j) in item.submenu" 
-                :key="j" 
-                class="_pdbt-4px">
-                <nuxt-link 
+              <li v-for="(list, j) in item.submenu" :key="j" class="_pdbt-4px">
+                <nuxt-link
                   :to="localePath(list.path)"
                   class="_cl-white hover-spacing white _ttf-cptl"
-                  v-html="list.title"/>
+                  v-html="list.title"
+                />
               </li>
             </ul>
           </div>
@@ -45,21 +41,20 @@
 </template>
 
 <style lang="scss" scoped>
-@import '~assets/styles/variables';
+@import "~assets/styles/variables";
 footer {
   position: relative;
-  background: #BB777C;
+  background: #bb777c;
   padding: 64px 0px 48px 0px;
-  margin-top: 20px;
   color: #fff;
   @media (max-width: $md - 1px) {
     padding: 32px 0px;
   }
   &::before {
-    content: '';
+    content: "";
     width: 100%;
     height: 24px;
-    background: #BB777C;
+    background: #bb777c;
     position: absolute;
     top: 0px;
     left: 0px;

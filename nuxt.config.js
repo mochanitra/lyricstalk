@@ -1,20 +1,22 @@
-const pkg = require('./package')
-const messages = require('./services/lang')
-const MomentLocalesPlugin = require('moment-locales-webpack-plugin')
-const PurgecssPlugin = require('purgecss-webpack-plugin')
-const glob = require('glob-all')
-const path = require('path')
+const pkg = require('./package');
+const messages = require('./services/lang');
+const MomentLocalesPlugin = require('moment-locales-webpack-plugin');
+const PurgecssPlugin = require('purgecss-webpack-plugin');
+const glob = require('glob-all');
+const path = require('path');
 
 module.exports = {
   mode: 'universal',
   head: {
     title: pkg.title,
-    meta: [{
+    meta: [
+      {
         charset: 'utf-8'
       },
       {
         name: 'viewport',
-        content: 'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no'
+        content:
+          'width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no'
       },
       {
         hid: 'og:type',
@@ -32,13 +34,16 @@ module.exports = {
         content: pkg.description
       }
     ],
-    script: [{
-      src: '/js/polyfills.min.js',
-      body: true
-    }, {
-      src: '/js/offline.min.js',
-      body: true
-    }],
+    script: [
+      {
+        src: '/js/polyfills.min.js',
+        body: true
+      },
+      {
+        src: '/js/offline.min.js',
+        body: true
+      }
+    ]
   },
 
   /*
@@ -51,10 +56,12 @@ module.exports = {
   /*
    ** Global CSS
    */
-  css: [{
-    src: 'assets/styles/main.scss',
-    lang: 'scss'
-  }],
+  css: [
+    {
+      src: 'assets/styles/main.scss',
+      lang: 'scss'
+    }
+  ],
   router: {
     middleware: ['router']
   },
@@ -81,7 +88,8 @@ module.exports = {
       {
         seo: false,
         strategy: 'prefix_except_default',
-        locales: [{
+        locales: [
+          {
             code: 'th',
             iso: 'th-TH',
             name: 'TH'
@@ -101,7 +109,8 @@ module.exports = {
       }
     ],
     [
-      'nuxt-rfg-icon', {
+      'nuxt-rfg-icon',
+      {
         masterPicture: ''
       }
     ],
@@ -154,7 +163,7 @@ module.exports = {
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules)/
-        })
+        });
       }
       if (!ctx.isDev) {
         // Remove unused CSS using purgecss. See https://github.com/FullHuman/purgecss
@@ -168,8 +177,8 @@ module.exports = {
             ]),
             whitelist: ['html', 'body']
           })
-        )
+        );
       }
     }
   }
-}
+};

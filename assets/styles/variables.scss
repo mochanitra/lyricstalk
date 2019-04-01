@@ -2,6 +2,100 @@ $sm: 770px;
 $md: 900px;
 $lg: 1200px;
 
-$red-400: #BC5E60;
+$red-400: #bc5e60;
 $green-400: #669146;
-$blue-400: #001E4D;
+$blue-400: #001e4d;
+
+$ci-white: #fcf8f4;
+$dark-red: #c18780;
+$smoke-red: #c9806c;
+$smoker-red: #d8a9a0;
+$light-red: #efdfd8;
+
+$header-red: #ba6d56;
+
+$dark-blue: #5f7e8f;
+$ci-blue: #9bb6ba;
+$font-dark-blue: #374f5b;
+
+$ci-sapphire: #4e7a84;
+
+$ci-light-blue: #ccd8db;
+
+$font-black-blue: #1c2531;
+$font-black-blue-2: #2b4349;
+
+$line-red: #d16659;
+
+@mixin absolutecenter($axis: 'both') {
+  position: absolute;
+  @if $axis == 'y' {
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  @if $axis == 'x' {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  @if $axis == 'both' {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+
+// START: Min Width
+// @media (min-width: $screen-xs-min) {}
+// @media (min-width: $screen-sm-min) {}
+// @media (min-width: $screen-md-min) {}
+// @media (min-width: $screen-lg-min) {}
+// @media (min-width: $screen-xl-min) {}
+
+// START: Max Width
+// @media (max-width: $screen-vs-max) {}
+// @media (max-width: $screen-xs-max) {}
+// @media (max-width: $screen-sm-max) {}
+// @media (max-width: $screen-md-max) {}
+// @media (max-width: $screen-lg-max) {}
+
+// background-image: url('#{$pathIMG}/');
+
+//== Media queries breakpoints
+//
+
+$screen-sm: 576px !default;
+$screen-sm-min: $screen-sm !default;
+
+$screen-md: 768px !default;
+$screen-md-min: $screen-md !default;
+
+$screen-lg: 992px !default;
+$screen-lg-min: $screen-lg !default;
+
+$screen-xl: 1200px !default;
+$screen-xl-min: $screen-xl !default;
+
+$screen-xs-max: ($screen-sm-min - 1) !default;
+$screen-sm-max: ($screen-md-min - 1) !default;
+$screen-md-max: ($screen-lg-min - 1) !default;
+$screen-lg-max: ($screen-xl-min - 1) !default;
+
+@mixin topBottom() {
+  position: relative;
+  font-size: 30px;
+  padding: 15px;
+  text-align: center;
+  background-color: #fff;
+}
+
+@mixin contentBeforeAfter($bg-color) {
+  content: '';
+  display: block;
+  position: absolute;
+  z-index: 2;
+  background-color: $bg-color;
+  //   background-image: url(http://mrkorakot.com/dropbox/tail.png);
+  background-size: 100% 100%;
+  width: 20px;
+  height: 20px;
+}

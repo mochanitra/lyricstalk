@@ -3,12 +3,20 @@ import 'firebase/auth';
 import 'firebase/storage';
 import 'firebase/database';
 
-async function saveUserAnswer(key, answers) {
+async function saveUserAnswer(key, uid, answers) {
+  let updates = {};
+  let newAnsKey = await firebase
+    .database()
+    .ref()
+    .child(`quizes/${key}/answers`)
+    .push().key;
+  updates[`/quizes/${key}/answers/${newAnsKey}`] = answers;
+  updates[`/user/${uid}/quizesList/${key}/answers/${newAnsKey}`] = answers;
   const x = await firebase
     .database()
-    .ref(`quizes/${key}/answers`)
-    .push(answers);
-  return x;
+    .ref()
+    .update(updates);
+  return newAnsKey;
 }
 
 function initFirebase() {
@@ -28,7 +36,7 @@ function initFirebase() {
 }
 
 function facebookGetRedirectResult() {
-  return firebase.auth().getRedirectResult()
+  return firebase.auth().getRedirectResult();
 }
 
 function facebookSignIn() {

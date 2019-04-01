@@ -1,27 +1,40 @@
 <template>
   <header class="container">
     <div class="row _pdv-12px _alit-ct">
-      <div class="col-4">
-        <img class="_h-64px _cs-pt" src="~/assets/images/logo.png">
+      <div class="col-4 offset-1 logo">
+        <nuxt-link to="/">
+          <img class="_h-64px _cs-pt" src="~/assets/images/logo.svg">
+        </nuxt-link>
       </div>
 
-      <div class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <nuxt-link to="/">Home</nuxt-link>
+      <div class="col-2">
+        <nuxt-link class="header-link s-o-y" to="/create">
+          Soundtrack
+          <br>of you
+        </nuxt-link>
       </div>
 
-      <div class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <nuxt-link to="/question-list">Question List</nuxt-link>
+      <div class="col-2">
+        <nuxt-link class="header-link md" to="/">
+          music
+          <br>discussion
+        </nuxt-link>
       </div>
 
-      <div class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <nuxt-link to="/feed">Feed</nuxt-link>
+      <div class="col-2">
+        <nuxt-link class="header-link gf" to="/group-feat">
+          group
+          <br>feat.
+        </nuxt-link>
       </div>
-      <div v-if="!$store.state.auth" class="col-2 _dp-f _fdrt-cl _alit-ct">
+      <!-- <div v-if="!$store.state.auth" class="col-2">
         <button @click="login()">Login</button>
-      </div>
-      <div v-else class="col-2 _dp-f _fdrt-cl _alit-ct">
-        <img v-show="$store.state.auth" @click="signOut()" v-bind:src="user.photoURL" />
-      </div>
+      </div>-->
+      <!-- <div v-else class="col-2">
+        <nuxt-link to="/profile">
+          <img class="profile-img" v-show="$store.state.auth" v-bind:src="user.photoURL">
+        </nuxt-link>
+      </div>-->
     </div>
   </header>
 </template>
@@ -31,6 +44,7 @@ import FavoriteButton from "~/components/FavoriteButton";
 import Hamburger from "~/components/defaults/Hamburger";
 import SearchModal from "~/components/modals/Search";
 import * as FBSE from "~/services/auth";
+import * as firebase from "firebase/app";
 export default {
   components: {
     FavoriteButton,
@@ -38,17 +52,16 @@ export default {
     SearchModal
   },
   data: () => ({
-    user: {photoURL: null}
+    user: { photoURL: null }
   }),
   mounted() {
     const fb = FBSE.getUser();
     fb.onAuthStateChanged(user => {
       if (user) {
         this.user = user.providerData[0];
-        this.$store.commit('SET_AUTH',user.providerData[0]);
+        this.$store.commit("SET_AUTH", user.providerData[0]);
       }
     });
-    
   },
   watch: {
     "$store.state.isSearchModalActive"(val) {
@@ -65,7 +78,7 @@ export default {
     },
     login() {
       let fb = FBSE.facebookSignIn();
-      fb.then((result) => {
+      fb.then(result => {
         if (result.credential) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
           let token = result.credential.accessToken;
@@ -74,25 +87,45 @@ export default {
         // The signed-in user info.
         let user = result.user;
         this.user = user.providerData[0];
-      }).then(() => {
-        this.$store.commit('SET_AUTH', this.user);
-      }).catch(function(error) {
-        // Handle Errors here.
-        let errorCode = error.code;
-        let errorMessage = error.message;
-        // The email of the user's account used.
-        let email = error.email;
-        // The firebase.auth.AuthCredential type that was used.
-        let credential = error.credential;
-        // ...
-      });
+      })
+        .then(() => {
+          this.$store.commit("SET_AUTH", this.user);
+          let database = firebase.database();
+          database
+            .ref("user")
+            .equalTo(this.user.uid)
+            .once("value", snapshot => {
+              if (snapshot.exists()) {
+                console.log("exist!");
+              } else {
+                let uid = this.user.uid;
+                database.ref("user/" + uid).set({
+                  displayName: this.user.displayName,
+                  email: this.user.email,
+                  uid: this.user.uid,
+                  photoURL: this.user.photoURL,
+                  quizesList: {}
+                });
+              }
+            });
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          // The email of the user's account used.
+          let email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          let credential = error.credential;
+          // ...
+        });
     },
     signOut() {
       let fb = FBSE.facebookSignOut();
       fb.then(() => {
         // Sign-out successful.
-        this.$store.commit('SET_AUTH',null);
-        this.user = {photoURL: null};
+        this.$store.commit("SET_AUTH", null);
+        this.user = { photoURL: null };
       }).catch(function(error) {
         // An error happened.
       });
@@ -246,6 +279,27 @@ ul.nav {
       user-select: none !important;
       outline: none !important;
     }
+  }
+}
+
+.profile-img {
+  border-radius: 50%;
+}
+
+.header-link {
+  font-family: "Chonburi";
+  text-align: center;
+  display: block;
+  &.s-o-y {
+    color: $dark-red;
+  }
+
+  &.md {
+    color: $ci-sapphire;
+  }
+
+  &.gf {
+    color: $header-red;
   }
 }
 </style>
