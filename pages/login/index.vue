@@ -1,0 +1,125 @@
+<template>
+  <div>
+    <div class="dummy-bg">
+      <div class="dummy-con"></div>
+    </div>
+    <div class="main-bg">
+      <div class="main-con">
+        <div class="login-con">
+          <img src="~/assets/images/brand/user-icon.svg" alt>
+          <button @click="login()" class="login-btn">
+            <img src="~/assets/images/brand/fb-logo.svg" alt>
+            <p>Continue with Facebook</p>
+          </button>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div></div>
+    </div>
+  </div>
+</template>
+<script>
+import * as FBSE from "~/services/auth";
+import * as firebase from "firebase/app";
+export default {
+  methods: {
+    login() {
+      let fb = FBSE.facebookSignIn();
+      fb.then(result => {
+        if (result.credential) {
+          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+          let token = result.credential.accessToken;
+          // ...
+        }
+        // The signed-in user info.
+        let user = result.user;
+        console.log(result);
+        this.user = user.providerData[0];
+      })
+        .then(() => {
+          this.$store.commit("SET_AUTH", this.user);
+          let database = firebase.database();
+          database
+            .ref("user")
+            .equalTo(this.user.uid)
+            .once("value", snapshot => {
+              if (snapshot.exists()) {
+                console.log("exist!");
+              } else {
+                let uid = this.user.uid;
+                database.ref("user/" + uid).set({
+                  displayName: this.user.displayName,
+                  email: this.user.email,
+                  uid: this.user.uid,
+                  photoURL: this.user.photoURL,
+                  quizesList: {}
+                });
+              }
+            });
+          return this.$router.push({
+            path: "/profile"
+          });
+        })
+        .catch(function(error) {
+          // Handle Errors here.
+          let errorCode = error.code;
+          let errorMessage = error.message;
+          // The email of the user's account used.
+          let email = error.email;
+          // The firebase.auth.AuthCredential type that was used.
+          let credential = error.credential;
+          // ...
+        });
+    }
+  }
+};
+</script>
+<style lang="scss" scoped>
+@import "~assets/styles/variables";
+.dummy-bg {
+  .dummy-con {
+  }
+}
+.main-bg {
+  .main-con {
+    padding: 20px 0;
+    .login-con {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+      > img {
+        width: 50px;
+      }
+
+      .login-btn {
+        margin: 10px 0;
+        background-color: $fb;
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        padding: 5px 15px;
+        border: none;
+        border-radius: 20px;
+        cursor: pointer;
+        transition-duration: 0.2s;
+
+        &:hover {
+          background-color: darken($fb, 10%);
+          transition-duration: 0.2s;
+        }
+
+        img {
+          height: 20px;
+          margin-right: 5px;
+        }
+
+        p {
+          color: white;
+          font-family: "Sukhumvit-SemiBold";
+        }
+      }
+    }
+  }
+}
+</style>

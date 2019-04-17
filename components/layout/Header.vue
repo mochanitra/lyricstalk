@@ -1,7 +1,7 @@
 <template>
-  <header class="container">
-    <div class="row _pdv-12px _alit-ct">
-      <div class="col-4 offset-1 logo">
+  <header>
+    <div class="header-row row _alit-ct">
+      <div class="col-3 offset-1 logo">
         <nuxt-link to="/">
           <img class="_h-64px _cs-pt" src="~/assets/images/logo.svg">
         </nuxt-link>
@@ -27,14 +27,16 @@
           <br>feat.
         </nuxt-link>
       </div>
-      <!-- <div v-if="!$store.state.auth" class="col-2">
-        <button @click="login()">Login</button>
-      </div>-->
-      <!-- <div v-else class="col-2">
+      <div v-if="!$store.state.auth" class="col-2">
+        <nuxt-link to="/login">
+          <img class="user-icon" src="~/assets/images/brand/user-icon.svg">
+        </nuxt-link>
+      </div>
+      <div v-else class="col-2">
         <nuxt-link to="/profile">
           <img class="profile-img" v-show="$store.state.auth" v-bind:src="user.photoURL">
         </nuxt-link>
-      </div>-->
+      </div>
     </div>
   </header>
 </template>
@@ -86,6 +88,7 @@ export default {
         }
         // The signed-in user info.
         let user = result.user;
+        console.log(result);
         this.user = user.providerData[0];
       })
         .then(() => {
@@ -301,5 +304,14 @@ ul.nav {
   &.gf {
     color: $header-red;
   }
+}
+
+.header-row {
+  justify-content: space-between;
+}
+
+.user-icon {
+  height: 50px;
+  cursor: pointer;
 }
 </style>
