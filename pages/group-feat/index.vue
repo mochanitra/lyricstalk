@@ -30,7 +30,12 @@
           <img src="~/assets/images/decoration/music_tab.svg" alt>
         </div>
         <div class="amp-con">
-          <img src="~/assets/images/decoration/white-amp-from-left-desktop.svg" alt>
+          <img
+            v-if="$store.state.windowWidth > 576"
+            src="~/assets/images/decoration/white-amp-from-left-desktop.svg"
+            alt
+          >
+          <img v-else src="~/assets/images/decoration/white-amp-from-left-mobile.svg" alt>
         </div>
         <div class="cd-con">
           <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt>
@@ -58,7 +63,12 @@
         <img src="~/assets/images/decoration/music_tab.svg" alt>
       </div>
       <div class="amp-con">
-        <img src="~/assets/images/decoration/white-amp-from-right-desktop.svg" alt>
+        <img
+          v-if="$store.state.windowWidth > 576"
+          src="~/assets/images/decoration/white-amp-from-right-desktop.svg"
+          alt
+        >
+        <img v-else src="~/assets/images/decoration/white-amp-from-right-mobile.svg" alt>
       </div>
       <div class="cd-con">
         <div class="chat-con">
@@ -86,7 +96,12 @@
         <img src="~/assets/images/decoration/music_tab.svg" alt>
       </div>
       <div class="amp-con">
-        <img src="~/assets/images/decoration/white-amp-from-left-desktop.svg" alt>
+        <img
+          v-if="$store.state.windowWidth > 576"
+          src="~/assets/images/decoration/white-amp-from-left-desktop.svg"
+          alt
+        >
+        <img v-else src="~/assets/images/decoration/white-amp-from-left-mobile.svg" alt>
       </div>
       <div class="cd-con">
         <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt>
@@ -144,6 +159,9 @@ export default {
     padding: 20px 0;
     border-top-right-radius: 40px;
     border-bottom-left-radius: 40px;
+    @media (max-width: $screen-xs-max) {
+      padding: 15px 0;
+    }
     h1 {
       font-family: "RunWild";
       text-align: center;
@@ -162,8 +180,8 @@ export default {
     to right,
     $ci-white 0%,
     $ci-white 50%,
-    $dark-red 50%,
-    $dark-red 100%
+    $smoke-red 50%,
+    $smoke-red 100%
   );
   .intro-con {
     background-color: $light-red;
@@ -253,6 +271,10 @@ export default {
   padding: 40px;
   padding-left: 30px;
   padding-right: 30px;
+  @media (max-width: $screen-xs-max) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
   .header {
     margin-bottom: 10px;
@@ -298,11 +320,18 @@ export default {
     position: relative;
     // padding-right: 8vw;
     margin-top: 90px;
+    @media (max-width: $screen-xs-max) {
+      margin-top: 60px;
+    }
     //   padding-bottom: 20px;
     .cd {
       // width: 15%;
       height: 180px;
       width: 97px;
+      @media (max-width: $screen-xs-max) {
+        height: 90px;
+        width: 48px;
+      }
     }
 
     .chat-con {
@@ -316,18 +345,30 @@ export default {
       background-color: $ci-white;
       padding: 10px 20px;
       border-radius: 20px;
+      @media (max-width: $screen-xs-max) {
+        width: 80%;
+        height: 110px;
+      }
       // height: 90px;
       .head {
         font-family: "Sukhumvit-Bold";
         font-size: 1.4rem;
         text-align: center;
         margin-bottom: 10px;
+        margin-bottom: 5px;
+
+        @media (max-width: $screen-xs-max) {
+          font-size: 0.8rem;
+        }
       }
 
       .content {
         font-family: "Sukhumvit";
         font-size: 1.3rem;
         text-align: center;
+        @media (max-width: $screen-xs-max) {
+          font-size: 0.7rem;
+        }
       }
     }
 
@@ -337,6 +378,10 @@ export default {
       height: 20px;
       top: 99%;
       right: 80px;
+      @media (max-width: $screen-xs-max) {
+        height: 15px;
+        right: 60px;
+      }
     }
   }
 
@@ -346,6 +391,10 @@ export default {
     flex-flow: row;
     justify-content: flex-end;
     padding-right: 80px;
+    @media (max-width: $screen-xs-max) {
+      padding-right: 0;
+      margin-top: 25px;
+    }
 
     .start-button {
       width: 280px;
@@ -360,6 +409,10 @@ export default {
   padding: 40px;
   padding-left: 30px;
   padding-right: 30px;
+  @media (max-width: $screen-xs-max) {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
 
   .header {
     margin-bottom: 10px;
@@ -410,12 +463,19 @@ export default {
     position: relative;
     // padding-right: 8vw;
     margin-top: 90px;
+    @media (max-width: $screen-xs-max) {
+      margin-top: 60px;
+    }
     //   padding-bottom: 20px;
     .cd {
       // width: 15%;
       height: 180px;
       width: 97px;
       margin-left: -6px;
+      @media (max-width: $screen-xs-max) {
+        height: 90px;
+        width: 48px;
+      }
     }
 
     .chat-con {
@@ -429,18 +489,29 @@ export default {
       background-color: $ci-white;
       padding: 10px 20px;
       border-radius: 20px;
+      @media (max-width: $screen-xs-max) {
+        width: 80%;
+        height: 110px;
+      }
       // height: 90px;
       .head {
         font-family: "Sukhumvit-Bold";
         font-size: 1.4rem;
         text-align: center;
         margin-bottom: 10px;
+        @media (max-width: $screen-xs-max) {
+          margin-bottom: 5px;
+          font-size: 0.8rem;
+        }
       }
 
       .content {
         font-family: "Sukhumvit";
         font-size: 1.3rem;
         text-align: center;
+        @media (max-width: $screen-xs-max) {
+          font-size: 0.7rem;
+        }
       }
     }
 
@@ -450,6 +521,10 @@ export default {
       height: 20px;
       top: 99%;
       left: 80px;
+      @media (max-width: $screen-xs-max) {
+        height: 15px;
+        left: 60px;
+      }
     }
   }
 
@@ -459,6 +534,10 @@ export default {
     flex-flow: row;
     justify-content: flex-start;
     padding-left: 80px;
+    @media (max-width: $screen-xs-max) {
+      padding-left: 0;
+      margin-top: 25px;
+    }
 
     .start-button {
       width: 280px;
@@ -475,6 +554,11 @@ export default {
   border-radius: 40px;
   border: none;
   transition-duration: 0.3s;
+  @media (max-width: $screen-xs-max) {
+    width: 180px;
+    height: 40px;
+    padding: 4px;
+  }
   &:hover {
     background-color: $line-red;
     transition-duration: 0.3s;
@@ -493,11 +577,18 @@ export default {
     justify-content: center;
     align-items: center;
     transition-duration: 0.3s;
+    @media (max-width: $screen-xs-max) {
+      font-size: 0.7rem;
+      height: 32px;
+    }
     p {
       font-family: "Chonburi";
       color: white;
       font-size: 28px;
       line-height: 1;
+      @media (max-width: $screen-xs-max) {
+        font-size: 18px;
+      }
     }
   }
 }

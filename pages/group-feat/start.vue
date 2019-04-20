@@ -157,15 +157,41 @@
       <div class="player-con content-con">
         <div v-for="(player,i) in players" :key="i" class="player-col">
           <div class="player-row">
-            <input
-              :class="{'odd' : i % 2 == 0, 'even' : i % 2 == 1}"
+            <img v-show="player.pic" v-bind:src="player.pic" alt>
+            <img v-show="!player.pic" alt>
+            <!-- <input
+              :class="{'odd' : i % 2 == 0, 'even' : i % 2 == 1, 'player-input': true}"
               v-model="player.name"
               type="text"
+            >-->
+            <!-- <select ref="select" class="selectpicker" data-live-search="true">
+              <option data-tokens="ketchup mustard">Hot Dog, Fries and a Soda</option>
+              <option data-tokens="mustard">Burger, Shake and a Smile</option>
+              <option data-tokens="frosting">Sugar, Spice and all things nice</option>
+            </select>-->
+
+            <input
+              :class="{'odd' : i % 2 == 0, 'even' : i % 2 == 1, 'player-input': true}"
+              list="browsers"
+              v-model="player.name"
+              @change="nameChange(player.name,i)"
+              :disabled="i==0 || player.id"
             >
-            <button :class="{'disabled' : players.length <= 1}" @click="removePlayer(i)">x</button>
+            <datalist id="browsers">
+              <option v-for="friend in activeFriends" v-bind:key="friend.id">{{friend.name}}</option>
+            </datalist>
+            <button
+              :disabled="players.length <= 1 || i == 0"
+              :class="{'disabled' : players.length <= 1 || i == 0}"
+              @click="removePlayer(i)"
+            >x</button>
           </div>
         </div>
-        <button class="add-button" @click="addPlayer()">+</button>
+        <button
+          :disabled="players.length > friends.length"
+          :class="{'disabled': players.length > friends.length}"
+          @click="addPlayer()"
+        >+</button>
       </div>
     </div>
     <div class="header-con">
@@ -229,8 +255,33 @@ export default {
     location: "",
     photo: null,
     image: false,
-    uploadTask: ""
+    uploadTask: "",
+    friends: [],
+    activeFri: new Set(),
+    activeFriends: [],
+    isRender: false
   }),
+  mounted() {
+    if (this.$store.state.newauth) {
+      let players = [];
+      players.push({
+        name: this.$store.state.newauth.name,
+        id: this.$store.state.newauth.id,
+        pic: this.$store.state.newauth.picture.data.url
+      });
+      this.players = players;
+      this.friends = this.$store.state.newauth.friends.data;
+      this.activeFriends = this.$store.state.newauth.friends.data;
+    }
+  },
+  // updated() {
+  //   $(this.$refs.select).selectpicker("refresh");
+  // },
+  watch: {
+    isRender: function() {
+      this.activeFriends = this.friends.filter(f => !this.activeFri.has(f.id));
+    }
+  },
   methods: {
     selectTopic(topic) {
       this.topic = topic;
@@ -239,6 +290,8 @@ export default {
       this.players.push({ name: "" });
     },
     removePlayer(i) {
+      this.activeFri.delete(this.players[i].id);
+      this.isRender = !this.isRender;
       if (this.players.length > 1) {
         this.players.splice(i, 1);
       }
@@ -278,6 +331,9 @@ export default {
     start() {
       let err = "";
       if (this.topic == null) err += "กรุณาเลือกหัวข้อ\n";
+      this.players.map((player, i) => {
+        if (!player.id) err += `กรุณาเลือกผู้เล่นคนที่ ${i + 1} ใหม่\n`;
+      });
       if (err != "") {
         alert(err);
         return;
@@ -320,6 +376,23 @@ export default {
         currentQuestion,
         currentPlayer: 0
       });
+    },
+    nameChange(name, i) {
+      this.friends.map((friend, idx) => {
+        if (friend.name == name) {
+          let friend_data = {
+            name: friend.name,
+            id: friend.id,
+            pic: friend.picture.data.url
+          };
+          this.players[i] = friend_data;
+          this.activeFri.add(friend.id);
+          this.isRender = !this.isRender;
+          this.players.push({ name: "" });
+          this.players.pop();
+        }
+      });
+      return;
     }
   }
 };
@@ -589,13 +662,23 @@ export default {
         flex-flow: row;
         justify-content: center;
         align-items: center;
-        input {
+        img {
+          width: 39px;
+          height: 39px;
+          border-radius: 50%;
+        }
+        .player-input {
+          width: 300px;
+          height: 39px;
           font-family: "Chonburi";
           color: $font-black-blue-2;
           text-align: center;
           border: none;
           padding: 8px 0;
           border-radius: 30px;
+          display: flex;
+          flex-flow: row;
+          align-items: center;
           &.odd {
             background-color: $ci-light-blue;
             border: 1px solid $ci-light-blue;
@@ -668,6 +751,10 @@ export default {
         background-color: $light-red;
         border: none;
         cursor: pointer;
+        &.disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
       }
 
       .photo-con {
@@ -773,6 +860,20 @@ export default {
 
     img {
       width: 30%;
+    }
+  }
+}
+
+.ant-select {
+  > .ant-select-selection {
+    background: none;
+    border: none !important;
+    box-shadow: none !important;
+    width: 100%;
+
+    &:focus {
+      border: none;
+      box-shadow: none;
     }
   }
 }

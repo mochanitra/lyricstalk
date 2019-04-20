@@ -1,11 +1,14 @@
 import Cookie from 'cookie';
 import * as firebase from 'firebase/app';
 import * as FBSE from '~/services/auth';
+export const strict = false;
 
 export const state = () => ({
+  windowWidth: null,
   primaryMenu: [],
   footerMenu: [],
   auth: null,
+  newauth: null,
   isMobileMenuActive: false,
   menuSticky: false,
   isMobile: false,
@@ -85,6 +88,9 @@ export const actions = {
 };
 
 export const mutations = {
+  SET_WIDTH(state, width) {
+    state.windowWidth = width;
+  },
   SET_MOBILE_MENU_ACTIVE(state, bool) {
     state.isMobileMenuActive = bool;
   },
@@ -167,5 +173,9 @@ export const mutations = {
   UPDATE_RESULT(state, result) {
     state.groupFeatResults.results.pop();
     state.groupFeatResults.results.push(result);
+  },
+
+  SET_NEWAUTH(state, data) {
+    state.newauth = data;
   }
 };

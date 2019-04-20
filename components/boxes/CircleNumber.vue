@@ -47,8 +47,9 @@ export default {
       color: white;
       text-align: center;
       margin: auto 0;
-      line-height: 1;
+      line-height: 1.6;
       font-size: 24px;
+      margin-bottom: 1em !important;
       @media (max-width: $screen-xs-max) {
         font-size: 18px;
       }

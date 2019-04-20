@@ -31,6 +31,10 @@
     >
       <div class="gf-story-con">
         <div class="player-con">
+          <img
+            :src="$store.state.groupFeatResults.players[$store.state.groupFeatController.currentPlayer].pic"
+            alt
+          >
           <div class="name-con">
             <p>{{$store.state.groupFeatResults.players[$store.state.groupFeatController.currentPlayer].name}}</p>
           </div>
@@ -169,6 +173,13 @@ export default {
 
     .player-con {
       min-width: 200px;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      img {
+        position: absolute;
+        border-radius: 50%;
+      }
       .name-con {
         background-color: $ci-white;
         padding: 6px 15px;

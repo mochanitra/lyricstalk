@@ -29,6 +29,7 @@
 <script>
 import Header from "~/components/layout/Header";
 import Footer from "~/components/layout/Footer";
+// import "ant-design-vue/dist/antd.css";
 export default {
   components: {
     Header,
@@ -36,11 +37,13 @@ export default {
   },
   created() {
     if (process.browser) {
+      this.$store.commit("SET_WIDTH", window.innerWidth);
       window.addEventListener("resize", this.handleResize);
     }
   },
   methods: {
     handleResize() {
+      this.$store.commit("SET_WIDTH", window.innerWidth);
       if (window.innerWidth <= 768) {
         this.$store.commit("SET_TABLET", true);
       } else {
@@ -75,6 +78,10 @@ export default {
 
 .animate {
   animation: 1s slide-down;
+}
+
+p {
+  margin-bottom: 0 !important;
 }
 
 @keyframes slide-down {

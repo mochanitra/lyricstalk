@@ -191,10 +191,11 @@ export default {
         {
           player: {
             name: ""
-          }
+          },
+          react_3: 0
         }
       ],
-      type: null
+      type: ""
     },
     mostwowed: {
       player: {

@@ -23,13 +23,17 @@
 import * as FBSE from "~/services/auth";
 import * as firebase from "firebase/app";
 export default {
+  data: () => ({
+    // user: { photoURL: null },
+    token: null
+  }),
   methods: {
     login() {
       let fb = FBSE.facebookSignIn();
       fb.then(result => {
         if (result.credential) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          let token = result.credential.accessToken;
+          this.token = result.credential.accessToken;
           // ...
         }
         // The signed-in user info.
@@ -37,26 +41,32 @@ export default {
         console.log(result);
         this.user = user.providerData[0];
       })
-        .then(() => {
-          this.$store.commit("SET_AUTH", this.user);
-          let database = firebase.database();
-          database
-            .ref("user")
-            .equalTo(this.user.uid)
-            .once("value", snapshot => {
-              if (snapshot.exists()) {
-                console.log("exist!");
-              } else {
-                let uid = this.user.uid;
-                database.ref("user/" + uid).set({
-                  displayName: this.user.displayName,
-                  email: this.user.email,
-                  uid: this.user.uid,
-                  photoURL: this.user.photoURL,
-                  quizesList: {}
-                });
-              }
-            });
+        .then(async () => {
+          const res = await this.$axios.get(
+            `https://graph.facebook.com/me?access_token=${
+              this.token
+            }&fields=id,name,friends{name,picture},picture`
+            // {
+            //   access_token: this.token,
+            //   fields: "id,name,friends{name,picture},picture"
+            // },
+          );
+          res.then(() => {
+            this.$store.commit("SET_NEWAUTH", res.data);
+            this.$store.commit("SET_AUTH", this.user);
+            let database = firebase.database();
+            database
+              .ref("user")
+              .equalTo(this.user.uid)
+              .once("value", snapshot => {
+                if (snapshot.exists()) {
+                  database.ref("user/" + uid).update(res.data);
+                } else {
+                  let uid = this.user.uid;
+                  database.ref("user/" + uid).set(res.data);
+                }
+              });
+          });
           return this.$router.push({
             path: "/profile"
           });

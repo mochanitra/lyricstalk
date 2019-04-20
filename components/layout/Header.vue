@@ -58,9 +58,13 @@ export default {
   }),
   mounted() {
     const fb = FBSE.getUser();
-    fb.onAuthStateChanged(user => {
+    fb.onAuthStateChanged(async user => {
       if (user) {
         this.user = user.providerData[0];
+        const res = await this.$axios.get(
+          `https://lyricstalk-1fb09.firebaseio.com/user/${this.user.uid}.json`
+        );
+        this.$store.commit("SET_NEWAUTH", res.data);
         this.$store.commit("SET_AUTH", user.providerData[0]);
       }
     });
@@ -78,51 +82,51 @@ export default {
     changeLang(locale) {
       return (window.location.href = this.switchLocalePath(locale));
     },
-    login() {
-      let fb = FBSE.facebookSignIn();
-      fb.then(result => {
-        if (result.credential) {
-          // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-          let token = result.credential.accessToken;
-          // ...
-        }
-        // The signed-in user info.
-        let user = result.user;
-        console.log(result);
-        this.user = user.providerData[0];
-      })
-        .then(() => {
-          this.$store.commit("SET_AUTH", this.user);
-          let database = firebase.database();
-          database
-            .ref("user")
-            .equalTo(this.user.uid)
-            .once("value", snapshot => {
-              if (snapshot.exists()) {
-                console.log("exist!");
-              } else {
-                let uid = this.user.uid;
-                database.ref("user/" + uid).set({
-                  displayName: this.user.displayName,
-                  email: this.user.email,
-                  uid: this.user.uid,
-                  photoURL: this.user.photoURL,
-                  quizesList: {}
-                });
-              }
-            });
-        })
-        .catch(function(error) {
-          // Handle Errors here.
-          let errorCode = error.code;
-          let errorMessage = error.message;
-          // The email of the user's account used.
-          let email = error.email;
-          // The firebase.auth.AuthCredential type that was used.
-          let credential = error.credential;
-          // ...
-        });
-    },
+    // login() {
+    //   let fb = FBSE.facebookSignIn();
+    //   fb.then(result => {
+    //     if (result.credential) {
+    //       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+    //       let token = result.credential.accessToken;
+    //       // ...
+    //     }
+    //     // The signed-in user info.
+    //     let user = result.user;
+    //     console.log(result);
+    //     this.user = user.providerData[0];
+    //   })
+    //     .then(() => {
+    //       this.$store.commit("SET_AUTH", this.user);
+    //       let database = firebase.database();
+    //       database
+    //         .ref("user")
+    //         .equalTo(this.user.uid)
+    //         .once("value", snapshot => {
+    //           if (snapshot.exists()) {
+    //             console.log("exist!");
+    //           } else {
+    //             let uid = this.user.uid;
+    //             database.ref("user/" + uid).set({
+    //               displayName: this.user.displayName,
+    //               email: this.user.email,
+    //               uid: this.user.uid,
+    //               photoURL: this.user.photoURL,
+    //               quizesList: {}
+    //             });
+    //           }
+    //         });
+    //     })
+    //     .catch(function(error) {
+    //       // Handle Errors here.
+    //       let errorCode = error.code;
+    //       let errorMessage = error.message;
+    //       // The email of the user's account used.
+    //       let email = error.email;
+    //       // The firebase.auth.AuthCredential type that was used.
+    //       let credential = error.credential;
+    //       // ...
+    //     });
+    // },
     signOut() {
       let fb = FBSE.facebookSignOut();
       fb.then(() => {

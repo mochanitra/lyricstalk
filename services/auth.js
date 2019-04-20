@@ -42,6 +42,7 @@ function facebookGetRedirectResult() {
 function facebookSignIn() {
   let provider = new firebase.auth.FacebookAuthProvider();
   provider.addScope('email');
+  provider.addScope('public_profile');
   provider.addScope('user_friends');
   // provider.setCustomParameters({
   //   'display': 'popup'
