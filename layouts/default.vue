@@ -65,7 +65,7 @@ export default {
 
 #header {
   z-index: 9;
-  background-color: #fbf8f3;
+  background-color: $ci-white;
 }
 
 .has-shadow {

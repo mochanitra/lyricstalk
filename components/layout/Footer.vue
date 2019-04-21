@@ -2,39 +2,13 @@
   <footer>
     <div class="container">
       <div class="row">
-        <!-- Branding, when in mobile stay at bottom -->
-        <div class="col-12 col-md-3 _dp-f order-md-first order-last _mgt-32px _mgt-0px-md">
-          <div>
-            <small>
-              All Rights Reserved {{ new Date().getFullYear() }}
-              <br>lyricstalk Co., Ltd.
-            </small>
-          </div>
+        <div class="social-con">
+          <a class="fb-link" target="_blank" href="https://web.facebook.com/lyricstalk/">
+            <img src="~/assets/images/brand/fb-logo-2.svg" alt>
+          </a>
         </div>
-        <!-- FooterMenu -->
-        <nav class="col-12 col-md-9 _dp-f-md _jtfct-spbtw-md">
-          <!-- col 1 -->
-          <div
-            v-for="(item, i) in $store.state.footerMenu.filter(f => f.title !== 'home')"
-            :key="i"
-            class="_f-1"
-          >
-            <h5 class="_ttf-upc _cl-white" v-html="item.title"/>
-            <ul v-if="item.submenu">
-              <li v-for="(list, j) in item.submenu" :key="j" class="_pdbt-4px">
-                <nuxt-link
-                  :to="localePath(list.path)"
-                  class="_cl-white hover-spacing white _ttf-cptl"
-                  v-html="list.title"
-                />
-              </li>
-            </ul>
-          </div>
-          <!-- Contact -->
-          <div class="_f-2 _dp-f _fdrt-cl _alit-fe">
-            <h4 class="_ttf-upc _cl-white">#lyricstalk</h4>
-          </div>
-        </nav>
+        <img class="logo-footer" src="~/assets/images/brand/logo-white.svg" alt>
+        <p>#lyricstalk</p>
       </div>
     </div>
   </footer>
@@ -44,35 +18,53 @@
 @import "~assets/styles/variables";
 footer {
   position: relative;
-  background: #bb777c;
-  padding: 64px 0px 48px 0px;
+  background: $font-black-blue-2;
+  padding: 10px 20px 10px 20px;
   color: #fff;
   @media (max-width: $md - 1px) {
-    padding: 32px 0px;
+    padding: 10px 20px;
   }
-  &::before {
-    content: "";
-    width: 100%;
-    height: 24px;
-    background: #bb777c;
-    position: absolute;
-    top: 0px;
-    left: 0px;
-  }
-}
-nav {
-  h5 {
-    text-transform: capitalize;
-    @media (max-width: $md - 1px) {
-      margin: 16px 0px;
+
+  .row {
+    align-items: center;
+    justify-content: space-between;
+
+    .social-con {
+      a {
+        background-color: white;
+        padding: 8px;
+        display: flex;
+        flex-flow: row;
+        opacity: 0.5;
+        border-radius: 50%;
+        transition: opacity 0.15s ease-in-out;
+
+        &:hover {
+          opacity: 1;
+          transition: opacity 0.15s ease-in-out;
+        }
+        img {
+          height: 20px;
+          @media (max-width: $screen-xs-max) {
+            height: 15px;
+          }
+        }
+      }
     }
-    @media (min-width: $md) {
-      margin-bottom: 16px;
+
+    .logo-footer {
+      height: 60px;
+      @media (max-width: $screen-xs-max) {
+        height: 50px;
+      }
+    }
+
+    p {
+      font-family: "Sukhumvit-Bold";
+      @media (max-width: $screen-xs-max) {
+        font-size: 12px;
+      }
     }
   }
-}
-.contact-container {
-  line-height: 150%;
-  font-size: 0.9rem;
 }
 </style>

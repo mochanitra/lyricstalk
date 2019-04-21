@@ -1,41 +1,65 @@
 <template>
   <header>
     <div class="header-row row _alit-ct">
-      <div class="col-3 offset-1 logo">
+      <div v-show="$store.state.windowWidth <= 576" class="col-2 burger-con">
+        <img
+          @click="show_mobile_menu = !show_mobile_menu"
+          src="~/assets/images/header/menu.svg"
+          alt
+        >
+      </div>
+      <div class="col-3 offset-sm-1 logo">
         <nuxt-link to="/">
           <img class="_h-64px _cs-pt" src="~/assets/images/logo.svg">
         </nuxt-link>
       </div>
 
-      <div class="col-2">
-        <nuxt-link class="header-link s-o-y" to="/create">
-          Soundtrack
-          <br>of you
-        </nuxt-link>
-      </div>
+      <div v-show="$store.state.windowWidth > 576" class="col-6 nav">
+        <div class="row">
+          <div class="col-4">
+            <nuxt-link class="header-link s-o-y" to="/create">
+              Soundtrack
+              <br>of you
+            </nuxt-link>
+          </div>
 
-      <div class="col-2">
-        <nuxt-link class="header-link md" to="/">
-          music
-          <br>discussion
-        </nuxt-link>
-      </div>
+          <div class="col-4">
+            <nuxt-link class="header-link md" to="/">
+              music
+              <br>discussion
+            </nuxt-link>
+          </div>
 
-      <div class="col-2">
-        <nuxt-link class="header-link gf" to="/group-feat">
-          group
-          <br>feat.
-        </nuxt-link>
+          <div class="col-4">
+            <nuxt-link class="header-link gf" to="/group-feat">
+              group
+              <br>feat.
+            </nuxt-link>
+          </div>
+        </div>
       </div>
-      <div v-if="!$store.state.auth" class="col-2">
+      <div v-if="!$store.state.auth" class="col-2 profile-con">
         <nuxt-link to="/login">
           <img class="user-icon" src="~/assets/images/brand/user-icon.svg">
         </nuxt-link>
       </div>
-      <div v-else class="col-2">
+      <div v-else class="col-2 profile-con">
         <nuxt-link to="/profile">
           <img class="profile-img" v-show="$store.state.auth" v-bind:src="user.photoURL">
         </nuxt-link>
+      </div>
+    </div>
+    <div v-show="show_mobile_menu" class="mobile-menu">
+      <div @click="show_mobile_menu = !show_mobile_menu" class="one">
+        <nuxt-link class="mobile header-link s-o-y" to="/create">Soundtrack of you</nuxt-link>
+      </div>
+
+      <div @click="show_mobile_menu = !show_mobile_menu" class="two">
+        <nuxt-link class="mobile header-link md" to="/">music discussion</nuxt-link>
+      </div>
+
+      <div @click="show_mobile_menu = !show_mobile_menu" class="three">
+        <nuxt-link class="mobile header-link gf" to="/group-feat">group feat.</nuxt-link>
       </div>
     </div>
   </header>
@@ -54,7 +78,8 @@ export default {
     SearchModal
   },
   data: () => ({
-    user: { photoURL: null }
+    user: { photoURL: null },
+    show_mobile_menu: false
   }),
   mounted() {
     const fb = FBSE.getUser();
@@ -293,6 +318,16 @@ ul.nav {
   border-radius: 50%;
 }
 
+.logo {
+  @media (max-width: 769px) {
+    margin-left: 8.3333%;
+  }
+  @media (max-width: $screen-xs-max) {
+    margin-left: 0;
+    max-width: 50%;
+  }
+}
+
 .header-link {
   font-family: "Chonburi";
   text-align: center;
@@ -308,14 +343,67 @@ ul.nav {
   &.gf {
     color: $header-red;
   }
+
+  @media (max-width: $screen-sm-max) {
+    font-size: 14px;
+  }
+
+  @media (max-width: $screen-xs-max) {
+    font-size: 16px;
+  }
 }
 
 .header-row {
   justify-content: space-between;
+  @media (max-width: $screen-xs-max) {
+    padding: 0 12px;
+  }
 }
 
 .user-icon {
   height: 50px;
   cursor: pointer;
+}
+
+.burger-con {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  img {
+    height: 40px;
+    cursor: pointer;
+  }
+  @media (max-width: $screen-xs-max) {
+    max-width: 25%;
+  }
+}
+
+.mobile-menu {
+  position: absolute;
+  padding-top: 16px;
+  z-index: 100;
+  width: 100vw;
+  background-color: $ci-white;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+
+  .one {
+    background-color: $light-red;
+    border-top-right-radius: 20px;
+  }
+
+  .three {
+    background-color: $light-red;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+
+  .mobile {
+    padding: 10px 0;
+  }
+}
+
+.profile-con {
+  max-width: 25%;
 }
 </style>
