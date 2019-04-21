@@ -271,6 +271,7 @@ export default {
     }
 
     hr {
+      border: none;
       border-bottom: 2px solid $line-red;
       width: 100px;
     }
@@ -315,8 +316,8 @@ export default {
           height: 140px;
           position: absolute;
           right: 0;
-          width: 73px;
-          margin-right: -1px;
+          width: 75px;
+          margin-right: -2px;
           @media (max-width: $screen-xs-max) {
             height: 72px;
             width: 38px;

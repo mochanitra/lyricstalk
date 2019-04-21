@@ -51,22 +51,20 @@ export default {
             //   fields: "id,name,friends{name,picture},picture"
             // },
           );
-          res.then(() => {
-            this.$store.commit("SET_NEWAUTH", res.data);
-            this.$store.commit("SET_AUTH", this.user);
-            let database = firebase.database();
-            database
-              .ref("user")
-              .equalTo(this.user.uid)
-              .once("value", snapshot => {
-                if (snapshot.exists()) {
-                  database.ref("user/" + uid).update(res.data);
-                } else {
-                  let uid = this.user.uid;
-                  database.ref("user/" + uid).set(res.data);
-                }
-              });
-          });
+          await this.$store.commit("SET_AUTH", this.user);
+          let database = firebase.database();
+          await database
+            .ref("user")
+            .equalTo(this.user.uid)
+            .once("value", snapshot => {
+              if (snapshot.exists()) {
+                database.ref("user/" + uid).update(res.data);
+              } else {
+                let uid = this.user.uid;
+                database.ref("user/" + uid).set(res.data);
+              }
+            });
+          await this.$store.commit("SET_NEWAUTH", res.data);
           return this.$router.push({
             path: "/profile"
           });

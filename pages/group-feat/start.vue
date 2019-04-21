@@ -262,14 +262,13 @@ export default {
     isRender: false
   }),
   mounted() {
-    if (this.$store.state.newauth) {
-      let players = [];
-      players.push({
+    if (this.$store.state.newauth != null) {
+      this.players.pop();
+      this.players.push({
         name: this.$store.state.newauth.name,
         id: this.$store.state.newauth.id,
         pic: this.$store.state.newauth.picture.data.url
       });
-      this.players = players;
       this.friends = this.$store.state.newauth.friends.data;
       this.activeFriends = this.$store.state.newauth.friends.data;
     }

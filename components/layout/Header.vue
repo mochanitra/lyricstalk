@@ -356,7 +356,7 @@ ul.nav {
 .header-row {
   justify-content: space-between;
   @media (max-width: $screen-xs-max) {
-    padding: 0 12px;
+    padding: 0 20px;
   }
 }
 
