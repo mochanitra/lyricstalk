@@ -1,51 +1,21 @@
 <template>
-  <div class="_w-100pct bgcl">
-    <div class="container">
-      <div class="row _jtfct-ct">
-        <div class="col-4 _pdt-64px _pdbt-16px _dp-f _fdrt-cl _alit-ct">
-          <h3>your name</h3>
-        </div>
+  <div class="quiz-index">
+    <div class="header-bg">
+      <div class="header">
+        <h1>soundtrack of you</h1>
       </div>
-
-      <div class="row _jtfct-ct">
-        <div class="col-4 _jtfct-ct _pdbt-16px">
-          <div class="bio-input">
-            <input
-              v-model="name"
-              @change="$store.commit('SET_QUIZ_ANSWER_NAME', {
-                   name: name
-                })"
-              type="text"
-              placeholder="your name"
-            >
+    </div>
+    <div class="playlist-bg">
+      <div class="playlist-con">
+        <div class="share-con">
+          <p class="name">{{quiz.name}}</p>
+          <div class="pic-con">
+            <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
+            <div class="pic">
+              <img v-bind:src="quiz.cover" alt>
+            </div>
           </div>
-        </div>
-      </div>
-
-      <div class="row _jtfct-ct">
-        <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdbt-16px">
-          <h1>{{quiz.name}}</h1>
-        </div>
-      </div>
-
-      <div class="row _jtfct-ct">
-        <div class="col-5 _dp-f _fdrt-cl _alit-fe _pdbt-16px _pdr-0px">
-          <img class="_w-128px" src="~/assets/images/cd.png">
-        </div>
-
-        <div class="col-7 _dp-f _fdrt-cl _alit-fst _pdbt-16px _pdl-0px">
-          <img height="256" :src="quiz.cover">
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12 _pdt-32px _dp-f _fdrt-cl _alit-ct">
-          <h3>มาทายคำตอบของ {{quiz.name}} กันเถอะ !</h3>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-32px _pdbt-64px">
+          <p class="sub-detail">มาทายคำตอบของ {{quiz.name}} กันเถอะ</p>
           <nuxt-link
             :to="localePath({
                     name: 'quiz-quizSlug-answer',
@@ -56,8 +26,11 @@
                         q: 1
                     }
                 })"
+            class="btn-out"
           >
-            <img class="_h-64px" src="~/assets/images/start.png">
+            <div class="btn-in">
+              <p>start</p>
+            </div>
           </nuxt-link>
         </div>
       </div>
@@ -79,27 +52,202 @@ export default {
     };
   },
   data: () => ({
-    name: null
+    name: null,
+    taker: {
+      name: "",
+      id: "",
+      picture: ""
+    }
   }),
-  head() {
-    return {
-      meta: [
-        {
-          property: "og:title",
-          content: `มาทายคำตอบของ ${this.quiz.name} กันเถอะ`
-        },
-        {
-          property: "og:image",
-          content: require("assets/images/background/og-fb.png")
-        }
-      ]
-    };
+  watch: {
+    "$store.state.newauth"() {
+      const newauth = this.$store.state.newauth;
+      this.taker = {
+        name: newauth.name,
+        id: newauth.id,
+        picture: newauth.picture
+      };
+      this.$store.commit("SET_QUIZ_ANSWER_TAKER", this.taker);
+    }
+  },
+  mounted() {
+    if (this.$store.state.newauth) {
+      const newauth = this.$store.state.newauth;
+      this.taker = {
+        name: newauth.name,
+        id: newauth.id,
+        picture: newauth.picture
+      };
+    }
+    this.$store.commit("SET_QUIZ_ANSWER_TAKER", this.taker);
   }
+  // head() {
+  //   return {
+  //     meta: [
+  //       {
+  //         hid: "og:title",
+  //         property: "og:title",
+  //         content: `มาทายคำตอบของเราในควิซกันเถอะ`
+  //       },
+  //       {
+  //         hid: "og:image",
+  //         property: "og:image",
+  //         content: require("assets/images/background/og-fb.png")
+  //       }
+  //     ]
+  //   };
+  // }
 };
 </script>
 
-<style>
-.bgcl {
-  background-color: #ede1df;
+<style lang="scss" scoped>
+@import "assets/styles/variables";
+.header-bg {
+  width: 100%;
+  background: linear-gradient(
+    to left,
+    $ci-white 0%,
+    $ci-white 50%,
+    $light-red 50%,
+    $light-red 100%
+  );
+  .header {
+    background-color: $dark-red;
+    padding: 20px 0;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    h1 {
+      font-family: "RunWild";
+      text-align: center;
+      color: white;
+      font-size: 48px;
+
+      span {
+        padding-left: 120px;
+      }
+    }
+  }
+}
+
+.playlist-bg {
+  background-color: $dark-red;
+
+  .playlist-con {
+    min-height: calc(100vh - 268px);
+    background-color: $light-red;
+    border-top-right-radius: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.share-con {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  padding: 30px 0;
+  .name {
+    font-family: "Chonburi";
+    font-size: 28px;
+    text-align: center;
+  }
+}
+
+.pic-con {
+  margin-top: 20px;
+  position: relative;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  height: 200px;
+  margin-left: -97px;
+  @media (max-width: $screen-xs-max) {
+    width: auto;
+    margin-bottom: 20px;
+    height: 150px;
+    margin-left: -72px;
+  }
+
+  .cd-left {
+    height: 180px;
+    width: 97px;
+    margin-left: 6px;
+    z-index: 0;
+    @media (max-width: $screen-xs-max) {
+      height: 127px;
+      width: 72px;
+    }
+  }
+
+  .pic {
+    height: 200px;
+    width: 200px;
+    // background-color: $line-red;
+    border-radius: 20px;
+    margin-left: -6px;
+    z-index: 1;
+    overflow: hidden;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    @media (max-width: $screen-xs-max) {
+      height: 150px;
+      width: 150px;
+      z-index: 1;
+    }
+
+    img {
+      height: 100%;
+    }
+  }
+}
+
+.btn-out {
+  margin-top: 20px;
+  cursor: pointer;
+  padding: 6px;
+  width: 240px;
+  height: 60px;
+  background-color: $dark-blue;
+  border-radius: 40px;
+  border: none;
+  transition-duration: 0.3s;
+  &:hover {
+    background-color: $line-red;
+    transition-duration: 0.3s;
+
+    .btn-in {
+      background-color: $line-red;
+      transition-duration: 0.3s;
+    }
+  }
+  .btn-in {
+    border: 2px solid white;
+    background-color: $dark-blue;
+    height: 48px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.3s;
+    p {
+      font-family: "Chonburi";
+      color: white;
+      font-size: 28px;
+      line-height: 1;
+    }
+  }
+}
+
+.sub-detail {
+  margin-top: 20px;
+  font-family: "Sukhumvit-SemiBold";
+  color: $font-black-blue;
+  @media (max-width: $screen-xs-max) {
+    font-size: 14px;
+    margin-top: 0px;
+  }
 }
 </style>

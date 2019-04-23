@@ -1,20 +1,20 @@
 <template>
-  <div class="_w-100pct bgcl">
-    <div class="container">
-      <div class="row">
-        <div class="col-12 _dp-f _fdrt-cl _alit-ct _pdt-32px">
-          <img class="_h-64px" :src="`/images/number${q}.png`">
-        </div>
+  <div>
+    <div class="header-bg">
+      <div class="header">
+        <h1>soundtrack of you</h1>
       </div>
-
-      <div class="row">
-        <div class="col-12 _pdt-32px _dp-f _fdrt-cl _alit-ct">
-          <h3>คิดว่า {{quiz.name}} จะเลือกคำตอบไหน ?</h3>
-        </div>
-      </div>
-
-      <div class="row _jtfct-ct">
-        <div class="_bgs-ct _bgrp-nrp _bgpst-ct _pdt-32px _pdbt-16px">
+    </div>
+    <div class="quiz-bg">
+      <div class="quiz-con">
+        <div class="item-con">
+          <div class="number-con">
+            <CircleNumber class="circle" :number="q"/>
+          </div>
+          <p class="think">
+            คิดว่า
+            <span>{{quiz.name}}</span> จะเลือกคำตอบไหน?
+          </p>
           <QuestionItem
             @selectSong="(index) => $store.commit('SET_QUIZ_ANSWER', {
                     item: +q,
@@ -22,56 +22,79 @@
                 })"
             :selected-question="$store.state.questions.find(x => x.id === quiz.quiz[+q - 1].selectedSongId)"
             :key="this.q"
+            :isAnswer="true"
+            :answerIndex="answerIndex"
           />
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="col-12 _pdt-32px _pdbt-8px _dp-f _fdrt-cl _alit-ct">
-          <h3>เพราะอะไร ?</h3>
-        </div>
-      </div>
-
-      <div class="row _jtfct-ct _pdt-16px _pdbt-64px">
-        <div class="col-2"></div>
-
-        <div class="col-8">
-          <div class="bio-input">
-            <input
-              type="text"
-              @change="$store.commit('SET_QUIZ_ANSWER_WHY', {
+          <div class="why-bg">
+            <div class="why-con">
+              <div class="why-arrow">
+                <img
+                  @click="goBack()"
+                  v-if="q>1"
+                  class="left"
+                  src="~/assets/images/decoration/soy/arrow.svg"
+                  alt
+                >
+                <img
+                  v-else
+                  class="disabled"
+                  src="~/assets/images/decoration/soy/arrow-disabled.svg"
+                  alt
+                >
+                <input
+                  type="text"
+                  @change="$store.commit('SET_QUIZ_ANSWER_WHY', {
                     item: +q,
                     why: why
                 })"
-              v-model="why"
-              placeholder="why ?"
-            >
+                  v-model="why"
+                  placeholder="why ?"
+                >
+                <img
+                  @click="saveAndGoNext()"
+                  class="right"
+                  src="~/assets/images/decoration/soy/arrow.svg"
+                  alt
+                >
+              </div>
+            </div>
           </div>
-        </div>
-
-        <div class="col-2 _dp-f _fdrt-cl _alit-fe">
-          <!-- <nuxt-link :to="localePath(getPath)"> -->
-          <img @click="saveAndGoNext()" class="_h-64px _cs-pt" src="~/assets/images/nextbutton.png">
-          <!-- </nuxt-link> -->
         </div>
       </div>
     </div>
+
+    <!-- <nuxt-link :to="localePath(getPath)"> -->
+    <!-- </nuxt-link> -->
   </div>
 </template>
 
 <script>
 import QuestionItem from "~/components/QuestionItem";
+import CircleNumber from "~/components/boxes/CircleNumber";
 import * as FBSE from "~/services/auth";
 export default {
   components: {
-    QuestionItem
+    QuestionItem,
+    CircleNumber
   },
   data: () => ({
-    why: null
+    why: null,
+    answerIndex: null
   }),
   watch: {
-    "$route.query.q"() {
-      this.why = null;
+    "$route.query.q"(newVal, oldVal) {
+      this.answerIndex = null;
+      console.log(newVal);
+      if (
+        this.$store.state.quizTaker.answers[newVal].answer != null &&
+        this.$store.state.quizTaker.answers[newVal].why != null
+      ) {
+        console.log(`${newVal} is true`);
+        this.answerIndex = this.$store.state.quizTaker.answers[newVal].answer;
+        this.why = this.$store.state.quizTaker.answers[newVal].why;
+      } else {
+        this.why = null;
+      }
     }
   },
   async asyncData({ params, store }) {
@@ -119,14 +142,34 @@ export default {
   methods: {
     async saveAndGoNext() {
       // save answer to firebase
+      let err = "";
+
+      if (this.$store.state.quizTaker.answers[+this.q].answer == null) {
+        err += "กรุณาตอบคำถาม\n";
+      }
+
+      if (
+        this.$store.state.quizTaker.answers[+this.q].why == null ||
+        this.$store.state.quizTaker.answers[+this.q].why.replace(/\s/g, "") ==
+          ""
+      ) {
+        err += "กรุณาให้เหตุผล\n";
+      }
+
+      if (err != "") {
+        alert(err);
+        return;
+      }
       // ต้องเซฟที่
       if (+this.q === 5) {
         const quizKey = this.$route.params.quizSlug; // -> momo-292
         const answerKey =
-          this.$store.state.quizTaker.name + "-" + ~~(Math.random() * 1000); // meme-193
-        const res = await FBSE.saveUserAnswer(this.key, this.quiz.owner.uid, {
+          this.$store.state.quizTaker.taker.name.replace(/\s/g, "") +
+          "-" +
+          ~~(Math.random() * 1000); // meme-193
+        const res = await FBSE.saveUserAnswer(this.key, this.quiz.owner.id, {
           answerKey,
-          name: this.$store.state.quizTaker.name,
+          name: this.$store.state.quizTaker.taker.name,
           answers: this.$store.state.quizTaker.answers
         });
         console.log(res);
@@ -152,6 +195,17 @@ export default {
           q: +this.q + 1
         }
       });
+    },
+    async goBack() {
+      return this.$router.push({
+        name: this.$route.name,
+        params: {
+          quizSlug: this.quiz.slug
+        },
+        query: {
+          q: +this.q - 1
+        }
+      });
     }
   }
 
@@ -170,15 +224,116 @@ export default {
 };
 </script>
 
-<style>
-.bgcl {
-  background-color: #e8dbd6;
+<style lang="scss" scoped>
+@import "assets/styles/variables";
+.header-bg {
+  width: 100%;
+  background: linear-gradient(
+    to left,
+    $ci-white 0%,
+    $ci-white 50%,
+    $light-red 50%,
+    $light-red 100%
+  );
+  .header {
+    background-color: $dark-red;
+    padding: 20px 0;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    h1 {
+      font-family: "RunWild";
+      text-align: center;
+      color: white;
+      font-size: 48px;
+
+      span {
+        padding-left: 120px;
+      }
+    }
+  }
 }
 
-.center {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+.quiz-bg {
+  background-color: $dark-red;
+
+  .quiz-con {
+    background-color: $light-red;
+    border-top-right-radius: 40px;
+    padding: 30px 0;
+
+    .item-con {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+
+      .number-con {
+        margin-bottom: 20px;
+      }
+
+      .think {
+        font-family: "Chonburi";
+        color: $font-black-blue-4;
+        font-size: 24px;
+        text-align: center;
+        @media (max-width: $screen-xs-max) {
+          font-size: 12px;
+        }
+        span {
+          color: $line-red;
+        }
+        margin-bottom: 20px !important;
+      }
+    }
+  }
+}
+
+.why-bg {
+  width: 100%;
+  max-width: 1188px;
+  background-color: $line-red;
+  .why-con {
+    padding: 30px 0;
+    background-color: $light-red;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border-top-right-radius: 40px;
+  }
+
+  input {
+    width: 90%;
+    @media (max-width: $screen-xs-max) {
+      width: 80%;
+    }
+    border: none;
+    background-color: $ci-white;
+    border-radius: 40px;
+    padding: 7px 15px;
+    font-family: "Sukhumvit";
+    color: $why;
+    line-height: 1.5;
+  }
+
+  .why-arrow {
+    width: 95%;
+    display: flex;
+    flex-flow: row;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+
+    img {
+      height: 30px;
+
+      &.left {
+        transform: rotate(180deg);
+      }
+
+      &.disabled {
+        cursor: initial;
+      }
+    }
+  }
 }
 </style>
 

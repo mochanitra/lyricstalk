@@ -24,7 +24,7 @@ export const state = () => ({
   },
   loadedQuiz: null,
   quizTaker: {
-    name: null,
+    taker: null,
     answers: {
       1: {},
       2: {},
@@ -130,8 +130,8 @@ export const mutations = {
   SET_QUIZ_ANSWER_WHY(state, { item, why }) {
     state.quizTaker.answers[item].why = why;
   },
-  SET_QUIZ_ANSWER_NAME(state, { item, name }) {
-    state.quizTaker.name = name;
+  SET_QUIZ_ANSWER_TAKER(state, taker) {
+    state.quizTaker.taker = taker;
   },
   SET_LOADED_QUIZ(state, loadedQuiz) {
     state.loadedQuiz = loadedQuiz;

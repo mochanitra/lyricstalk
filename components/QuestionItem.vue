@@ -3,7 +3,7 @@
     :class="{'question-item': true, 'one': number == 1, 'two': number == 2, 'three': number == 3, 'four': number == 4, 'five': number == 5}"
   >
     <img class="music-tab" src="~/assets/images/decoration/music_tab.svg" alt>
-    <h2 @click="showQuestionList()">
+    <h2 :class="{'isAnswer': isAnswer}" @click="showQuestionList()">
       <span v-if="!selectedQuestion">Choose question {{ number }}</span>
       <span v-else>{{ selectedQuestion.title }}</span>
     </h2>
@@ -17,9 +17,15 @@
 
         <div
           class="song-con"
-          :class="{'selected': selectedSong === i, 'correct': correctAnswerIndex === i, 'answer': userAnswerIndex === i}"
+          :class="{'selected': selectedSong != null ? selectedSong == i : answerIndex == i, 'correct': correctAnswerIndex == i, 'answer': userAnswerIndex == i}"
         >
           <img
+            v-if="isShow"
+            :class="{'played': isPlayed == i, 'cd-left': true, 'init': true}"
+            src="~/assets/images/decoration/cd-left.svg"
+          >
+          <img
+            v-else
             @click="selectSong(i)"
             :class="{'played': isPlayed == i, 'cd-left': true}"
             src="~/assets/images/decoration/cd-left.svg"
@@ -31,8 +37,11 @@
             <img v-else class="play" src="~/assets/images/decoration/soy/play-4.svg">
           </button>
           <!-- {/* <audio id={this.state.question.id} src={this.state.question.mp3} /> */} -->
-          <div @click="selectSong(i)" class="lyric-con">
-            <p v-if="show[i]">{{ song.lyrics }}</p>
+          <div v-if="isShow" class="lyric-con init">
+            <p v-if="show[i] || isShow">{{ song.lyrics }}</p>
+          </div>
+          <div v-else @click="selectSong(i)" class="lyric-con">
+            <p v-if="show[i] || isShow">{{ song.lyrics }}</p>
           </div>
         </div>
 
@@ -85,6 +94,18 @@ export default {
     playedSong: {
       type: String,
       default: null
+    },
+    isAnswer: {
+      type: Boolean,
+      default: false
+    },
+    answerIndex: {
+      type: Number,
+      default: null
+    },
+    isShow: {
+      type: Boolean,
+      default: false
     }
   },
   methods: {
@@ -198,6 +219,15 @@ h2 {
     min-width: 200px;
     font-size: 12px;
     padding: 8px 20px;
+  }
+
+  &.isAnswer {
+    cursor: initial;
+    border: none;
+    &:hover {
+      color: $ci-white;
+      background: none;
+    }
   }
 
   &:hover {
@@ -352,6 +382,10 @@ h2 {
       }
     }
   }
+}
+
+.init {
+  cursor: initial;
 }
 
 @keyframes wide-narrow {

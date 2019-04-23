@@ -218,7 +218,8 @@ export default {
 .number-bg {
   width: 100%;
   &.one {
-    background-color: $dark-red;
+    // background-color: $dark-red;
+    background: none;
   }
 
   &.two {
@@ -245,6 +246,7 @@ export default {
 
     &.one {
       // border-top-right-radius: 40px;
+      background: none;
     }
 
     &.two {

@@ -14,7 +14,7 @@
       <button class="upload-btn" type="button" @click="$refs.input.click()">
         <p>choose picture</p>
         <div :style="{ width: progressUpload + '%'}" class="fill"/>
-        <fa-icon class="check _cl-white" icon="check"/>
+        <!-- <fa-icon class="check _cl-white" icon="check"/> -->
       </button>
     </div>
     <div

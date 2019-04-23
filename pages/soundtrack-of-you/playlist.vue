@@ -54,7 +54,7 @@ export default {
         picture: this.$store.state.newauth.picture
       };
       this.$store.commit("SET_MYQUIZ_PROFILE", {
-        name: name,
+        name: this.$store.state.newauth.name,
         cover: this.cover,
         slug,
         owner
