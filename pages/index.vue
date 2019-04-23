@@ -71,9 +71,10 @@
           <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt>
           <div class="chat-con">
             <!-- <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt> -->
+            <p class="head">‘ What song relates you the most ’</p>
             <p
               class="content"
-            >อธิบายความเป็นคุณ ด้วยการสร้างชุดคำถาม 5 ข้อ ที่ใช้ท่อนหนึ่งของบทเพลงในการตอบ</p>
+            >การสร้าง Quiz ด้วยชุดคำถาม Deep conversation 5 ข้อ แล้วตอบด้วยท่อนหนึ่งของเนื้อเพลงที่อธิบายความเป็นคุณได้ดีที่สุด</p>
             <img class="chat-bottom" src="~/assets/images/decoration/top-chat.svg" alt>
           </div>
         </div>
@@ -102,9 +103,10 @@
       <div class="cd-con">
         <div class="chat-con">
           <!-- <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt> -->
+          <p class="head">‘ Let’s vote and discuss ! ’</p>
           <p
             class="content"
-          >ร่วมแสดงความคิดเห็น และมุมมองของคุณในประเด็นต่างๆต่อเนื้อเพลงจากศิลปินมากมาย</p>
+          >การร่วมโหวตและแสดงความคิดเห็นของคุณในประเด็นต่างๆ ของเนื้อเพลงจากศิลปินมากมาย</p>
           <img class="chat-bottom" src="~/assets/images/decoration/top-chat.svg" alt>
         </div>
         <img class="cd" src="~/assets/images/decoration/cd-right.svg" alt>
@@ -134,9 +136,10 @@
         <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt>
         <div class="chat-con">
           <!-- <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt> -->
+          <p class="head">‘ Meaningful conversation when we are together. ’</p>
           <p
             class="content"
-          >เริ่มบทสนทนาผ่านเกมที่จะใช้เนื้อเพลง นำไปสู่การพูดคุย สร้างความทรงจำและบทสนทนาที่มีความหมายร่วมกัน</p>
+          >Conversation game ที่จะใช้ท่อนหนึ่งของเนื้อเพลงนำไปสู่การพูดคุย เมื่อใช้เวลาอยู่ร่วมกันเพื่อสร้างความทรงจำและบทสนทนาที่มีความหมาย</p>
           <img class="chat-bottom" src="~/assets/images/decoration/top-chat.svg" alt>
         </div>
       </div>
@@ -641,7 +644,7 @@ export default {
       }
 
       .content {
-        font-family: "Sukhumvit-SemiBold";
+        font-family: "Sukhumvit";
         font-size: 1.3rem;
         text-align: center;
         @media (max-width: $screen-xs-max) {
@@ -787,7 +790,7 @@ export default {
       }
 
       .content {
-        font-family: "Sukhumvit-SemiBold";
+        font-family: "Sukhumvit";
         font-size: 1.3rem;
         text-align: center;
         @media (max-width: $screen-xs-max) {

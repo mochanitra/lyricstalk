@@ -14,7 +14,7 @@
               <CircleNumber class="circle" :number="1"/>
             </div>
             <div class="col-5">
-              <p class="ins">Choose question</p>
+              <p class="ins">เลือกคำถาม</p>
             </div>
             <div class="img-col col-5 col-sm-3 offset-sm-1">
               <img class="img-1" src="~/assets/images/instruction/ins_1.svg" alt>
@@ -30,7 +30,7 @@
               <CircleNumber class="circle" :number="2"/>
             </div>
             <div class="col-5">
-              <p class="ins">Listen to the music</p>
+              <p class="ins">ฟังเพลง</p>
             </div>
             <div class="img-col col-5 col-sm-3 offset-sm-1">
               <img class="img-2" src="~/assets/images/instruction/ins_2.svg" alt>
@@ -46,7 +46,7 @@
               <CircleNumber class="circle" :number="3"/>
             </div>
             <div class="col-5">
-              <p class="ins">Choose your answer</p>
+              <p class="ins">เลือกคำตอบ</p>
             </div>
             <div class="img-col col-5 col-sm-3 offset-sm-1">
               <img class="img-3" src="~/assets/images/instruction/ins_3.svg" alt>
@@ -62,7 +62,7 @@
               <CircleNumber class="circle" :number="4"/>
             </div>
             <div class="col-5">
-              <p class="ins">Why?</p>
+              <p class="ins">ให้เหตุผล</p>
             </div>
             <div class="img-col col-5 col-sm-3 offset-sm-1">
               <img class="img-4" src="~/assets/images/instruction/ins_4.svg" alt>
@@ -70,7 +70,11 @@
           </div>
         </div>
         <div class="button-con">
-          <CommonButton :text="'next'"/>
+          <nuxt-link to="/soundtrack-of-you/create" class="btn-out">
+            <div class="btn-in">
+              <p>start</p>
+            </div>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -123,6 +127,9 @@ export default {
       background-color: $light-red;
       border-top-right-radius: 40px;
       padding: 40px 80px;
+      display: flex;
+      flex-flow: column;
+      align-items: center;
 
       @media (max-width: $screen-xs-max) {
         padding: 40px 20px;
@@ -131,6 +138,7 @@ export default {
       .instruction {
         background-color: $ci-white;
         padding: 20px 40px;
+        max-width: 500px;
         @media (max-width: $screen-xs-max) {
           padding: 20px;
         }
@@ -214,6 +222,42 @@ export default {
         justify-content: center;
         padding-top: 40px;
       }
+    }
+  }
+}
+
+.btn-out {
+  cursor: pointer;
+  padding: 6px;
+  width: 240px;
+  height: 60px;
+  background-color: $dark-blue;
+  border-radius: 40px;
+  border: none;
+  transition-duration: 0.3s;
+  &:hover {
+    background-color: $line-red;
+    transition-duration: 0.3s;
+
+    .btn-in {
+      background-color: $line-red;
+      transition-duration: 0.3s;
+    }
+  }
+  .btn-in {
+    border: 2px solid white;
+    background-color: $dark-blue;
+    height: 48px;
+    border-radius: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition-duration: 0.3s;
+    p {
+      font-family: "Chonburi";
+      color: white;
+      font-size: 28px;
+      line-height: 1;
     }
   }
 }

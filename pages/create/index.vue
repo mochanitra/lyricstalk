@@ -30,7 +30,7 @@
     </div>
 
     <!-- Modal -->
-    <modal :adaptive="true" :scrollable="true" with="100%" height="auto" name="question-list">
+    <modal :adaptive="true" :scrollable="true" width="100%" height="auto" name="question-list">
       <div class="_w-100pct _bgcl-white _h-100pct">
         <div class="container">
           <div class="row">

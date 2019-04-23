@@ -254,6 +254,13 @@ export default {
   data: () => ({
     status: ""
   }),
+  mounted() {
+    if (!this.$store.state.newauth) {
+      return this.$router.push({
+        path: "/"
+      });
+    }
+  },
   methods: {
     signOut() {
       let fb = FBSE.facebookSignOut();
