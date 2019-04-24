@@ -32,10 +32,23 @@
             <div v-if="$store.state.windowWidth <= 576" class="pic-con">
               <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
               <div class="pic">
-                <img alt>
+                <img
+                  v-if="$store.state.newauth.quizesList"
+                  v-bind:src="$store.state.newauth.quizesList[Object.keys($store.state.newauth.quizesList)[0]].cover"
+                  alt
+                >
               </div>
             </div>
-            <button class="btn-out">
+            <nuxt-link
+              v-if="$store.state.newauth.quizesList"
+              :to="`/soundtrack-of-you/result/${$store.state.newauth.quizesList[Object.keys($store.state.newauth.quizesList)[0]].slug}`"
+              class="btn-out"
+            >
+              <div class="btn-in">
+                <p>see quiz</p>
+              </div>
+            </nuxt-link>
+            <button v-else class="btn-out">
               <div class="btn-in">
                 <p>see quiz</p>
               </div>
@@ -44,7 +57,11 @@
           <div v-if="$store.state.windowWidth > 576" class="pic-con">
             <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
             <div class="pic">
-              <img alt>
+              <img
+                v-if="$store.state.newauth.quizesList"
+                v-bind:src="$store.state.newauth.quizesList[Object.keys($store.state.newauth.quizesList)[0]].cover"
+                alt
+              >
             </div>
           </div>
         </div>

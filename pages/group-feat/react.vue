@@ -152,6 +152,11 @@ export default {
       updates[
         "/group-feat-results/" + newkey
       ] = this.$store.state.groupFeatResults;
+      this.$store.state.groupFeatResults.players.map((data, idx) => {
+        updates[
+          `/user/${data.id}/group-feat/${newkey}`
+        ] = this.$store.state.groupFeatResults;
+      });
       firebase
         .database()
         .ref()

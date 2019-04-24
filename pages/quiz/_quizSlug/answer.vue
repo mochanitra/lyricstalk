@@ -169,7 +169,7 @@ export default {
           ~~(Math.random() * 1000); // meme-193
         const res = await FBSE.saveUserAnswer(this.key, this.quiz.owner.id, {
           answerKey,
-          name: this.$store.state.quizTaker.taker.name,
+          taker: this.$store.state.quizTaker.taker,
           answers: this.$store.state.quizTaker.answers
         });
         console.log(res);

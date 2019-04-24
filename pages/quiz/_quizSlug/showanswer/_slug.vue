@@ -9,7 +9,7 @@
       <div class="score-inner">
         <div class="score-con">
           <p class="score-head">
-            <span>{{ answer.name }}</span>
+            <span>{{ answer.taker.name }}</span>
             got {{ _totalScore }} / {{ $store.state.loadedQuiz.quiz.length }}
           </p>
           <p class="detail-head">ไม่สำคัญว่าคุณจะได้คะแนนเท่าไหร่...</p>
@@ -57,7 +57,7 @@
               >
                 <p class="name owner">{{quiz.name}}</p>
                 <p class="desc">{{item.reason}}</p>
-                <p class="name answer">{{answer.name}}</p>
+                <p class="name answer">{{answer.taker.name}}</p>
                 <p class="desc">{{ answer.answers[(i + 1).toString()].why}}</p>
               </div>
             </div>

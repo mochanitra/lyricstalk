@@ -79,11 +79,11 @@
           </div>
         </div>
         <div class="button-con">
-          <button class="btn-out">
+          <nuxt-link to="/soundtrack-of-you" class="btn-out">
             <div class="btn-in">
               <p>create quiz</p>
             </div>
-          </button>
+          </nuxt-link>
         </div>
       </div>
     </div>
@@ -112,11 +112,11 @@
         <img class="cd" src="~/assets/images/decoration/cd-right.svg" alt>
       </div>
       <div class="button-con">
-        <button class="btn-out">
+        <nuxt-link to="/" class="btn-out">
           <div class="btn-in">
             <p>explore topic</p>
           </div>
-        </button>
+        </nuxt-link>
       </div>
     </div>
     <div class="gf-con left-con">
@@ -144,11 +144,11 @@
         </div>
       </div>
       <div class="button-con">
-        <button class="btn-out">
+        <nuxt-link to="/group-feat" class="btn-out">
           <div class="btn-in">
             <p>start</p>
           </div>
-        </button>
+        </nuxt-link>
       </div>
     </div>
   </div>
