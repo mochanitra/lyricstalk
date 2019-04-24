@@ -11,6 +11,7 @@ const {
 
 const config = {
   dev: false,
+  debug: true,
   buildDir: 'nuxt',
   build: {
     publicPath: '/'
