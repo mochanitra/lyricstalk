@@ -143,7 +143,7 @@ export default {
     showQuestionList() {
       this.$emit("selectQuestion", this.$props.number);
       this.$emit("deleteSelectedQuestions");
-      this.$modal.show("question-list");
+      this.$modal.show("questions-list");
     }
   },
   data: () => ({
@@ -308,6 +308,7 @@ h2 {
   z-index: 3;
   @media (max-width: $screen-xs-max) {
     height: 110px;
+    margin-top: 30px;
   }
 
   .top-chat {
@@ -361,7 +362,9 @@ h2 {
       width: 110px;
       border-radius: 10px;
       margin-left: -2px;
-      padding: 10px 15px;
+      padding: 10px 0;
+      padding-left: 17px;
+      padding-right: 10px;
     }
     margin-left: -6px;
     display: flex;
@@ -378,7 +381,8 @@ h2 {
       font-size: 16px;
       text-align: center;
       @media (max-width: $screen-xs-max) {
-        font-size: 9px;
+        font-size: 11px;
+        line-height: 1.3;
       }
     }
   }

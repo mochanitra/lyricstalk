@@ -15,10 +15,7 @@
           <p class="detail-head">ไม่สำคัญว่าคุณจะได้คะแนนเท่าไหร่...</p>
           <p
             class="detail"
-          >สิ่งที่สำคัญที่สุดคือ ' การที่เราได้รู้จักและเข้าใจมุมมองของกันและกันมากขึ้น '</p>
-          <p
-            class="detail"
-          >ผ่านการที่คุณได้ลองคิด ลองทาย และแลกเปลี่ยนความคิดในเรื่องราวที่เราอาจไม่เคยได้คุยกันมาก่อน</p>
+          >สิ่งที่สำคัญที่สุดคือ ' การที่เราได้รู้จักและเข้าใจมุมมองของกันและกันมากขึ้น ' ผ่านการที่คุณได้ลองคิด ลองทาย และแลกเปลี่ยนความคิดในเรื่องราวที่เราอาจไม่เคยได้คุยกันมาก่อน</p>
         </div>
       </div>
     </div>
@@ -291,7 +288,7 @@ export default {
       }
       font-size: 30px;
       @media (max-width: $screen-xs-max) {
-        font-size: 18px;
+        font-size: 20px;
       }
 
       &.owner {
@@ -317,7 +314,7 @@ export default {
       line-height: 1.5;
       font-size: 12px;
       @media (max-width: $screen-xs-max) {
-        font-size: 9px;
+        font-size: 12px;
       }
     }
   }
@@ -396,6 +393,7 @@ export default {
         padding: 5px 20px;
         border-radius: 30px;
         background-color: $ci-white;
+        text-align: center;
         font-family: "Chonburi";
         font-size: 30px;
         color: $font-black-blue-4;
@@ -413,8 +411,9 @@ export default {
         font-family: "Sukhumvit-Bold";
         color: $font-black-blue-2;
         text-align: center;
+        margin: 0 10px;
         @media (max-width: $screen-xs-max) {
-          font-size: 10px;
+          font-size: 12px;
         }
       }
 
@@ -422,8 +421,9 @@ export default {
         font-family: "Sukhumvit-SemiBold";
         color: $font-black-blue-2;
         text-align: center;
+        margin: 0 10px;
         @media (max-width: $screen-xs-max) {
-          font-size: 10px;
+          font-size: 12px;
         }
       }
     }
@@ -444,7 +444,7 @@ export default {
     color: $font-black-blue;
     text-align: center;
     @media (max-width: $screen-xs-max) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
   hr {
@@ -472,7 +472,7 @@ export default {
     font-family: "Sukhumvit-SemiBold";
     color: $font-black-blue-2;
     @media (max-width: $screen-xs-max) {
-      font-size: 10px;
+      font-size: 12px;
     }
   }
 }

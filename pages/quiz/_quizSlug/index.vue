@@ -17,6 +17,7 @@
           </div>
           <p class="sub-detail">มาทายคำตอบของ {{quiz.name}} กันเถอะ</p>
           <nuxt-link
+            v-if="$store.state.newauth"
             :to="localePath({
                     name: 'quiz-quizSlug-answer',
                     params: {
@@ -32,6 +33,11 @@
               <p>start</p>
             </div>
           </nuxt-link>
+          <button v-else @click="toAnswer()" class="btn-out">
+            <div class="btn-in">
+              <p>start</p>
+            </div>
+          </button>
         </div>
       </div>
     </div>
@@ -80,23 +86,33 @@ export default {
       };
     }
     this.$store.commit("SET_QUIZ_ANSWER_TAKER", this.taker);
+  },
+  methods: {
+    toAnswer() {
+      return this.$router.push({
+        path: "/login",
+        query: {
+          redirect: `quiz/${this.quiz.slug}`
+        }
+      });
+    }
+  },
+  head() {
+    return {
+      meta: [
+        {
+          hid: "og:title",
+          property: "og:title",
+          content: `มาทายคำตอบของเราในควิซกันเถอะ`
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: require("assets/images/background/og-fb.png")
+        }
+      ]
+    };
   }
-  // head() {
-  //   return {
-  //     meta: [
-  //       {
-  //         hid: "og:title",
-  //         property: "og:title",
-  //         content: `มาทายคำตอบของเราในควิซกันเถอะ`
-  //       },
-  //       {
-  //         hid: "og:image",
-  //         property: "og:image",
-  //         content: require("assets/images/background/og-fb.png")
-  //       }
-  //     ]
-  //   };
-  // }
 };
 </script>
 

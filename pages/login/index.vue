@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="login-main">
     <div class="dummy-bg">
-      <div class="dummy-con"></div>
+      <div class="dummy-con first"></div>
     </div>
     <div class="main-bg">
       <div class="main-con">
@@ -14,8 +14,15 @@
         </div>
       </div>
     </div>
-    <div>
-      <div></div>
+    <div class="dummy-bg">
+      <div class="dummy-con last">
+        <img
+          v-if="$store.state.windowWidth > 576"
+          src="~/assets/images/decoration/amp-from-left-desktop.svg"
+          alt
+        >
+        <img v-else src="~/assets/images/decoration/amp-from-left-mobile.svg" alt>
+      </div>
     </div>
   </div>
 </template>
@@ -27,6 +34,16 @@ export default {
     // user: { photoURL: null },
     token: null
   }),
+  watch: {
+    "$store.state.newauth"() {
+      if (this.$route.query.redirect) {
+        return this.$router.push({
+          path: this.$route.query.redirect
+        });
+      }
+      return this.$router.replace("/");
+    }
+  },
   methods: {
     login() {
       let fb = FBSE.facebookSignIn();
@@ -65,6 +82,11 @@ export default {
               }
             });
           await this.$store.commit("SET_NEWAUTH", res.data);
+          if (this.$route.query.redirect) {
+            return this.$router.push({
+              path: this.$route.query.redirect
+            });
+          }
           return this.$router.push({
             path: "/profile"
           });
@@ -85,13 +107,48 @@ export default {
 </script>
 <style lang="scss" scoped>
 @import "~assets/styles/variables";
+.login-main {
+  min-height: calc(100vh - 180px);
+  @media (max-width: $screen-md) {
+    min-height: calc(100vh - 176px);
+  }
+  @media (max-width: $screen-xs-max) {
+    min-height: calc(100vh - 166px);
+  }
+  background-color: $login;
+}
 .dummy-bg {
+  background-color: $ci-white;
   .dummy-con {
+    background-color: $login;
+    border-top-right-radius: 40px;
+    padding: 30px 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    img {
+      align-self: flex-start;
+      width: 90%;
+      margin-left: -2px;
+    }
+
+    &.first {
+      border-bottom-left-radius: 40px;
+    }
   }
 }
 .main-bg {
+  background-color: $login;
   .main-con {
-    padding: 20px 0;
+    background-color: $ci-white;
+    border-top-right-radius: 40px;
+    padding: 50px 0;
+    // min-height: calc(100vh - 180px);
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    justify-content: center;
     .login-con {
       display: flex;
       flex-flow: column;

@@ -70,11 +70,11 @@
           </div>
         </div>
         <div class="button-con">
-          <nuxt-link to="/soundtrack-of-you/create" class="btn-out">
+          <button @click="createQuiz()" class="btn-out">
             <div class="btn-in">
               <p>start</p>
             </div>
-          </nuxt-link>
+          </button>
         </div>
       </div>
     </div>
@@ -87,6 +87,21 @@ export default {
   components: {
     CircleNumber,
     CommonButton
+  },
+  methods: {
+    createQuiz() {
+      if (this.$store.state.newauth) {
+        return this.$router.push({
+          path: "/soundtrack-of-you/create"
+        });
+      }
+      return this.$router.push({
+        path: "/login",
+        query: {
+          redirect: "/soundtrack-of-you/create"
+        }
+      });
+    }
   }
 };
 </script>

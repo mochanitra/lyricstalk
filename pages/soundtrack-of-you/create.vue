@@ -1,61 +1,63 @@
 <template>
-  <div class="create-soy">
-    <div class="header-bg">
-      <div class="header">
-        <h1>soundtrack of you</h1>
+  <div>
+    <div class="create-soy">
+      <div class="header-bg">
+        <div class="header">
+          <h1>soundtrack of you</h1>
+        </div>
       </div>
-    </div>
-    <div class="questions-bg">
-      <div class="questions-inner">
-        <div class="questions-con">
-          <div v-for="(item, i) in myQuiz" :key="i" class="question-con">
-            <div
-              class="number-bg"
-              :class="{'one': i == 0, 'two': i == 1, 'three': i == 2, 'four': i == 3, 'five': i == 4}"
-            >
+      <div class="questions-bg">
+        <div class="questions-inner">
+          <div class="questions-con">
+            <div v-for="(item, i) in myQuiz" :key="i" class="question-con">
               <div
-                class="number-con"
+                class="number-bg"
                 :class="{'one': i == 0, 'two': i == 1, 'three': i == 2, 'four': i == 3, 'five': i == 4}"
               >
-                <CircleNumber class="circle" :number="i+1"/>
+                <div
+                  class="number-con"
+                  :class="{'one': i == 0, 'two': i == 1, 'three': i == 2, 'four': i == 3, 'five': i == 4}"
+                >
+                  <CircleNumber class="circle" :number="i+1"/>
+                </div>
               </div>
-            </div>
-            <div>
-              <QuestionItem
-                @selectSong="(index) => item.selectedAnswerIndex = index"
-                @selectQuestion="modal_index=i"
-                @setPlayedSong="(id) => playedSong=id"
-                @deleteSelectedQuestions="deleteSelectedQuestions"
-                :selected-question="questions[i]"
-                :number="i + 1"
-                :playedSong="playedSong"
-              />
-            </div>
-            <div
-              class="why-bg"
-              :class="{'one': i == 0, 'two': i == 1, 'three': i == 2, 'four': i == 3, 'five': i == 4}"
-            >
+              <div>
+                <QuestionItem
+                  @selectSong="(index) => item.selectedAnswerIndex = index"
+                  @selectQuestion="modal_index=i"
+                  @setPlayedSong="(id) => playedSong=id"
+                  @deleteSelectedQuestions="deleteSelectedQuestions"
+                  :selected-question="questions[i]"
+                  :number="i + 1"
+                  :playedSong="playedSong"
+                />
+              </div>
               <div
-                class="why-con"
+                class="why-bg"
                 :class="{'one': i == 0, 'two': i == 1, 'three': i == 2, 'four': i == 3, 'five': i == 4}"
               >
-                <input type="text" v-model="item.reason" placeholder="why ?">
+                <div
+                  class="why-con"
+                  :class="{'one': i == 0, 'two': i == 1, 'three': i == 2, 'four': i == 3, 'five': i == 4}"
+                >
+                  <input type="text" v-model="item.reason" placeholder="why ?">
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <button @click="goToPlaylist()" class="btn-out">
+        <div class="btn-in">
+          <p>next</p>
+        </div>
+      </button>
+      <modal :adaptive="true" :scrollable="true" width="90%" height="auto" name="questions-list">
+        <div class="q-list-con">
+          <QuestionList @onSelect="addQuestion" :selectedQuestions="selectedQuestions"/>
+        </div>
+      </modal>
     </div>
-    <button @click="goToPlaylist()" class="btn-out">
-      <div class="btn-in">
-        <p>next</p>
-      </div>
-    </button>
-    <modal :adaptive="true" :scrollable="true" width="80%" height="auto" name="question-list">
-      <div class="q-list-con">
-        <QuestionList @onSelect="addQuestion" :selectedQuestions="selectedQuestions"/>
-      </div>
-    </modal>
   </div>
 </template>
 <script>
@@ -134,7 +136,7 @@ export default {
       return this.$router.replace("/soundtrack-of-you/playlist");
     },
     addQuestion(item) {
-      this.$modal.hide("question-list");
+      this.$modal.hide("questions-list");
       const idx = this.modal_index;
       if (this.questions[idx] != null) {
         this.selectedQuestions.delete(this.questions[idx].id);
@@ -164,6 +166,7 @@ export default {
   display: flex;
   flex-flow: column;
   align-items: center;
+  position: relative;
 }
 .header-bg {
   width: 100%;
@@ -193,6 +196,7 @@ export default {
 }
 .q-list-con {
   background-color: $ci-white;
+  // position: fixed;
   //   border-radius: 40px;
 }
 

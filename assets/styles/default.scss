@@ -4,8 +4,7 @@ body {
   font-size: 110%;
   color: $blue-400;
   background: rgba(0, 0, 0, 0.015);
-  font-family: 'Crimson Text',
-    'Kanit';
+  font-family: 'Crimson Text', 'Kanit';
 }
 
 *,
@@ -15,7 +14,7 @@ body {
   appearance: none;
 }
 
-.bio-checkbox:not(.-switch)>label:after {
+.bio-checkbox:not(.-switch) > label:after {
   height: 7px;
   width: 12px;
 }
@@ -70,13 +69,13 @@ h1 {
   // background-size: 100px;
 }
 
-[lazy=loading] {
+[lazy='loading'] {
   background-size: 200px !important;
   background-repeat: no-repeat !important;
   background-position: center center !important;
 }
 
-[lazy=loaded] {
+[lazy='loaded'] {
   opacity: 1;
   // background-size: 50px;
 }
@@ -223,9 +222,9 @@ a {
   }
 }
 
-.v--modal {
-  background: transparent;
-}
+// .v--modal {
+//   background: transparent;
+// }
 
 #branding div {
   width: 160px;

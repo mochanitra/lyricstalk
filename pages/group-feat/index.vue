@@ -133,6 +133,14 @@ export default {
   methods: {
     selectType(type) {
       this.$store.commit("SET_GROUPFEAT_TYPE", type);
+      if (!this.$store.state.newauth) {
+        return this.$router.push({
+          path: "/login",
+          query: {
+            redirect: "/group-feat"
+          }
+        });
+      }
       return this.$router.push({
         path: "/group-feat/start",
         query: {

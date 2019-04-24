@@ -30,7 +30,7 @@
               <div class="why-arrow">
                 <img
                   @click="goBack()"
-                  v-if="q>1"
+                  v-if="q>1 && !finish"
                   class="left"
                   src="~/assets/images/decoration/soy/arrow.svg"
                   alt
@@ -51,9 +51,16 @@
                   placeholder="why ?"
                 >
                 <img
+                  v-if="!finish"
                   @click="saveAndGoNext()"
                   class="right"
                   src="~/assets/images/decoration/soy/arrow.svg"
+                  alt
+                >
+                <img
+                  v-else
+                  class="disabled left"
+                  src="~/assets/images/decoration/soy/arrow-disabled.svg"
                   alt
                 >
               </div>
@@ -79,7 +86,8 @@ export default {
   },
   data: () => ({
     why: null,
-    answerIndex: null
+    answerIndex: null,
+    finish: false
   }),
   watch: {
     "$route.query.q"(newVal, oldVal) {
@@ -162,6 +170,7 @@ export default {
       }
       // ต้องเซฟที่
       if (+this.q === 5) {
+        this.finish = true;
         const quizKey = this.$route.params.quizSlug; // -> momo-292
         const answerKey =
           this.$store.state.quizTaker.taker.name.replace(/\s/g, "") +
