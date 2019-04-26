@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="vote-col">
-          <button class="mini-out">
+          <button @click="goToSong(songId)" class="mini-out">
             <div class="mini-in">
               <p>vote</p>
             </div>
@@ -54,6 +54,14 @@ export default {
     artistName: {
       type: String,
       default: ""
+    },
+    artistId: {
+      type: String,
+      default: null
+    },
+    songId: {
+      type: Number,
+      default: null
     }
   },
   data: () => ({
@@ -79,6 +87,11 @@ export default {
         clearInterval(this.timer);
         // x.load();
       }
+    },
+    goToSong(id) {
+      return this.$router.push({
+        path: `/music-discussion/${this.artistId}/${id}`
+      });
     }
   }
 };

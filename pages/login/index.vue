@@ -82,7 +82,7 @@ export default {
                 });
               } else {
                 let uid = this.user.uid;
-                database.ref("user/" + uid).set(res.data);
+                database.ref("user/" + uid).update(res.data);
               }
             });
           await this.$store.commit("SET_NEWAUTH", res.data);

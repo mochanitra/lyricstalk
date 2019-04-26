@@ -42,7 +42,13 @@
       <div class="data-con">
         <div class="discussion">
           <div v-for="(item,id) in artistInfo.discussion" :key="id">
-            <MDTab :song="item" :artistCover="artistInfo.cover" :artistName="artistInfo.name"/>
+            <MDTab
+              :song="item"
+              :artistCover="artistInfo.cover"
+              :artistName="artistInfo.name"
+              :songId="id"
+              :artistId="artist"
+            />
           </div>
         </div>
       </div>
@@ -137,7 +143,7 @@ export default {
       color: white;
       font-size: 64px;
       line-height: 0.6;
-      margin-left: -20px;
+      margin-left: -40px;
 
       span {
         font-size: 48px;
@@ -150,14 +156,15 @@ export default {
 .artist-bg {
   background: linear-gradient(
     to right,
-    $ci-white 0%,
-    $ci-white 50%,
+    $md-color 0%,
+    $md-color 50%,
     $home-blue 50%,
     $home-blue 100%
   );
   .artist-con {
     background: $ci-white;
     border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
     display: flex;
     flex-flow: column;
     align-items: center;

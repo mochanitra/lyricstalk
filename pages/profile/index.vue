@@ -284,6 +284,7 @@ export default {
       fb.then(() => {
         // Sign-out successful.
         this.$store.commit("SET_AUTH", null);
+        this.$store.commit("SET_NEWAUTH", null);
         this.user = { photoURL: null };
         return this.$router.push({
           path: "/"
