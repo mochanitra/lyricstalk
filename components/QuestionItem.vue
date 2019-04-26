@@ -106,6 +106,10 @@ export default {
     isShow: {
       type: Boolean,
       default: false
+    },
+    selectedSong: {
+      type: Number,
+      default: null
     }
   },
   methods: {
@@ -153,7 +157,7 @@ export default {
       2: false,
       3: false
     },
-    selectedSong: null,
+    // selectedSong: null,
     isPlayed: 5
   })
 };

@@ -69,6 +69,11 @@ export default {
       updates[
         "/user/" + this.$store.state.newauth.id + "/quizesList/" + newQuizKey
       ] = this.$store.state.myQuiz;
+      this.$store.commit(
+        "ADD_NEWAUTH_SOY",
+        this.$store.state.myQuiz,
+        newQuizKey
+      );
       let dbupdate = firebase
         .database()
         .ref()

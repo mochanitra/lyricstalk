@@ -25,5 +25,13 @@ export const actions = {
     return commit('SET_GROUPFEAT_QUESTIONS', res, {
       root: true
     });
+  },
+  async listMusicDiscussion({ commit }) {
+    const res = await this.$axios.$get(
+      'https://lyricstalk-1fb09.firebaseio.com/music-discussion.json'
+    );
+    return commit('SET_MUSIC_DISCUSSION', res, {
+      root: true
+    });
   }
 };

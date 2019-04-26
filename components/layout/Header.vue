@@ -24,7 +24,7 @@
           </div>
 
           <div class="col-4">
-            <nuxt-link class="header-link md" to="/">
+            <nuxt-link class="header-link md" to="/music-discussion">
               music
               <br>discussion
             </nuxt-link>
@@ -38,14 +38,18 @@
           </div>
         </div>
       </div>
-      <div v-if="!$store.state.auth" class="col-2 profile-con">
+      <div v-if="!$store.state.newauth" class="col-2 profile-con">
         <nuxt-link to="/login">
           <img class="user-icon" src="~/assets/images/brand/user-icon.svg">
         </nuxt-link>
       </div>
       <div v-else class="col-2 profile-con">
         <nuxt-link to="/profile">
-          <img class="profile-img" v-show="$store.state.auth" v-bind:src="user.photoURL">
+          <img
+            class="profile-img"
+            v-show="$store.state.newauth"
+            v-bind:src="$store.state.newauth.picture.data.url"
+          >
         </nuxt-link>
       </div>
     </div>
@@ -55,7 +59,7 @@
       </div>
 
       <div @click="show_mobile_menu = !show_mobile_menu" class="two">
-        <nuxt-link class="mobile header-link md" to="/">music discussion</nuxt-link>
+        <nuxt-link class="mobile header-link md" to="/music-discussion">music discussion</nuxt-link>
       </div>
 
       <div @click="show_mobile_menu = !show_mobile_menu" class="three">
@@ -157,6 +161,7 @@ export default {
       fb.then(() => {
         // Sign-out successful.
         this.$store.commit("SET_AUTH", null);
+        this.$store.commit("SET_NEWAUTH", null);
         this.user = { photoURL: null };
       }).catch(function(error) {
         // An error happened.

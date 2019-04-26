@@ -75,7 +75,11 @@ export default {
             .equalTo(this.user.uid)
             .once("value", snapshot => {
               if (snapshot.exists()) {
-                database.ref("user/" + uid).update(res.data);
+                database.ref("user/" + uid).update({
+                  friends: res.data.friends,
+                  name: res.data.name,
+                  picture: res.data.picture
+                });
               } else {
                 let uid = this.user.uid;
                 database.ref("user/" + uid).set(res.data);
@@ -86,10 +90,11 @@ export default {
             return this.$router.push({
               path: this.$route.query.redirect
             });
+          } else {
+            return this.$router.push({
+              path: "/profile"
+            });
           }
-          return this.$router.push({
-            path: "/profile"
-          });
         })
         .catch(function(error) {
           // Handle Errors here.

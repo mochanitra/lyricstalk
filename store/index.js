@@ -49,7 +49,8 @@ export const state = () => ({
     remainingQuestions: [],
     random_index: null,
     currentQuestion: {}
-  }
+  },
+  musicDiscussion: {}
 });
 
 export const actions = {
@@ -63,7 +64,8 @@ export const actions = {
       // dispatch('api/listPages'),
       // dispatch('api/listVenues')
       dispatch('api/listQuestions'),
-      dispatch('api/listGroupFeatQuestions')
+      dispatch('api/listGroupFeatQuestions'),
+      dispatch('api/listMusicDiscussion')
     ];
 
     await Promise.all(all);
@@ -177,5 +179,29 @@ export const mutations = {
 
   SET_NEWAUTH(state, data) {
     state.newauth = data;
+  },
+  ADD_NEWAUTH_SOY(state, data, key) {
+    if (state.newauth.quizesList) {
+      state.newauth.quizesList[key] = data;
+    } else {
+      state.newauth.quizesList = {};
+      state.newauth.quizesList[key] = data;
+    }
+  },
+  SET_MUSIC_DISCUSSION(state, data) {
+    state.musicDiscussion = data;
+  },
+  SET_FOLLOWING_ARTIST(state, id) {
+    if (state.newauth.followingArtist) {
+      state.newauth.followingArtist[id] = 1;
+    } else {
+      state.newauth.followingArtist = {};
+      state.newauth.followingArtist[id] = 1;
+    }
+  },
+  UNFOLLOW_ARTIST(state, id) {
+    if (state.newauth.followingArtist) {
+      state.newauth.followingArtist[id] = 0;
+    }
   }
 };

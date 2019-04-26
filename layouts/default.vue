@@ -29,6 +29,8 @@
 <script>
 import Header from "~/components/layout/Header";
 import Footer from "~/components/layout/Footer";
+import * as FBSE from "~/services/auth";
+import * as firebase from "firebase/app";
 // import "ant-design-vue/dist/antd.css";
 export default {
   components: {

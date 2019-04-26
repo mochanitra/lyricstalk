@@ -21,7 +21,7 @@
                   <CircleNumber class="circle" :number="i+1"/>
                 </div>
               </div>
-              <div>
+              <div class="q-item">
                 <QuestionItem
                   @selectSong="(index) => item.selectedAnswerIndex = index"
                   @selectQuestion="modal_index=i"
@@ -30,6 +30,8 @@
                   :selected-question="questions[i]"
                   :number="i + 1"
                   :playedSong="playedSong"
+                  :selectedSong="item.selectedAnswerIndex"
+                  :key="item.selectedSongId"
                 />
               </div>
               <div
@@ -109,6 +111,22 @@ export default {
     playedSong: null,
     selectedQuestions: new Set()
   }),
+  watch: {
+    myQuiz: {
+      handler: function(after) {
+        // Return the object that changed
+        this.playedSong = null;
+        console.log("after");
+        console.log(after);
+        for (let i = 0; i < after.length; i++) {
+          if (this.myQuiz[i].selectedSongId != after[i].selectedSongId) {
+            this.myQuiz[i].selectedAnswerIndex = null;
+          }
+        }
+      },
+      deep: true
+    }
+  },
   methods: {
     goToPlaylist() {
       let isFull = true;
@@ -365,5 +383,9 @@ export default {
       line-height: 1;
     }
   }
+}
+
+.q-item {
+  width: 100%;
 }
 </style>
