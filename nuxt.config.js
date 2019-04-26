@@ -118,7 +118,7 @@ module.exports = {
     [
       '@nuxtjs/google-analytics',
       {
-        id: 'UA-12301-2'
+        id: 'UA-139108809-1'
       }
     ],
     'nuxt-babel',
