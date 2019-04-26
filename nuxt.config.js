@@ -83,6 +83,7 @@ module.exports = {
    ** Nuxt.js modules
    */
   modules: [
+    // 'nuxt-client-init-module',
     [
       'nuxt-i18n',
       {

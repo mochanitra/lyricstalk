@@ -54,12 +54,12 @@
           <p>next</p>
         </div>
       </button>
-      <modal :adaptive="true" :scrollable="true" width="90%" height="auto" name="questions-list">
-        <div class="q-list-con">
-          <QuestionList @onSelect="addQuestion" :selectedQuestions="selectedQuestions"/>
-        </div>
-      </modal>
     </div>
+    <modal :adaptive="true" :scrollable="true" width="90%" height="auto" name="questions-list">
+      <div class="q-list-con">
+        <QuestionList @onSelect="addQuestion" :selectedQuestions="selectedQuestions"/>
+      </div>
+    </modal>
   </div>
 </template>
 <script>
