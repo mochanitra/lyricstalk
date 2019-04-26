@@ -98,7 +98,7 @@ export default {
     const quiz = await store.dispatch("api/getQuiz", {
       slug
     });
-    console.log(quiz);
+    // console.log(quiz);
     store.commit("SET_LOADED_QUIZ", Object.values(quiz)[0]);
     return {
       quiz: Object.values(quiz)[0],
@@ -113,7 +113,7 @@ export default {
         // Compare with user answer
         const userAnswer = this.answer.answers[(i + 1).toString()].answer;
 
-        console.log(realAnswer, userAnswer);
+        // console.log(realAnswer, userAnswer);
 
         if (realAnswer === userAnswer) {
           score++;

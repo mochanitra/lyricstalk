@@ -46,6 +46,7 @@
                           src="~/assets/images/group-feat-start/react-01.svg"
                           :class="{'reacted' : player.react == 1}"
                         >
+                        <p>I know it.</p>
                       </button>
                     </div>
                     <div class="react-col col-4">
@@ -54,6 +55,7 @@
                           src="~/assets/images/group-feat-start/react-02.svg"
                           :class="{'reacted' : player.react == 2}"
                         >
+                        <p>Ooh really ?</p>
                       </button>
                     </div>
                     <div class="react-col col-4">
@@ -62,6 +64,7 @@
                           src="~/assets/images/group-feat-start/react-03.svg"
                           :class="{'reacted' : player.react == 3}"
                         >
+                        <p>OMG wowww !</p>
                       </button>
                     </div>
                   </div>
@@ -217,6 +220,10 @@ export default {
           .react-col {
             padding-left: 12px;
             padding-right: 12px;
+            p {
+              font-family: "Sukhumvit-Bold";
+              font-size: 12px;
+            }
           }
           button {
             border: none;

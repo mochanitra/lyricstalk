@@ -40,13 +40,15 @@ export default {
         return this.$router.push({
           path: this.$route.query.redirect
         });
+      } else {
+        return this.$router.replace("/");
       }
-      return this.$router.replace("/");
     }
   },
   methods: {
     login() {
       let fb = FBSE.facebookSignIn();
+      let redirect = this.$route.query.redirect;
       fb.then(result => {
         if (result.credential) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -55,7 +57,6 @@ export default {
         }
         // The signed-in user info.
         let user = result.user;
-        console.log(result);
         this.user = user.providerData[0];
       })
         .then(async () => {
@@ -85,8 +86,11 @@ export default {
                 database.ref("user/" + uid).update(res.data);
               }
             });
-          await this.$store.commit("SET_NEWAUTH", res.data);
-          if (this.$route.query.redirect) {
+          const new_res = await this.$axios.get(
+            `https://lyricstalk-1fb09.firebaseio.com/user/${this.user.uid}.json`
+          );
+          await this.$store.commit("SET_NEWAUTH", new_res.data);
+          if (redirect) {
             return this.$router.push({
               path: this.$route.query.redirect
             });

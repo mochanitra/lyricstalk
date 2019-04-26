@@ -54,6 +54,10 @@
             <p v-if="isEnded">{{$store.state.groupFeatController.currentQuestion.lyrics}}</p>
           </div>
         </div>
+        <p
+          v-if="isEnded"
+          class="song-title"
+        >{{$store.state.groupFeatController.currentQuestion.title}} - {{this.$store.state.groupFeatController.currentQuestion.artist}}</p>
         <div class="button-con">
           <button @click="goToReact()" class="red-btn-out">
             <div class="btn-in">
@@ -202,6 +206,11 @@ export default {
       align-items: center;
       height: 200px;
       z-index: 1;
+      margin-left: -97px;
+      @media (max-width: $screen-sm-max) {
+        margin-left: -64px;
+        // height: 140;
+      }
 
       .top-chat {
         position: absolute;
@@ -215,6 +224,11 @@ export default {
         width: 97px;
         margin-left: 6px;
         z-index: 0;
+        @media (max-width: $screen-sm-max) {
+          height: 120px;
+          width: 64px;
+          // margin-left: 3px;
+        }
 
         &.played {
           animation: wide-narrow 1s ease-in-out infinite alternate;
@@ -230,6 +244,13 @@ export default {
         padding: 0;
         margin: 0;
         left: 72px;
+        @media (max-width: $screen-sm-max) {
+          left: 44px;
+
+          img {
+            height: 36px;
+          }
+        }
 
         img {
           width: 54px;
@@ -239,6 +260,10 @@ export default {
       .lyric-con {
         height: 100%;
         width: 400px;
+        @media (max-width: $screen-sm-max) {
+          width: 200px;
+          margin-left: -2px;
+        }
         margin-left: -6px;
         display: flex;
         flex-flow: column;
@@ -253,6 +278,9 @@ export default {
           color: $dark-blue;
           font-size: 20px;
           text-align: center;
+          @media (max-width: $screen-sm-max) {
+            font-size: 16px;
+          }
         }
       }
     }
@@ -366,6 +394,16 @@ export default {
       width: 30%;
     }
   }
+}
+
+.song-title {
+  background-color: $ci-white;
+  border-radius: 20px;
+  padding: 2px 15px;
+  margin-top: 28px !important;
+  font-family: "Sukhumvit-Bold";
+  min-width: 200px;
+  text-align: center;
 }
 
 @keyframes wide-narrow {

@@ -10,7 +10,10 @@
         <div class="intro-chat-all">
           <img class="chat-top" src="~/assets/images/decoration/top-chat.svg" alt>
           <div class="intro-chat">
-            <p>เริ่มบทสนทนาผ่านเกมที่จะใช้เนื้อเพลง นำไปสู่การพูดคุย สร้างความทรงจำและบทสนทนาที่มีความหมายร่วมกัน</p>
+            <p class="head">‘ Meaningful conversation when we are together. ’</p>
+            <p
+              class="content"
+            >Conversation game ที่จะใช้ท่อนหนึ่งของเนื้อเพลงนำไปสู่การพูดคุย เมื่อใช้เวลาอยู่ร่วมกันเพื่อสร้างความทรงจำและบทสนทนาที่มีความหมาย</p>
           </div>
         </div>
         <!-- <div class="amp-con">
@@ -215,12 +218,24 @@ export default {
         @media (max-width: $screen-xs-max) {
           padding: 20px 40px;
         }
-        p {
-          color: $font-black-blue;
-          font-family: "Sukhumvit-SemiBold";
+        .head {
+          font-family: "Sukhumvit-Bold";
+          font-size: 1.4rem;
+          text-align: center;
+          margin-bottom: 10px;
+          margin-bottom: 5px;
+
+          @media (max-width: $screen-xs-max) {
+            font-size: 0.8rem;
+          }
+        }
+
+        .content {
+          font-family: "Sukhumvit";
+          font-size: 1.3rem;
           text-align: center;
           @media (max-width: $screen-xs-max) {
-            font-size: 12px;
+            font-size: 0.7rem;
           }
         }
       }

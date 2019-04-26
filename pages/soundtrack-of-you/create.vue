@@ -116,8 +116,6 @@ export default {
       handler: function(after) {
         // Return the object that changed
         this.playedSong = null;
-        console.log("after");
-        console.log(after);
         for (let i = 0; i < after.length; i++) {
           if (this.myQuiz[i].selectedSongId != after[i].selectedSongId) {
             this.myQuiz[i].selectedAnswerIndex = null;

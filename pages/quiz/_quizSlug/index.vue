@@ -52,7 +52,7 @@ export default {
     const quiz = await store.dispatch("api/getQuiz", {
       slug
     });
-    console.log(quiz);
+    // console.log(quiz);
     return {
       quiz: Object.values(quiz)[0]
     };
@@ -216,6 +216,7 @@ export default {
 
     img {
       height: 100%;
+      min-width: 100%;
     }
   }
 }

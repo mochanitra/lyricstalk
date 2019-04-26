@@ -74,7 +74,6 @@ export default {
       const x = document.getElementById(id);
       x.addEventListener("playing", _event => {
         let duration = _event.target.duration;
-        console.log(duration, x.currentTime);
         this.timer = setInterval(() => {
           let increment = 10 / duration;
           this.progress = Math.min(increment * x.currentTime * 10, 100);

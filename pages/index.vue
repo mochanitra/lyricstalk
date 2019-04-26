@@ -71,7 +71,7 @@
           <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt>
           <div class="chat-con">
             <!-- <img class="cd" src="~/assets/images/decoration/cd-left.svg" alt> -->
-            <p class="head">‘ What song relates you the most ’</p>
+            <p class="head">‘ What song relates you the most ?’</p>
             <p
               class="content"
             >การสร้าง Quiz ด้วยชุดคำถาม Deep conversation 5 ข้อ แล้วตอบด้วยท่อนหนึ่งของเนื้อเพลงที่อธิบายความเป็นคุณได้ดีที่สุด</p>
@@ -187,7 +187,7 @@ export default {
   border-bottom-left-radius: 40px;
   padding: 30px 0;
   background-image: url("~/assets/images/background/home-bg.jpg");
-  background-position: right bottom;
+  background-position: right center;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
@@ -831,6 +831,7 @@ export default {
 
 .btn-out {
   cursor: pointer;
+  margin: 0 20px;
   padding: 6px;
   width: 300px;
   height: 60px;
@@ -842,6 +843,7 @@ export default {
     width: 180px;
     height: 40px;
     padding: 4px;
+    margin: 0;
   }
   &:hover {
     background-color: $line-red;

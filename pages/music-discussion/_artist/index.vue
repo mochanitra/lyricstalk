@@ -83,7 +83,7 @@ export default {
         return this.$router.push({
           path: "/login",
           query: {
-            redirect: "/music-discussion"
+            redirect: `/music-discussion/${this.$route.params.artist}`
           }
         });
       }
@@ -224,6 +224,7 @@ export default {
   .data-con {
     background-color: $ci-white;
     padding: 20px 0;
+    border-top-right-radius: 40px;
 
     .discussion {
       display: flex;

@@ -189,6 +189,7 @@ export const mutations = {
     }
   },
   SET_MUSIC_DISCUSSION(state, data) {
+    state.musicDiscussion = null;
     state.musicDiscussion = data;
   },
   SET_FOLLOWING_ARTIST(state, id) {
@@ -203,5 +204,37 @@ export const mutations = {
     if (state.newauth.followingArtist) {
       state.newauth.followingArtist[id] = 0;
     }
+  },
+  UPDATE_MUSIC_DISCUSSION(state, choice, id, artist, song) {
+    if (!state.newauth.musicDiscussion) {
+      state.newauth.musicDiscussion = {};
+    }
+    if (!state.newauth.musicDiscussion[artist]) {
+      state.newauth.musicDiscussion[artist] = {};
+    }
+    state.newauth.musicDiscussion[artist][song] = { vote: choice };
+    // dispatch('api/listMusicDiscussion');
+    // if (!state.musicDiscussion[artist].discussion[song]['voters']) {
+    //   state.musicDiscussion[artist].discussion[song]['voters'] = {};
+    // }
+    // if (choice == 1) {
+    //   if (!state.musicDiscussion[artist].discussion[song]['vote_1']) {
+    //     state.musicDiscussion[artist].discussion[song]['vote_1'] = {};
+    //   }
+    //   state.musicDiscussion[artist].discussion[song]['vote_1'][id] = {
+    //     vote: choice
+    //   };
+    // }
+    // if (choice == 2) {
+    //   if (!state.musicDiscussion[artist].discussion[song]['vote_2']) {
+    //     state.musicDiscussion[artist].discussion[song]['vote_2'] = {};
+    //   }
+    //   state.musicDiscussion[artist].discussion[song]['vote_2'][id] = {
+    //     vote: choice
+    //   };
+    // }
+    // state.musicDiscussion[artist].discussion[song]['voters'][id] = {
+    //   vote: choice
+    // };
   }
 };

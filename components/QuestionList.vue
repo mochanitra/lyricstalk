@@ -1,6 +1,6 @@
 <template>
   <div class="q-list-con">
-    <p class="q-header">Question List</p>
+    <p class="q-header">Questions List</p>
     <div class="button-row">
       <button :class="{'active' : type == 'all'}" @click="type='all'">All</button>
       <button :class="{'active' : type == 'love'}" @click="type='love'">Love</button>
@@ -116,7 +116,7 @@ export default {
     transition-duration: 0.3s;
 
     &:hover {
-      background-color: $dark-blue;
+      background-color: $ci-light-blue;
       transition-duration: 0.3s;
     }
 

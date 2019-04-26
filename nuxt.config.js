@@ -115,6 +115,12 @@ module.exports = {
         masterPicture: ''
       }
     ],
+    [
+      '@nuxtjs/google-analytics',
+      {
+        id: 'UA-12301-2'
+      }
+    ],
     'nuxt-babel',
     '@nuxtjs/toast',
     // Doc: https://github.com/nuxt-community/axios-module#usage

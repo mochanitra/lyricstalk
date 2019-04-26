@@ -302,9 +302,7 @@ export default {
       this.upload(files[0]);
     },
     upload(file) {
-      console.log(file);
       const fileType = file.type.split("/")[1];
-      console.log(fileType);
       let randomNumber = ~~(Math.random() * 1000000);
       this.uploadTask = firebase
         .storage()
@@ -356,7 +354,6 @@ export default {
       });
     },
     initController() {
-      console.log(this.$store.state.groupFeatQuestions);
       let questions = this.$store.state.groupFeatQuestions[
         this.$route.query.type
       ][this.topic];
@@ -606,7 +603,7 @@ export default {
             margin-bottom: 20px;
 
             &.selected {
-              border: 4px solid $ci-blue;
+              border: 4px solid $dark-blue;
             }
           }
 

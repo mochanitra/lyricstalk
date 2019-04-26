@@ -59,7 +59,7 @@ export default {
   }),
   methods: {
     onReceiveURL(url) {
-      console.log(url);
+      // console.log(url);
       this.cover = url;
     },
     async submit() {

@@ -1,12 +1,12 @@
 <template>
-  <div>
+  <div v-if="$store.state.newauth">
     <div class="header-bg">
       <div class="header-con">
         <div class="name-con">
           <img class="profile-pic" v-bind:src="$store.state.newauth.picture.data.url" alt>
           <div class="name-status">
             <p class="name">{{$store.state.newauth.name}}</p>
-            <p class="lyrics">lyrics status</p>
+            <!-- <p class="lyrics">lyrics status</p>
             <div class="status-con">
               <input
                 type="text"
@@ -14,7 +14,7 @@
                 :style="{width: `${(status.length + 1) * 6}px`,minWidth: '200px'}"
               >
               <img class="chat-top" src="~/assets/images/decoration/top-chat.svg" alt>
-            </div>
+            </div>-->
           </div>
         </div>
       </div>
@@ -272,11 +272,11 @@ export default {
     status: ""
   }),
   mounted() {
-    if (!this.$store.state.newauth) {
-      return this.$router.push({
-        path: "/"
-      });
-    }
+    // if (!this.$store.state.newauth) {
+    //   return this.$router.push({
+    //     path: "/"
+    //   });
+    // }
   },
   methods: {
     signOut() {

@@ -14,7 +14,10 @@
         <div class="intro-chat-all">
           <img class="chat-top" src="~/assets/images/decoration/top-chat.svg" alt>
           <div class="intro-chat">
-            <p>ร่วมแสดงความคิดเห็น และมุมมองของคุณในประเด็นต่างๆต่อเนื้อเพลงจากศิลปินมากมาย</p>
+            <p class="head">‘ Let’s vote and discuss ! ’</p>
+            <p
+              class="content"
+            >การร่วมโหวตและแสดงความคิดเห็นของคุณในประเด็นต่างๆ ของเนื้อเพลงจากศิลปินมากมาย</p>
           </div>
         </div>
         <!-- <div class="amp-con">
@@ -191,12 +194,24 @@ export default {
         @media (max-width: $screen-xs-max) {
           padding: 20px 40px;
         }
-        p {
-          color: $font-black-blue;
-          font-family: "Sukhumvit-SemiBold";
+        .head {
+          font-family: "Sukhumvit-Bold";
+          font-size: 1.4rem;
+          text-align: center;
+          margin-bottom: 10px;
+          margin-bottom: 5px;
+
+          @media (max-width: $screen-xs-max) {
+            font-size: 0.8rem;
+          }
+        }
+
+        .content {
+          font-family: "Sukhumvit";
+          font-size: 1.3rem;
           text-align: center;
           @media (max-width: $screen-xs-max) {
-            font-size: 12px;
+            font-size: 0.7rem;
           }
         }
       }

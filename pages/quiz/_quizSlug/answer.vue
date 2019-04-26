@@ -92,12 +92,12 @@ export default {
   watch: {
     "$route.query.q"(newVal, oldVal) {
       this.answerIndex = null;
-      console.log(newVal);
+      // console.log(newVal);
       if (
         this.$store.state.quizTaker.answers[newVal].answer != null &&
         this.$store.state.quizTaker.answers[newVal].why != null
       ) {
-        console.log(`${newVal} is true`);
+        // console.log(`${newVal} is true`);
         this.answerIndex = this.$store.state.quizTaker.answers[newVal].answer;
         this.why = this.$store.state.quizTaker.answers[newVal].why;
       } else {
@@ -181,7 +181,7 @@ export default {
           taker: this.$store.state.quizTaker.taker,
           answers: this.$store.state.quizTaker.answers
         });
-        console.log(res);
+        // console.log(res);
         // const res = await this.$axios.$post(`https://lyricstalk-1fb09.firebaseio.com/`)
         // go next page
         return this.$router.push(

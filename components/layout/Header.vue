@@ -18,7 +18,7 @@
         <div class="row">
           <div class="col-4">
             <nuxt-link class="header-link s-o-y" to="/soundtrack-of-you">
-              Soundtrack
+              soundtrack
               <br>of you
             </nuxt-link>
           </div>
@@ -55,7 +55,7 @@
     </div>
     <div v-show="show_mobile_menu" class="mobile-menu">
       <div @click="show_mobile_menu = !show_mobile_menu" class="one">
-        <nuxt-link class="mobile header-link s-o-y" to="/soundtrack-of-you">Soundtrack of you</nuxt-link>
+        <nuxt-link class="mobile header-link s-o-y" to="/soundtrack-of-you">soundtrack of you</nuxt-link>
       </div>
 
       <div @click="show_mobile_menu = !show_mobile_menu" class="two">
