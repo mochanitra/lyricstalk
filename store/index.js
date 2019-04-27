@@ -5,6 +5,7 @@ export const strict = false;
 
 export const state = () => ({
   windowWidth: null,
+  loginWait: false,
   primaryMenu: [],
   footerMenu: [],
   auth: null,
@@ -236,5 +237,8 @@ export const mutations = {
     // state.musicDiscussion[artist].discussion[song]['voters'][id] = {
     //   vote: choice
     // };
+  },
+  SET_LOGIN_WAIT(state, bool) {
+    state.loginWait = bool;
   }
 };

@@ -83,7 +83,8 @@ export default {
   },
   data: () => ({
     user: { photoURL: null },
-    show_mobile_menu: false
+    show_mobile_menu: false,
+    isWaiting: false
   }),
   mounted() {
     const fb = FBSE.getUser();

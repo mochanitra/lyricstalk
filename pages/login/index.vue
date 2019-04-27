@@ -7,9 +7,13 @@
       <div class="main-con">
         <div class="login-con">
           <img src="~/assets/images/brand/user-icon.svg" alt>
-          <button @click="login()" class="login-btn">
+          <button v-if="!$store.state.loginWait" @click="login()" class="login-btn">
             <img src="~/assets/images/brand/fb-logo.svg" alt>
             <p>Continue with Facebook</p>
+          </button>
+          <button v-else class="login-btn wait">
+            <img src="~/assets/images/brand/fb-logo.svg" alt>
+            <p>Checking your account</p>
           </button>
         </div>
       </div>
@@ -48,7 +52,8 @@ export default {
   methods: {
     login() {
       let fb = FBSE.facebookSignIn();
-      let redirect = this.$route.query.redirect;
+      let redirect = null;
+      if (this.$route.query.redirect) redirect = this.$route.query.redirect;
       fb.then(result => {
         if (result.credential) {
           // This gives you a Facebook Access Token. You can use it to access the Facebook API.
@@ -69,6 +74,7 @@ export default {
             //   fields: "id,name,friends{name,picture},picture"
             // },
           );
+          await this.$store.commit("SET_LOGIN_WAIT", true);
           await this.$store.commit("SET_AUTH", this.user);
           let database = firebase.database();
           await database
@@ -90,6 +96,7 @@ export default {
             `https://lyricstalk-1fb09.firebaseio.com/user/${this.user.uid}.json`
           );
           await this.$store.commit("SET_NEWAUTH", new_res.data);
+          await this.$store.commit("SET_LOGIN_WAIT", false);
           if (redirect) {
             return this.$router.push({
               path: this.$route.query.redirect
@@ -177,6 +184,11 @@ export default {
         border-radius: 20px;
         cursor: pointer;
         transition-duration: 0.2s;
+
+        &.wait {
+          opacity: 0.5;
+          cursor: initial;
+        }
 
         &:hover {
           background-color: darken($fb, 10%);

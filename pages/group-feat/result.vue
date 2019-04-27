@@ -56,9 +56,17 @@
                   <p class="date">{{moment(results.date)}}</p>
                 </div>
               </div>
-              <div class="player-row row">
-                <img src="~/assets/images/decoration/friend.svg" alt>
-                <p class="player">{{results.players.length}}</p>
+              <div class="second-row">
+                <div class="player-row">
+                  <img src="~/assets/images/decoration/friend.svg" alt>
+                  <p class="player">{{results.players.length}}</p>
+                </div>
+                <div
+                  class="topic-row"
+                  :class="{'love': results.topic=='love','life': results.topic=='life','dream': results.topic=='dream'}"
+                >
+                  <p>{{results.topic}}</p>
+                </div>
               </div>
               <div class="song-row row">
                 <p>
@@ -402,6 +410,7 @@ export default {
 
       img {
         height: 100%;
+        min-width: 100%;
       }
     }
   }
@@ -437,9 +446,12 @@ export default {
       margin: 5px 0;
       background-color: $dark-blue;
       padding: 5px 10px;
-      width: 30%;
+      width: 45%;
       justify-content: center;
       border-radius: 20px;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
 
       img {
         width: 30px;
@@ -866,6 +878,51 @@ export default {
       color: white;
       font-size: 28px;
       line-height: 1;
+    }
+  }
+}
+
+.second-row {
+  width: 60%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: space-between;
+
+  .row {
+    padding: 0;
+  }
+
+  .topic-row {
+    margin: 5px 0;
+    background-color: $dark-blue;
+    padding: 5px 10px;
+    width: 45%;
+    justify-content: center;
+    border-radius: 20px;
+
+    &.love {
+      background-color: #d1aba2;
+    }
+
+    &.life {
+      background-color: #c36b5e;
+    }
+
+    &.dream {
+      background-color: #a0b5b9;
+    }
+
+    img {
+      width: 30px;
+      height: 30px;
+      margin: 0 5px;
+    }
+
+    p {
+      color: white;
+      font-family: "Sukhumvit-Bold";
+      text-align: center;
     }
   }
 }

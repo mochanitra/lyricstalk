@@ -31,7 +31,8 @@
         <div class="vote-col">
           <button @click="goToSong(songId)" class="mini-out">
             <div class="mini-in">
-              <p>vote</p>
+              <p v-if="!seeResult">vote</p>
+              <p v-else>see result</p>
             </div>
           </button>
         </div>
@@ -62,6 +63,10 @@ export default {
     songId: {
       type: Number,
       default: null
+    },
+    seeResult: {
+      type: Boolean,
+      default: false
     }
   },
   data: () => ({

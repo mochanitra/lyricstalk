@@ -48,11 +48,11 @@
                 <p>see quiz</p>
               </div>
             </nuxt-link>
-            <button v-else class="btn-out">
+            <nuxt-link to="/soundtrack-of-you" v-else class="btn-out">
               <div class="btn-in">
-                <p>see quiz</p>
+                <p>create quiz</p>
               </div>
-            </button>
+            </nuxt-link>
           </div>
           <div v-if="$store.state.windowWidth > 576" class="pic-con">
             <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
@@ -79,7 +79,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="md_list.length > 0" v-bind:src="md_list[0]" alt>
                   </div>
                 </div>
               </div>
@@ -87,7 +87,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="md_list.length > 1" v-bind:src="md_list[1]" alt>
                   </div>
                 </div>
               </div>
@@ -95,7 +95,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="md_list.length > 2" v-bind:src="md_list[2]" alt>
                   </div>
                 </div>
               </div>
@@ -103,7 +103,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="md_list.length > 3" v-bind:src="md_list[3]" alt>
                   </div>
                 </div>
               </div>
@@ -122,7 +122,7 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="md_list.length > 0" v-bind:src="md_list[0]" alt>
                     </div>
                   </div>
                 </div>
@@ -130,7 +130,7 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="md_list.length > 1" v-bind:src="md_list[1]" alt>
                     </div>
                   </div>
                 </div>
@@ -138,7 +138,7 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="md_list.length > 2" v-bind:src="md_list[2]" alt>
                     </div>
                   </div>
                 </div>
@@ -146,17 +146,22 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="md_list.length > 3" v-bind:src="md_list[3]" alt>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <button class="btn-out">
+            <nuxt-link v-if="md_list.length > 0" to="/music-discussion/history" class="btn-out">
               <div class="btn-in">
                 <p>see vote</p>
               </div>
-            </button>
+            </nuxt-link>
+            <nuxt-link v-else to="/music-discussion" class="btn-out">
+              <div class="btn-in">
+                <p>let's vote</p>
+              </div>
+            </nuxt-link>
           </div>
         </div>
         <img
@@ -181,7 +186,7 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="gf_list.length > 0" v-bind:src="gf_list[0]" alt>
                     </div>
                   </div>
                 </div>
@@ -189,7 +194,7 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="gf_list.length > 1" v-bind:src="gf_list[1]" alt>
                     </div>
                   </div>
                 </div>
@@ -197,7 +202,7 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="gf_list.length > 2" v-bind:src="gf_list[2]" alt>
                     </div>
                   </div>
                 </div>
@@ -205,17 +210,22 @@
                   <div class="pic-con">
                     <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                     <div class="pic">
-                      <img alt>
+                      <img v-if="gf_list.length > 3" v-bind:src="gf_list[3]" alt>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-            <button class="btn-out">
+            <nuxt-link v-if="gf_list.length > 0" to="/group-feat/history" class="btn-out">
               <div class="btn-in">
                 <p>see feat.</p>
               </div>
-            </button>
+            </nuxt-link>
+            <nuxt-link v-else to="/group-feat" class="btn-out">
+              <div class="btn-in">
+                <p>let's feat.</p>
+              </div>
+            </nuxt-link>
           </div>
           <div v-if="$store.state.windowWidth > 576" class="large-pic-con">
             <div class="row">
@@ -223,7 +233,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="gf_list.length > 0" v-bind:src="gf_list[0]" alt>
                   </div>
                 </div>
               </div>
@@ -231,7 +241,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="gf_list.length > 1" v-bind:src="gf_list[1]" alt>
                   </div>
                 </div>
               </div>
@@ -239,7 +249,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="gf_list.length > 2" v-bind:src="gf_list[2]" alt>
                   </div>
                 </div>
               </div>
@@ -247,7 +257,7 @@
                 <div class="pic-con">
                   <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                   <div class="pic">
-                    <img alt>
+                    <img v-if="gf_list.length > 3" v-bind:src="gf_list[3]" alt>
                   </div>
                 </div>
               </div>
@@ -269,7 +279,9 @@
 import * as FBSE from "~/services/auth";
 export default {
   data: () => ({
-    status: ""
+    status: "",
+    gf_list: [],
+    md_list: []
   }),
   mounted() {
     // if (!this.$store.state.newauth) {
@@ -277,6 +289,14 @@ export default {
     //     path: "/"
     //   });
     // }
+    this.getGFList();
+    this.getMDList();
+  },
+  watch: {
+    "$store.state.newauth"() {
+      this.getGFList();
+      this.getMDList();
+    }
   },
   methods: {
     signOut() {
@@ -292,6 +312,46 @@ export default {
       }).catch(function(error) {
         // An error happened.
       });
+    },
+    getGFList() {
+      let gf_list = [];
+      if (
+        !this.$store.state.newauth ||
+        !this.$store.state.newauth["group-feat"]
+      ) {
+        return [];
+      }
+      const gfmap = this.$store.state.newauth["group-feat"];
+      for (let key in gfmap) {
+        if (gfmap[key].photo) {
+          gf_list.push(gfmap[key].photo);
+        }
+      }
+
+      this.gf_list = gf_list;
+    },
+    getMDList() {
+      let md_list = [];
+      let l = 0;
+      if (
+        !this.$store.state.newauth ||
+        !this.$store.state.newauth["musicDiscussion"]
+      ) {
+        return [];
+      }
+      const mdmap = this.$store.state.newauth["musicDiscussion"];
+      for (let key in mdmap) {
+        let md_artist = mdmap[key];
+        for (let key2 in md_artist) {
+          if (md_artist[key2]) {
+            md_list.push(
+              this.$store.state.musicDiscussion[key].discussion[key2].cover
+            );
+          }
+        }
+      }
+
+      this.md_list = md_list;
     }
   }
 };
@@ -431,7 +491,7 @@ export default {
       .pic {
         height: 200px;
         width: 200px;
-        background-color: $line-red;
+        background-color: $ci-light-blue;
         border-radius: 20px;
         margin-left: -6px;
         z-index: 1;
@@ -439,12 +499,14 @@ export default {
 
         img {
           height: 100%;
+          min-width: 100%;
         }
       }
     }
 
     .large-pic-con {
       width: 50%;
+      max-width: 400px;
       @media (max-width: $screen-xs-max) {
         width: 80%;
         min-width: 320px;
@@ -520,7 +582,7 @@ export default {
       display: flex;
       flex-flow: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     .gf-con {
@@ -538,7 +600,7 @@ export default {
       display: flex;
       flex-flow: row;
       align-items: center;
-      justify-content: space-between;
+      justify-content: center;
     }
 
     .head-con {

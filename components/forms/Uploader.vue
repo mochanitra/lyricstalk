@@ -17,10 +17,7 @@
         <!-- <fa-icon class="check _cl-white" icon="check"/> -->
       </button>
     </div>
-    <div
-      :class="{'_dp-n': progressUpload >= 0 && progressUpload < 100, '_dp-b': progressUpload === 100}"
-      class="upload-success"
-    >
+    <div :class="{'_dp-n': !isFinish, '_dp-b': isFinish}" class="upload-success">
       <p>Upload successful!</p>
     </div>
   </div>
@@ -34,7 +31,8 @@ export default {
       progressUpload: 0,
       // file: File,
       uploadTask: "",
-      downloadURL: ""
+      downloadURL: "",
+      isFinish: false
     };
   },
   watch: {
@@ -65,6 +63,7 @@ export default {
       this.uploadTask.then(snapshot => {
         snapshot.ref.getDownloadURL().then(url => {
           this.$emit("url", url);
+          this.isFinish = true;
         });
       });
     }

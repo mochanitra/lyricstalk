@@ -224,7 +224,7 @@ export default {
         {
           hid: "og:image",
           property: "og:image",
-          content: require("assets/images/background/og-fb.png")
+          content: require("assets/images/background/music-discussion.png")
         }
       ]
     };
