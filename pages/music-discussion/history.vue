@@ -105,12 +105,12 @@ export default {
   },
   methods: {
     getFollowingList() {
-      let followingList = [];
+      let followingList = {};
       if (
         !this.$store.state.newauth ||
         !this.$store.state.newauth["followingArtist"]
       ) {
-        return [];
+        return {};
       }
       for (let key in this.$store.state.newauth.followingArtist) {
         if (this.$store.state.newauth.followingArtist[key] == 1)
@@ -125,21 +125,21 @@ export default {
         !this.$store.state.newauth["musicDiscussion"]
       ) {
         return [];
+      }
+      for (let key in this.$store.state.newauth.musicDiscussion) {
+        let artist = this.$store.state.musicDiscussion[key];
+        for (let key2 in this.$store.state.newauth.musicDiscussion[key]) {
+          let song = artist.discussion[key2];
+          votedList.push({
+            songId: Number(key2),
+            artistId: key,
+            song: song,
+            name: artist.name,
+            cover: artist.cover
+          });
         }
-        for(let key in this.$store.state.newauth.musicDiscussion) {
-          let artist = this.$store.state.musicDiscussion[key];
-          for(let key2 in this.$store.state.newauth.musicDiscussion[key]) {
-            let song = artist.discussion[key2];
-            votedList.push({
-              songId: Number(key2),
-              artistId: key,
-              song: song,
-              name: artist.name,
-              cover: artist.cover
-            })
-          }
-        }
-        this.votedList = votedList;
+      }
+      this.votedList = votedList;
     },
     async follow(i) {
       if (!this.$store.state.newauth) {
@@ -231,12 +231,12 @@ export default {
   background-color: $ci-white;
   &.following {
     background: linear-gradient(
-    to right,
-    $ci-white 0%,
-    $ci-white 50%,
-    $home-blue 50%,
-    $home-blue 100%
-  );
+      to right,
+      $ci-white 0%,
+      $ci-white 50%,
+      $home-blue 50%,
+      $home-blue 100%
+    );
   }
   .artist-header-con {
     padding: 20px 0;

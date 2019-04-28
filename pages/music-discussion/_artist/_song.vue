@@ -117,6 +117,72 @@
         </div>
       </div>
     </div>
+    <div v-if="(isVoted != 0 || vote != 0)" class="insight-bg">
+      <div class="insight-con">
+        <h4>insight</h4>
+        <div class="voters">
+          <img src="~/assets/images/decoration/friend.svg" alt>
+          <p
+            class="player"
+          >{{Object.keys($store.state.musicDiscussion[artist].discussion[songIndex].voters).length}}</p>
+        </div>
+      </div>
+    </div>
+    <div v-if="(isVoted != 0 || vote != 0)" class="insight-data-bg">
+      <div class="insight-data-con">
+        <p class="fri">friends</p>
+        <div class="fri-data-row">
+          <div class="fri-list one">
+            <p>{{friList_1.length}} friends</p>
+            <div class="fri-pic-con">
+              <div v-for="(item,i) in friList_1" :key="i">
+                <img v-show="i < 5" :src="item.picture">
+              </div>
+              <p v-if="friList_1.length > 5">+ {{friList_1.length - 5}}</p>
+            </div>
+          </div>
+          <div class="fri-list two">
+            <p>{{friList_2.length}} friends</p>
+            <div class="fri-pic-con">
+              <div v-for="(item,i) in friList_2" :key="i">
+                <img v-show="i < 5" :src="item.picture">
+              </div>
+              <p v-if="friList_2.length > 5">+ {{friList_2.length - 5}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div v-if="(isVoted != 0 || vote != 0)" class="discussion-bg">
+      <div class="discussion-con">
+        <h4>discussion</h4>
+        <div class="discuss-col">
+          <div
+            v-if="$store.state.newauth && !$store.state.newauth.musicDiscussion[artist][songIndex].discussion"
+            class="discussion-row"
+          >
+            <img :src="$store.state.newauth.picture.data.url">
+            <div class="name-dis">
+              <p class="name">{{$store.state.newauth.name}}</p>
+              <div class="dis">
+                <img src="~/assets/images/decoration/md/chat-white.svg" alt>
+                <input :disabled="discussProcess" @keyup.enter="enterDiscuss()" v-model="opinion">
+              </div>
+            </div>
+          </div>
+          <div class="discussion-row" v-for="(item,i) in discussion" :key="i">
+            <img :src="item.picture">
+            <div class="name-dis">
+              <p class="name">{{item.name}}</p>
+              <div class="dis">
+                <img src="~/assets/images/decoration/md/chat-white.svg" alt>
+                <p :class="{'one': item.vote == 1,'two': item.vote == 2}">{{item.discussion}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <div class="artist-header-bg">
       <div class="artist-header-con">
         <div class="amp-con">
@@ -169,8 +235,14 @@ export default {
     progress: 0,
     timer: null,
     vote: 0,
-    voteProcess: false
+    voteProcess: false,
+    discussProcess: false,
+    friList_1: [],
+    friList_2: [],
+    discussion: [],
+    opinion: ""
   }),
+
   watch: {
     "$store.state.newauth"() {
       if (this.$store.state.newauth.musicDiscussion) {
@@ -188,6 +260,8 @@ export default {
           }
         }
       }
+      this.getFriendList();
+      this.getDiscussion();
     }
   },
   async asyncData({ params, store }) {
@@ -213,6 +287,10 @@ export default {
       isVoted
     };
   },
+  mounted() {
+    this.getFriendList();
+    this.getDiscussion();
+  },
   head() {
     return {
       meta: [
@@ -230,6 +308,122 @@ export default {
     };
   },
   methods: {
+    async enterDiscuss() {
+      if (this.discussProcess) return;
+      this.discussProcess = true;
+      let database = firebase.database();
+      let updates = {};
+      updates[
+        "/user/" +
+          this.$store.state.newauth.id +
+          "/musicDiscussion/" +
+          this.$route.params.artist +
+          "/" +
+          this.$route.params.song +
+          "/discussion"
+      ] = this.opinion;
+      updates[
+        "/music-discussion/" +
+          this.$route.params.artist +
+          "/discussion/" +
+          this.$route.params.song +
+          "/" +
+          `vote_${this.vote}/` +
+          this.$store.state.newauth.id +
+          "/discussion"
+      ] = this.opinion;
+      updates[
+        "/music-discussion/" +
+          this.$route.params.artist +
+          "/discussion/" +
+          this.$route.params.song +
+          "/" +
+          `voters/` +
+          this.$store.state.newauth.id +
+          "/discussion"
+      ] = this.opinion;
+      await firebase
+        .database()
+        .ref()
+        .update(updates);
+      const res = await this.$axios.get(
+        "https://lyricstalk-1fb09.firebaseio.com/music-discussion.json"
+      );
+      await this.$store.commit("SET_MUSIC_DISCUSSION", res.data);
+      const res2 = await this.$axios.get(
+        `https://lyricstalk-1fb09.firebaseio.com/user/${
+          this.$store.state.newauth.id
+        }.json`
+      );
+      await this.$store.commit("SET_NEWAUTH", res2.data);
+      await this.getDiscussion();
+    },
+    async getDiscussion() {
+      let discussion = [];
+      let song = this.$store.state.musicDiscussion[this.$route.params.artist]
+        .discussion[this.$route.params.song];
+      if (!this.$store.state.newauth || !song.voters) {
+        return [];
+      }
+      const res = await this.$axios.get(
+        "https://lyricstalk-1fb09.firebaseio.com/user.json"
+      );
+      for (let key in song.voters) {
+        if (song.voters[key].discussion) {
+          let data = res.data[key];
+          discussion.push({
+            name: data.name,
+            picture: data.picture.data.url,
+            vote: song.voters[key].vote,
+            discussion: song.voters[key].discussion
+          });
+        }
+      }
+      // for (let i = 0; i < this.$store.state.newauth.friends.data.length; i++) {
+      //   let friId = this.$store.state.newauth.friends.data[i].id;
+      //   if (song.voters[friId] && song.voters[friId].discussion) {
+      //     let friData = res.data[friId];
+      //     discussion.push({
+      //       name: friData.name,
+      //       picture: friData.picture.data.url,
+      //       vote: song.voters[friId].vote,
+      //       discussion: song.voters[friId].discussion
+      //     });
+      //   }
+      // }
+      this.discussion = discussion;
+    },
+    async getFriendList() {
+      let friList_1 = [];
+      let friList_2 = [];
+      let song = this.$store.state.musicDiscussion[this.$route.params.artist]
+        .discussion[this.$route.params.song];
+      if (!this.$store.state.newauth || !song.voters) {
+        return [];
+      }
+      const res = await this.$axios.get(
+        "https://lyricstalk-1fb09.firebaseio.com/user.json"
+      );
+      for (let i = 0; i < this.$store.state.newauth.friends.data.length; i++) {
+        let friId = this.$store.state.newauth.friends.data[i].id;
+        if (song.voters[friId]) {
+          let friData = res.data[friId];
+          if (song.voters[friId].vote == 1) {
+            friList_1.push({
+              name: friData.name,
+              picture: friData.picture.data.url
+            });
+          } else if (song.voters[friId].vote == 2) {
+            friList_2.push({
+              name: friData.name,
+              picture: friData.picture.data.url
+            });
+          }
+        }
+      }
+      this.friList_1 = friList_1;
+      this.friList_2 = friList_2;
+    },
     async follow(i) {
       if (!this.$store.state.newauth) {
         return this.$router.push({
@@ -728,6 +922,240 @@ export default {
       display: flex;
       flex-flow: column;
       align-items: center;
+    }
+  }
+}
+
+.insight-bg {
+  // background-color: $ci-white;
+  background: linear-gradient(
+    to left,
+    $ci-white 0%,
+    $ci-white 50%,
+    $home-blue 50%,
+    $home-blue 100%
+  );
+  .insight-con {
+    padding: 20px 0;
+    background-color: $md-color;
+    border-bottom-left-radius: 40px;
+    border-top-right-radius: 40px;
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    h4 {
+      text-align: center;
+      font-family: "Chonburi";
+      color: $line-red;
+      font-size: 28px;
+    }
+
+    .voters {
+      position: absolute;
+      margin: 5px 0;
+      background-color: $dark-blue;
+      padding: 5px 10px;
+      right: 30%;
+      @media (max-width: $screen-xs-max) {
+        right: 20px;
+      }
+      // width: 45%;
+      justify-content: center;
+      border-radius: 20px;
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+
+      img {
+        width: 30px;
+        height: 30px;
+        margin: 0 5px;
+      }
+
+      p {
+        color: white;
+        font-family: "Sukhumvit-Bold";
+      }
+    }
+  }
+}
+
+.insight-data-bg {
+  background-color: $md-color;
+  .insight-data-con {
+    background: linear-gradient(
+      to left,
+      $line-red 0%,
+      $line-red 50%,
+      $home-blue 50%,
+      $home-blue 100%
+    );
+    padding: 20px 0;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+
+    .fri-data-row {
+      display: flex;
+      flex-flow: row;
+      align-items: center;
+      margin-top: 10px;
+      width: 100%;
+
+      .fri-list {
+        display: flex;
+        flex-flow: column;
+        align-items: center;
+        width: 50%;
+        padding: 0 10px;
+
+        > p {
+          font-family: "Sukhumvit-Bold";
+          color: $ci-white;
+        }
+
+        .fri-pic-con {
+          margin-top: 10px;
+          display: flex;
+          flex-flow: row wrap;
+          align-items: center;
+          justify-content: center;
+          @media (max-width: $screen-sm-max) {
+          }
+          p {
+            font-family: "Sukhumvit-Bold";
+            color: $home-blue;
+            background-color: $ci-white;
+            text-align: center;
+            padding: 2px 5px;
+            border-radius: 20px;
+            flex-basis: 16.66%;
+            @media (max-width: $screen-sm-max) {
+              flex-basis: 50%;
+            }
+          }
+        }
+
+        img {
+          border-radius: 50%;
+          flex-basis: 16.66%;
+          @media (max-width: $screen-sm-max) {
+            flex-basis: 50%;
+          }
+        }
+      }
+    }
+
+    .fri {
+      font-family: "Chonburi";
+      color: $ci-white;
+      font-size: 20px;
+    }
+  }
+}
+
+.discussion-bg {
+  background: linear-gradient(
+    to right,
+    $md-color 0%,
+    $md-color 50%,
+    $line-red 50%,
+    $line-red 100%
+  );
+  .discussion-con {
+    background-color: $md-color;
+    padding: 20px 0;
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    border-top-right-radius: 40px;
+    border-bottom-left-radius: 40px;
+
+    h4 {
+      text-align: center;
+      font-family: "Chonburi";
+      color: $line-red;
+      font-size: 28px;
+      margin-bottom: 20px;
+    }
+
+    .discuss-col {
+      display: flex;
+      flex-flow: column;
+      align-items: center;
+
+      .discussion-row {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        width: 100%;
+        margin: 5px 0;
+
+        > img {
+          border-radius: 50%;
+          flex: 1;
+        }
+
+        .name-dis {
+          display: flex;
+          flex-flow: column;
+          align-items: flex-start;
+          flex: 8;
+          padding: 0 10px;
+
+          .name {
+            font-family: "Chonburi";
+            color: $font-black-blue-4;
+            font-size: 16px;
+          }
+
+          .dis {
+            position: relative;
+            width: 100%;
+            margin-top: 5px;
+
+            img {
+              position: absolute;
+              bottom: 100%;
+              transform: rotate(180deg);
+              height: 10px;
+              left: 60%;
+            }
+            p {
+              width: 100%;
+              background-color: $ci-white;
+              padding: 2px 10px;
+              border-radius: 20px;
+              font-family: "Sukhumvit-SemiBold";
+              font-size: 14px;
+
+              &.one {
+                color: $dark-blue;
+              }
+
+              &.two {
+                color: $line-red;
+              }
+            }
+
+            input {
+              width: 100%;
+              height: 28px;
+              background-color: $ci-white;
+              padding: 0 10px;
+              border-radius: 20px;
+              font-family: "Sukhumvit-SemiBold";
+              font-size: 14px;
+              border: none;
+              color: $font-black-blue;
+            }
+          }
+        }
+      }
     }
   }
 }
