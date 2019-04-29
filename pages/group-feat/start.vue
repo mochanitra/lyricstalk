@@ -345,11 +345,11 @@ export default {
       this.initController();
       this.$store.commit("SET_GROUPFEAT_DATA", data);
       return this.$router.push({
-        path: "/group-feat/story",
+        path: "/group-feat/instruction",
         query: {
           type: data.type,
           topic: data.topic,
-          q: 1
+          // q: 1
         }
       });
     },

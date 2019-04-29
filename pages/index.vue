@@ -112,7 +112,7 @@
         <img class="cd" src="~/assets/images/decoration/cd-right.svg" alt>
       </div>
       <div class="button-con">
-        <nuxt-link to="/" class="btn-out">
+        <nuxt-link to="/music-discussion" class="btn-out">
           <div class="btn-in">
             <p>explore topic</p>
           </div>

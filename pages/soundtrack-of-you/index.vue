@@ -141,9 +141,9 @@ export default {
       let friendsList = {};
       for (let i = 0; i < this.$store.state.newauth.friends.data.length; i++) {
         let id = this.$store.state.newauth.friends.data[i].id;
-        console.log(id);
+        // console.log(id);
         if (data[id]) {
-          console.log(data[id]);
+          // console.log(data[id]);
           let quiz;
           if (data[id].quizesList) {
             let qList = data[id].quizesList;
