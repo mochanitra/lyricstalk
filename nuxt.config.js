@@ -122,7 +122,11 @@ module.exports = {
     [
       '@nuxtjs/google-analytics',
       {
-        id: 'UA-139108809-1'
+        id: 'UA-139108809-1',
+        autoTracking: {
+          pageviewOnLoad: false,
+          exception: true
+        }
       }
     ],
     'nuxt-babel',

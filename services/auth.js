@@ -47,7 +47,8 @@ function facebookSignIn() {
   // provider.setCustomParameters({
   //   'display': 'popup'
   // })
-  return firebase.auth().signInWithPopup(provider);
+  // return firebase.auth().signInWithPopup(provider);
+  return firebase.auth().signInWithRedirect(provider)
 }
 
 function facebookSignOut() {
