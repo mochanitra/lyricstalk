@@ -38,10 +38,15 @@ export default {
     // user: { photoURL: null },
     token: null
   }),
-  async mounted () {
-    const result = await this.$store.dispatch('auth/facebookGetRedirectResult')
+  created() {
+    this.$store.commit("SET_LOGIN_WAIT", true);
+  },
+  async mounted() {
+    const result = await this.$store.dispatch("auth/facebookGetRedirectResult");
+    // await this.$store.commit("SET_LOGIN_WAIT", false);
     if (result.user) {
       // console.log(fbId)
+      await this.$store.commit("SET_LOGIN_WAIT", true);
       let redirect = null;
       if (this.$route.query.redirect) redirect = this.$route.query.redirect;
       this.token = result.credential.accessToken;
@@ -56,7 +61,7 @@ export default {
         //   fields: "id,name,friends{name,picture},picture"
         // },
       );
-      await this.$store.commit("SET_LOGIN_WAIT", true);
+      // await this.$store.commit("SET_LOGIN_WAIT", true);
       await this.$store.commit("SET_AUTH", this.user);
       let database = firebase.database();
       await database
@@ -88,6 +93,8 @@ export default {
           path: "/profile"
         });
       }
+    } else {
+      await this.$store.commit("SET_LOGIN_WAIT", false);
     }
   },
   watch: {
@@ -104,71 +111,71 @@ export default {
   methods: {
     login() {
       let fb = FBSE.facebookSignIn();
-    //   let redirect = null;
-    //   if (this.$route.query.redirect) redirect = this.$route.query.redirect;
-    //   fb.then(result => {
-    //     if (result.credential) {
-    //       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
-    //       this.token = result.credential.accessToken;
-    //       // ...
-    //     }
-    //     // The signed-in user info.
-    //     let user = result.user;
-    //     this.user = user.providerData[0];
-    //   })
-    //     .then(async () => {
-    //       const res = await this.$axios.get(
-    //         `https://graph.facebook.com/me?access_token=${
-    //           this.token
-    //         }&fields=id,name,friends{name,picture},picture`
-    //         // {
-    //         //   access_token: this.token,
-    //         //   fields: "id,name,friends{name,picture},picture"
-    //         // },
-    //       );
-    //       await this.$store.commit("SET_LOGIN_WAIT", true);
-    //       await this.$store.commit("SET_AUTH", this.user);
-    //       let database = firebase.database();
-    //       await database
-    //         .ref("user")
-    //         .equalTo(this.user.uid)
-    //         .once("value", snapshot => {
-    //           if (snapshot.exists()) {
-    //             database.ref("user/" + uid).update({
-    //               friends: res.data.friends,
-    //               name: res.data.name,
-    //               picture: res.data.picture
-    //             });
-    //           } else {
-    //             let uid = this.user.uid;
-    //             database.ref("user/" + uid).update(res.data);
-    //           }
-    //         });
-    //       const new_res = await this.$axios.get(
-    //         `https://lyricstalk-1fb09.firebaseio.com/user/${this.user.uid}.json`
-    //       );
-    //       await this.$store.commit("SET_NEWAUTH", new_res.data);
-    //       await this.$store.commit("SET_LOGIN_WAIT", false);
-    //       if (redirect) {
-    //         return this.$router.push({
-    //           path: this.$route.query.redirect
-    //         });
-    //       } else {
-    //         return this.$router.push({
-    //           path: "/profile"
-    //         });
-    //       }
-    //     })
-    //     .catch(function(error) {
-    //       // Handle Errors here.
-    //       let errorCode = error.code;
-    //       let errorMessage = error.message;
-    //       // The email of the user's account used.
-    //       let email = error.email;
-    //       // The firebase.auth.AuthCredential type that was used.
-    //       let credential = error.credential;
-    //       // ...
-    //     });
+      //   let redirect = null;
+      //   if (this.$route.query.redirect) redirect = this.$route.query.redirect;
+      //   fb.then(result => {
+      //     if (result.credential) {
+      //       // This gives you a Facebook Access Token. You can use it to access the Facebook API.
+      //       this.token = result.credential.accessToken;
+      //       // ...
+      //     }
+      //     // The signed-in user info.
+      //     let user = result.user;
+      //     this.user = user.providerData[0];
+      //   })
+      //     .then(async () => {
+      //       const res = await this.$axios.get(
+      //         `https://graph.facebook.com/me?access_token=${
+      //           this.token
+      //         }&fields=id,name,friends{name,picture},picture`
+      //         // {
+      //         //   access_token: this.token,
+      //         //   fields: "id,name,friends{name,picture},picture"
+      //         // },
+      //       );
+      //       await this.$store.commit("SET_LOGIN_WAIT", true);
+      //       await this.$store.commit("SET_AUTH", this.user);
+      //       let database = firebase.database();
+      //       await database
+      //         .ref("user")
+      //         .equalTo(this.user.uid)
+      //         .once("value", snapshot => {
+      //           if (snapshot.exists()) {
+      //             database.ref("user/" + uid).update({
+      //               friends: res.data.friends,
+      //               name: res.data.name,
+      //               picture: res.data.picture
+      //             });
+      //           } else {
+      //             let uid = this.user.uid;
+      //             database.ref("user/" + uid).update(res.data);
+      //           }
+      //         });
+      //       const new_res = await this.$axios.get(
+      //         `https://lyricstalk-1fb09.firebaseio.com/user/${this.user.uid}.json`
+      //       );
+      //       await this.$store.commit("SET_NEWAUTH", new_res.data);
+      //       await this.$store.commit("SET_LOGIN_WAIT", false);
+      //       if (redirect) {
+      //         return this.$router.push({
+      //           path: this.$route.query.redirect
+      //         });
+      //       } else {
+      //         return this.$router.push({
+      //           path: "/profile"
+      //         });
+      //       }
+      //     })
+      //     .catch(function(error) {
+      //       // Handle Errors here.
+      //       let errorCode = error.code;
+      //       let errorMessage = error.message;
+      //       // The email of the user's account used.
+      //       let email = error.email;
+      //       // The firebase.auth.AuthCredential type that was used.
+      //       let credential = error.credential;
+      //       // ...
+      //     });
     }
   }
 };

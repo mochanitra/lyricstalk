@@ -38,7 +38,10 @@
       <div class="content-con">
         <div class="basic-content">
           <div class="row">
-            <div class="pic-col col-6">
+            <div
+              class="pic-col"
+              :class="{'col-6' : $store.state.windowWidth >= 768, 'col-12' : $store.state.windowWidth < 768}"
+            >
               <div class="pic-con">
                 <img class="cd-left" src="~/assets/images/decoration/cd-left.svg">
                 <div class="pic">
@@ -46,7 +49,10 @@
                 </div>
               </div>
             </div>
-            <div class="basic-col col-6">
+            <div
+              class="basic-col"
+              :class="{'col-6' : $store.state.windowWidth >= 768, 'col-12' : $store.state.windowWidth < 768}"
+            >
               <div class="location-row row">
                 <div class="pic-col col-4">
                   <img class="img-3" src="~/assets/images/group-feat-start/ins-3.svg" alt>
@@ -385,6 +391,9 @@ export default {
 .basic-content {
   width: 700px;
   margin: 20px 0;
+  @media (max-width: $screen-md-max) {
+    width: 100vw;
+  }
   .pic-con {
     position: relative;
     display: flex;
@@ -420,6 +429,9 @@ export default {
     flex-flow: column;
     align-items: center;
     justify-content: space-between;
+    @media (max-width: $screen-md-max) {
+      margin: 20px 0;
+    }
     .location-row {
       width: 80%;
 
@@ -503,6 +515,10 @@ export default {
       display: flex;
       flex-flow: column;
       align-items: center;
+      @media (max-width: $screen-md-max) {
+        max-width: 100%;
+        flex: 0 0 100%;
+      }
 
       .name-con {
         width: 80%;
@@ -517,6 +533,11 @@ export default {
     }
 
     .lyrics-col {
+      @media (max-width: $screen-md-max) {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin-top: 20px;
+      }
       .song-con {
         position: relative;
         display: flex;
@@ -524,6 +545,9 @@ export default {
         align-items: center;
         height: 100px;
         z-index: 1;
+        @media (max-width: $screen-md-max) {
+          margin-left: 36px;
+        }
 
         .top-chat {
           position: absolute;
@@ -566,6 +590,10 @@ export default {
             font-family: "Sukhumvit-Bold";
             color: $dark-blue;
             font-size: 12px;
+            @media (max-width: $screen-md-max) {
+              font-size: 11px;
+              line-height: 1.2;
+            }
             text-align: center;
           }
         }
@@ -573,6 +601,12 @@ export default {
     }
 
     .react-col {
+      @media (max-width: $screen-md-max) {
+        max-width: 100%;
+        flex: 0 0 100%;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
       .react {
         display: flex;
         flex-flow: column;
@@ -595,9 +629,17 @@ export default {
 .wow-con {
   width: 500px;
   margin: 20px 0;
+  @media (max-width: $screen-md-max) {
+    width: 100vw;
+    padding: 0 20px;
+  }
   .name-row {
     align-items: center;
     .name-col {
+      @media (max-width: $screen-md-max) {
+        max-width: 70%;
+        flex: 0 0 70%;
+      }
       display: flex;
       flex-flow: column;
       align-items: center;
@@ -615,12 +657,20 @@ export default {
       display: flex;
       flex-flow: column;
       align-items: center;
+      @media (max-width: $screen-md-max) {
+        max-width: 15%;
+        flex: 0 0 15%;
+      }
       img {
         height: 36px;
       }
     }
 
     .count-col {
+      @media (max-width: $screen-md-max) {
+        max-width: 15%;
+        flex: 0 0 15%;
+      }
       display: flex;
       flex-flow: column;
       align-items: center;
@@ -674,6 +724,9 @@ export default {
       .lyric-con {
         height: 100%;
         width: 400px;
+        @media (max-width: $screen-md-max) {
+          width: 200px;
+        }
         margin-left: -6px;
         display: flex;
         flex-flow: column;
@@ -687,6 +740,10 @@ export default {
           font-family: "Sukhumvit-Bold";
           color: $dark-blue;
           font-size: 16px;
+          @media (max-width: $screen-md-max) {
+            font-size: 14px;
+            line-height: 1.4;
+          }
           text-align: center;
         }
       }
