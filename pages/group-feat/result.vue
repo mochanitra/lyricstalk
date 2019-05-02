@@ -391,7 +391,7 @@ export default {
 .basic-content {
   width: 700px;
   margin: 20px 0;
-  @media (max-width: $screen-md-max) {
+  @media (max-width: $screen-sm-max) {
     width: 100vw;
   }
   .pic-con {
@@ -429,7 +429,7 @@ export default {
     flex-flow: column;
     align-items: center;
     justify-content: space-between;
-    @media (max-width: $screen-md-max) {
+    @media (max-width: $screen-sm-max) {
       margin: 20px 0;
     }
     .location-row {
@@ -515,7 +515,7 @@ export default {
       display: flex;
       flex-flow: column;
       align-items: center;
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-sm-max) {
         max-width: 100%;
         flex: 0 0 100%;
       }
@@ -533,7 +533,7 @@ export default {
     }
 
     .lyrics-col {
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-sm-max) {
         max-width: 100%;
         flex: 0 0 100%;
         margin-top: 20px;
@@ -545,7 +545,7 @@ export default {
         align-items: center;
         height: 100px;
         z-index: 1;
-        @media (max-width: $screen-md-max) {
+        @media (max-width: $screen-sm-max) {
           margin-left: 36px;
         }
 
@@ -590,7 +590,7 @@ export default {
             font-family: "Sukhumvit-Bold";
             color: $dark-blue;
             font-size: 12px;
-            @media (max-width: $screen-md-max) {
+            @media (max-width: $screen-sm-max) {
               font-size: 11px;
               line-height: 1.2;
             }
@@ -601,7 +601,7 @@ export default {
     }
 
     .react-col {
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-sm-max) {
         max-width: 100%;
         flex: 0 0 100%;
         margin-top: 10px;
@@ -629,14 +629,14 @@ export default {
 .wow-con {
   width: 500px;
   margin: 20px 0;
-  @media (max-width: $screen-md-max) {
+  @media (max-width: $screen-sm-max) {
     width: 100vw;
     padding: 0 20px;
   }
   .name-row {
     align-items: center;
     .name-col {
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-sm-max) {
         max-width: 70%;
         flex: 0 0 70%;
       }
@@ -657,7 +657,7 @@ export default {
       display: flex;
       flex-flow: column;
       align-items: center;
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-sm-max) {
         max-width: 15%;
         flex: 0 0 15%;
       }
@@ -667,7 +667,7 @@ export default {
     }
 
     .count-col {
-      @media (max-width: $screen-md-max) {
+      @media (max-width: $screen-sm-max) {
         max-width: 15%;
         flex: 0 0 15%;
       }
@@ -724,7 +724,7 @@ export default {
       .lyric-con {
         height: 100%;
         width: 400px;
-        @media (max-width: $screen-md-max) {
+        @media (max-width: $screen-sm-max) {
           width: 200px;
         }
         margin-left: -6px;
@@ -740,7 +740,7 @@ export default {
           font-family: "Sukhumvit-Bold";
           color: $dark-blue;
           font-size: 16px;
-          @media (max-width: $screen-md-max) {
+          @media (max-width: $screen-sm-max) {
             font-size: 14px;
             line-height: 1.4;
           }
